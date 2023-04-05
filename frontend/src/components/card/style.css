@@ -1,0 +1,30 @@
+a {
+  text-decoration: none;
+}
+.card {
+  background: white;
+  box-shadow: 0 3px 6px #00000029;
+  border-radius: 1rem;
+}
+
+.card .sub-card:hover {
+  background: #008074;
+}
+
+.card .sub-card p {
+  font-weight: 800;
+  font-family: cursive;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  color: orange;
+}
+
+.card .sub-card {
+  padding: 1rem;
+}
+
+.sub-card .card-body svg {
+  font-size: 234px;
+  color: #20e2ff;
+}
