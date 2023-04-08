@@ -18,6 +18,7 @@ a {
   padding: 0;
   margin: 0;
   color: orange;
+  text-align: center;
 }
 
 .card .sub-card {
@@ -27,4 +28,8 @@ a {
 .sub-card .card-body svg {
   font-size: 234px;
   color: #20e2ff;
+}
+
+.sub-card .card-body img {
+  width: 100%;
 }

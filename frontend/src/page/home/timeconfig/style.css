@@ -1,0 +1,93 @@
+.timecf {
+  margin: 0 auto;
+  width: 90%;
+  margin-top: 2rem;
+}
+
+.timecf .title-time {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: #000000;
+  border-bottom: 4px solid;
+  width: 15%;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.title-time p {
+  margin: 0;
+}
+
+.timecf .sub-time-cf {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.sub-time-cf .save-time {
+  float: right;
+  background: #4499fd;
+  border-radius: 15px;
+  display: block;
+}
+.time-work .body-time-work {
+  box-shadow: 0 3px 6px #00000029;
+}
+.save-time button {
+  color: #ffffff;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  border: none;
+}
+.save-time button:hover {
+  border: none;
+}
+
+.sub-time-cf .time-work {
+  border: 1px solid #ffffff;
+}
+
+.time-work .title-time-work {
+  background: #4499fd;
+  padding: 1rem;
+  margin-top: 3rem;
+}
+
+.title-time-work p {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 33px;
+  text-transform: uppercase;
+
+  color: #fcf9f9;
+  margin: 0;
+}
+
+.time-work .body-time-work .sub-body-time {
+  background: #ffffff;
+  padding: 1rem;
+}
+
+.body-time-work .sub-body-time span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 33px;
+  color: #000000;
+}
+
+.sub-body-time select {
+  box-sizing: border-box;
+  height: 45px;
+  background: #fffefe;
+  border: 2px solid #e1dede;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  width: 50%;
+}

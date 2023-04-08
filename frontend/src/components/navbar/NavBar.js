@@ -99,7 +99,9 @@ export default function NavBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/login">Login</Link>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
@@ -151,7 +153,9 @@ export default function NavBar() {
         >
           <SettingsSuggestIcon />
         </IconButton>
-        <p>Profile</p>
+        <p>
+          <Link to="/login">Login</Link>
+        </p>
       </MenuItem>
     </Menu>
   );
