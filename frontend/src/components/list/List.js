@@ -7,6 +7,7 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Tables from "./tables/Tables";
 import Paginate from "../pagination/Pagination";
 
+
 export const List = (listStaff) => {
   console.log(listStaff);
   const Search = styled("div")(({ theme }) => ({
@@ -23,6 +24,7 @@ export const List = (listStaff) => {
       marginLeft: theme.spacing(3),
       width: "auto",
     },
+    
   }));
 
   const SearchIconWrapper = styled("div")(({ theme }) => ({

@@ -4,8 +4,11 @@ import Button from "@mui/material/Button";
 import LegendToggleIcon from "@mui/icons-material/LegendToggle";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import TableStatistical from "../../../components/tablestatistical/TableStatistical";
+import { CSVLink } from 'react-csv';
+import { data } from './../../../data/Data'
 
-export const Statistical = () => {
+
+export const Statistical = (rows) => {
   return (
     <div className="statistical">
       <div className="title-statistical">
@@ -42,7 +45,9 @@ export const Statistical = () => {
               </div>
               <div className="col-3">
                 <Button variant="outlined" startIcon={<ArrowDownwardIcon />}>
-                  Xuất File
+                <CSVLink data={data} filename={'Chấm công.csv'}>
+                    Xuất File
+                </CSVLink>
                 </Button>
               </div>
             </div>

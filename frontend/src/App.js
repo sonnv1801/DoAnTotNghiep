@@ -6,6 +6,7 @@ import { Staff } from "./page/home/staff/Staff";
 import { Login } from "./page/home/login/Login";
 import { TimeConfig } from "./page/home/timeconfig/TimeConfig";
 import { Statistical } from "./page/home/statistical/Statistical";
+import { TimeKeeping } from "./page/home/timekeeping/TimeKepping";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/list-staff" element={<Staff />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/timekp" element={<TimeKeeping />} />
           <Route path="/cf-time" element={<TimeConfig />} />
           <Route path="/statistic" element={<Statistical />} />
         </Routes>
@@ -25,3 +27,4 @@ function App() {
 }
 
 export default App;
+

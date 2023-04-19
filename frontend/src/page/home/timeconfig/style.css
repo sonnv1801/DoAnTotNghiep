@@ -25,6 +25,12 @@
   width: 90%;
 }
 
+input {
+  border-radius: 5px;
+ width: 50%;
+ height: 30px;
+ border: gray solid 1px;
+}
 .sub-time-cf .save-time {
   float: right;
   background: #4499fd;
@@ -90,4 +96,7 @@
   border-radius: 15px;
   margin-bottom: 1rem;
   width: 50%;
+}
+.timecf .sub-time-cf .table-time-config {
+  margin-top: 1rem;
 }

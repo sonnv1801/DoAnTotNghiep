@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from 'react';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,22 +6,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { data } from '../../data/Data'
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("NV1", "Nguyễn Văn Sơn", 29, 3),
-  createData("NV1", "Nguyễn Văn Sơn", 29, 3),
-  createData("NV1", "Nguyễn Văn Sơn", 29, 3),
-  createData("NV1", "Nguyễn Văn Sơn", 29, 3),
-  createData("NV1", "Nguyễn Văn Sơn", 29, 3),
-  createData("NV1", "Nguyễn Văn Sơn", 29, 3),
-];
 
 export default function BasicTable() {
-  return (
+  return (      
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -33,17 +22,17 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {data.map((datas) => (
             <TableRow
-              key={row.name}
+              key={datas.Id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {datas.Id}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{datas.Fullname}</TableCell>
+              <TableCell align="right">{datas.Work}</TableCell>
+              <TableCell align="right">{datas.Late}</TableCell>
             </TableRow>
           ))}
         </TableBody>

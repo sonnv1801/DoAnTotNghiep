@@ -2,9 +2,8 @@
   font-size: 26px;
   font-weight: 700;
   font-family: emoji;
-  border-bottom: 4px solid;
-  width: 20%;
-  text-align: center;
+  /* border-bottom: 4px solid; */
+  width: 100%;
   margin-bottom: 1rem;
 }
 
@@ -21,18 +20,21 @@
 .list .list-search {
   display: flex;
   padding: 1rem;
+  width: 100%;
 }
 
 .list-search .sub-list-search {
   padding: 0;
   margin: 0;
 }
-
+.sub-list-filter{
+  width: 250px;
+}
 .sub-list-filter .filler {
   /* display: flex; */
   background: antiquewhite;
   border-radius: 1rem;
-  width: 250px;
+  width: 100%;
   color: black;
   font-weight: 700;
   cursor: pointer;
@@ -41,6 +43,7 @@
 
 .sub-list-filter .filler p {
   margin: 0;
+
 }
 .filler-list .icon-filter {
   float: left;
@@ -49,15 +52,24 @@
 
 .filler .filler-list {
   padding: 0.5rem;
+ 
+
 }
 
 .title-filter .sl-op {
   border: none;
   background: none;
+  margin: auto;
+  width: auto;
 }
 
 .pagination {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
+}
+@media (max-width: 768px){
+  .filler-list{
+    width: 100%;
+  }
 }

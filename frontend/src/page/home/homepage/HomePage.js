@@ -27,7 +27,7 @@ const listmenu = [
   },
   {
     id: 4,
-    link: "/",
+    link: "/timekp",
     title: "Chấm công",
     img: menu4,
   },

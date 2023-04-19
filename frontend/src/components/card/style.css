@@ -5,19 +5,21 @@ a {
   background: white;
   box-shadow: 0 3px 6px #00000029;
   border-radius: 1rem;
+  
 }
 
 .card .sub-card:hover {
-  background: #008074;
+  background: #c3c4c4;
+  border-radius: 1rem;
 }
 
 .card .sub-card p {
   font-weight: 800;
-  font-family: cursive;
-  font-size: 20px;
+  font-family: Popin;
+  font-size: 25px;
   padding: 0;
   margin: 0;
-  color: orange;
+  color: black;
   text-align: center;
 }
 
@@ -30,6 +32,10 @@ a {
   color: #20e2ff;
 }
 
+
+
 .sub-card .card-body img {
   width: 100%;
+
+  
 }
