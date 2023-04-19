@@ -91,11 +91,13 @@ export default function Tables(listStaff) {
                   <StyledTableCell align="right">{row.name}</StyledTableCell>
                   {/* <StyledTableCell align="right">18/10/2001</StyledTableCell> */}
                   <StyledTableCell align="right">
-                    {moment(row?.day).format("DD/MM/YYYY")}
+                    {/* {moment(row?.day).format("DD/MM/YYYY")} */}
+                    {row?.day}
                   </StyledTableCell>
                   {/* <StyledTableCell align="right">Dev</StyledTableCell> */}
                   <StyledTableCell align="right">
-                    {moment(row?.time).format("DD/MM/YYYY")}
+                    {/* {moment(row?.time).format("DD/MM/YYYY")} */}
+                    {row?.time}
                   </StyledTableCell>
                   <StyledTableCell align="right">{row.Dep}</StyledTableCell>
                   <StyledTableCell align="right">

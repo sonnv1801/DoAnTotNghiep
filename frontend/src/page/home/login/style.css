@@ -38,15 +38,17 @@
   color: #000000;
   margin-bottom: 0.3rem;
 }
-
-.login-input .input-gr {
+.login-input {
+  position: relative;
+}
+.login-input input {
   background: #fffdfd;
   border: 2px solid #dad5d5;
   border-radius: 45px;
   width: 446px;
   height: 47px;
   color: #9f9b9b;
-  position: relative;
+
   padding: 1rem;
   width: 100%;
 }
@@ -55,8 +57,8 @@
   position: absolute;
   width: 32px;
   height: 20px;
-  left: 689px;
-  top: 414px;
+  left: 628px;
+  top: 47px;
   cursor: pointer;
 }
 
@@ -82,4 +84,33 @@
 .login .bgr-logo img {
   /* width: 100%; */
   float: right;
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  border-top-color: #000;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

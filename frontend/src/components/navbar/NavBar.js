@@ -16,7 +16,7 @@ import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -59,6 +59,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function NavBar() {
+  const user = JSON.parse(localStorage.getItem("token"));
+  const navigate = useNavigate();
+  const handlelogout = () => {
+    localStorage.removeItem("token");
+    setTimeout(() => {
+      navigate("/");
+      window.location.reload(false);
+    }, 500);
+  };
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -99,10 +108,22 @@ export default function NavBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>
-        <Link to="/login">Login</Link>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {user === null ? (
+        <>
+          <MenuItem onClick={handleMenuClose}>
+            <Link to="/login">Đăng Nhập</Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        </>
+      ) : (
+        <>
+          <MenuItem onClick={handleMenuClose}>
+            <Link to="/login" onClick={handlelogout}>
+              Đăng Xuất
+            </Link>
+          </MenuItem>
+        </>
+      )}
     </Menu>
   );
 
