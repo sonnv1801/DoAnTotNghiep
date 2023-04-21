@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
-import moment from "moment";
+import _ from "lodash";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,84 +30,153 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-
 export default function Tables(listStaff) {
   const isLoading = useSelector((state) => state.defaultReducer.isLoading);
-  console.log(listStaff);
+  const search = useSelector((state) => state.defaultReducer.search);
+  console.log(search);
+  const filteredData = _.uniqBy(listStaff.listStaff, "name");
+  const filteredsearch = _.uniqBy(search, "Student_Id");
+
   return (
     <>
-      {isLoading ? (
+      {search.length > 0 ? (
         <>
-          <div className="spinner-border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <span
-            style={{
-              color: "red",
-              marginLeft: "1rem",
-              fontSize: "1.5rem",
-              fontWeight: "700",
-            }}
-          >
-            Loading...
-          </span>
+          {isLoading ? (
+            <>
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <span
+                style={{
+                  color: "red",
+                  marginLeft: "1rem",
+                  fontSize: "1.5rem",
+                  fontWeight: "700",
+                }}
+              >
+                Loading...
+              </span>
+            </>
+          ) : (
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>#</StyledTableCell>
+                    <StyledTableCell align="right">ID</StyledTableCell>
+                    <StyledTableCell align="right">
+                      Tên nhân viên
+                    </StyledTableCell>
+                    {/* <StyledTableCell align="right">Ngày sinh</StyledTableCell> */}
+                    <StyledTableCell align="right">Ngày</StyledTableCell>
+                    {/* <StyledTableCell align="right">Phòng ban</StyledTableCell> */}
+                    <StyledTableCell align="right">Thời gian</StyledTableCell>
+                    <StyledTableCell align="right">Phòng ban</StyledTableCell>
+                    <StyledTableCell align="right">Vai trò</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {filteredsearch?.map((row, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell component="th" scope="row">
+                        {index}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.Student_Id}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.name}
+                      </StyledTableCell>
+                      {/* <StyledTableCell align="right">18/10/2001</StyledTableCell> */}
+                      <StyledTableCell align="right">
+                        {/* {moment(row?.day).format("DD/MM/YYYY")} */}
+                        {row?.day}
+                      </StyledTableCell>
+                      {/* <StyledTableCell align="right">Dev</StyledTableCell> */}
+                      <StyledTableCell align="right">
+                        {/* {moment(row?.time).format("DD/MM/YYYY")} */}
+                        {row?.time}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">{row.Dep}</StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.roll === 1 ? "Nhân Viên" : "Admin"}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
         </>
       ) : (
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>#</StyledTableCell>
-                <StyledTableCell align="right">ID</StyledTableCell>
-                <StyledTableCell align="right">Tên nhân viên</StyledTableCell>
-                {/* <StyledTableCell align="right">Ngày sinh</StyledTableCell> */}
-                <StyledTableCell align="right">Ngày</StyledTableCell>
-                {/* <StyledTableCell align="right">Phòng ban</StyledTableCell> */}
-                <StyledTableCell align="right">Thời gian</StyledTableCell>
-                <StyledTableCell align="right">Phòng ban</StyledTableCell>
-                <StyledTableCell align="right">Vai trò</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {listStaff?.listStaff?.map((row, index) => (
-                <StyledTableRow key={index}>
-                  <StyledTableCell component="th" scope="row">
-                    {index}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">
-                    {row.Student_Id}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">{row.name}</StyledTableCell>
-                  {/* <StyledTableCell align="right">18/10/2001</StyledTableCell> */}
-                  <StyledTableCell align="right">
-                    {/* {moment(row?.day).format("DD/MM/YYYY")} */}
-                    {row?.day}
-                  </StyledTableCell>
-                  {/* <StyledTableCell align="right">Dev</StyledTableCell> */}
-                  <StyledTableCell align="right">
-                    {/* {moment(row?.time).format("DD/MM/YYYY")} */}
-                    {row?.time}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">{row.Dep}</StyledTableCell>
-                  <StyledTableCell align="right">
-                    {row.roll === 1 ? "Nhân Viên" : "Admin"}
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <>
+          {isLoading ? (
+            <>
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <span
+                style={{
+                  color: "red",
+                  marginLeft: "1rem",
+                  fontSize: "1.5rem",
+                  fontWeight: "700",
+                }}
+              >
+                Loading...
+              </span>
+            </>
+          ) : (
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>#</StyledTableCell>
+                    <StyledTableCell align="right">ID</StyledTableCell>
+                    <StyledTableCell align="right">
+                      Tên nhân viên
+                    </StyledTableCell>
+                    {/* <StyledTableCell align="right">Ngày sinh</StyledTableCell> */}
+                    <StyledTableCell align="right">Ngày</StyledTableCell>
+                    {/* <StyledTableCell align="right">Phòng ban</StyledTableCell> */}
+                    <StyledTableCell align="right">Thời gian</StyledTableCell>
+                    <StyledTableCell align="right">Phòng ban</StyledTableCell>
+                    <StyledTableCell align="right">Vai trò</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {filteredData?.map((row, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell component="th" scope="row">
+                        {index}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.Student_Id}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.name}
+                      </StyledTableCell>
+                      {/* <StyledTableCell align="right">18/10/2001</StyledTableCell> */}
+                      <StyledTableCell align="right">
+                        {/* {moment(row?.day).format("DD/MM/YYYY")} */}
+                        {row?.day}
+                      </StyledTableCell>
+                      {/* <StyledTableCell align="right">Dev</StyledTableCell> */}
+                      <StyledTableCell align="right">
+                        {/* {moment(row?.time).format("DD/MM/YYYY")} */}
+                        {row?.time}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">{row.Dep}</StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.roll === 1 ? "Nhân Viên" : "Admin"}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        </>
       )}
     </>
   );

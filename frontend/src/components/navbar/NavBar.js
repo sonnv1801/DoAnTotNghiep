@@ -17,6 +17,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -66,7 +68,13 @@ export default function NavBar() {
     setTimeout(() => {
       navigate("/");
       window.location.reload(false);
-    }, 500);
+    }, 2000);
+    toast.success(
+      "Đăng xuất thành công! Đợi tý chúng tôi đang chuyển hướng...",
+      {
+        position: toast.POSITION.TOP_RIGHT,
+      }
+    );
   };
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -118,7 +126,7 @@ export default function NavBar() {
       ) : (
         <>
           <MenuItem onClick={handleMenuClose}>
-            <Link to="/login" onClick={handlelogout}>
+            <Link to="/" onClick={handlelogout}>
               Đăng Xuất
             </Link>
           </MenuItem>
@@ -183,6 +191,7 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
+      <ToastContainer />
       <AppBar position="static">
         <Toolbar>
           <IconButton

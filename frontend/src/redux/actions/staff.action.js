@@ -1,6 +1,11 @@
 import { createAction } from ".";
 import { staffService } from "../../services";
-import { FETCH_STAFF, START_LOADING, STOP_LOADING } from "../type/types";
+import {
+  FETCH_STAFF,
+  SEARCH_STAFF,
+  START_LOADING,
+  STOP_LOADING,
+} from "../type/types";
 
 export const startLoading = () => {
   return {
@@ -27,5 +32,12 @@ export const getAllStaff = () => {
         console.log(err);
         dispatch(stopLoading());
       });
+  };
+};
+
+export const searchStaff = (keyword) => {
+  return (dispatch) => {
+    dispatch(createAction(SEARCH_STAFF, keyword));
+    console.log(keyword);
   };
 };

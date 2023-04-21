@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./style.css";
 import Logo from "../../../assets/logo.png";
 import BrgLogin from "../../../assets/login-bgr.png";
-import Swal from "sweetalert2";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Alert from "@mui/material/Alert";
 
 import Button from "@mui/material/Button";
@@ -31,11 +32,14 @@ export const Login = () => {
       };
       loginUser(newUser, dispatch, navigate);
     } else {
-      Swal.fire("Vui lòng nhập đầy đủ Username và mật khẩu", "waring");
+      toast.warning("Vui lòng nhập đầy đủ Username và mật khẩu", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
   return (
     <div className="login">
+      <ToastContainer />
       <div className="row">
         <div className="col-6">
           <div className="logo-login">
