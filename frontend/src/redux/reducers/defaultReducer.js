@@ -1,4 +1,5 @@
 import {
+  CREATE_TIME,
   FETCH_STAFF,
   LOGIN_FAILED,
   LOGIN_START,
@@ -9,6 +10,7 @@ import {
 
 const initialState = {
   listStaff: [],
+  listTime: [],
   login: {
     currentUser: null,
     isFetching: false,
@@ -46,6 +48,13 @@ const defaultReducer = (state = initialState, action) => {
     case LOGIN_FAILED: {
       state.login.isFetching = false;
       state.login.error = true;
+      return { ...state };
+    }
+
+    case CREATE_TIME: {
+      let updateList = [...state.listTime];
+      updateList.push(payload);
+      state.listTime = updateList;
       return { ...state };
     }
 
