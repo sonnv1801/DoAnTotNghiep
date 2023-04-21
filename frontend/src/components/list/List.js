@@ -1,73 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Tables from "./tables/Tables";
 import Paginate from "../pagination/Pagination";
-
+import { useDispatch } from "react-redux";
+import { searchStaff } from "../../redux/actions/staff.action";
+import Swal from "sweetalert2";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const List = (listStaff) => {
-  console.log(listStaff);
-  const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-    
-  }));
+  const dispatch = useDispatch();
+  const [key, setkey] = useState("");
+  const handleChange = (e) => {
+    const key = e.target.value;
+    setkey(key);
+  };
 
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(searchStaff(key));
+    // setkey("")
+    if (key.length <= 0) {
+      toast.warning("Vui lòng không để trống trường này", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
 
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: "20ch",
-      },
-    },
-  }));
   return (
     <div className="list">
+      <ToastContainer />
       <div className="list-title">
         <p>Thông tin nhân viên</p>
       </div>
       <div className="list-search">
-        <div className="sub-list-search">
-          <Search id="search-staff">
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
+        <form onSubmit={handleSearch} className="form-inline my-2 my-lg-0 ml-5">
+          <div className="search-staff">
+            <input
+              className="form-control mr-sm-2"
+              type="text"
+              value={key}
+              name="search"
+              onChange={handleChange}
+              placeholder="Search"
+              aria-label="Search"
             />
-          </Search>
-        </div>
-        <div className="sub-list-filter">
+            <SearchIcon className="icon-search" />
+          </div>
+        </form>
+
+        {/* <div className="sub-list-filter">
           <div className="filler">
             <div className="filler-list">
               <div className="icon-filter">
@@ -84,7 +68,7 @@ export const List = (listStaff) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="ilst-table">
         <Tables listStaff={listStaff.listStaff} />

@@ -3,12 +3,14 @@ import {
   LOGIN_FAILED,
   LOGIN_START,
   LOGIN_SUCCESS,
+  SEARCH_STAFF,
   START_LOADING,
   STOP_LOADING,
 } from "../type/types";
 
 const initialState = {
   listStaff: [],
+  search: [],
   login: {
     currentUser: null,
     isFetching: false,
@@ -22,6 +24,24 @@ const defaultReducer = (state = initialState, action) => {
     case FETCH_STAFF: {
       state.listStaff = payload;
       return { ...state }; //setState
+    }
+
+    case SEARCH_STAFF: {
+      const key = payload;
+      state.selected = key;
+      if (key === "") {
+        state.search = [];
+      } else {
+        const update = state.listStaff.filter(
+          (staff) =>
+            staff.name.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+            staff.Dep.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+            staff.Student_Id.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        );
+        state.search = update;
+      }
+
+      return { ...state };
     }
     case START_LOADING: {
       state.isLoading = true;

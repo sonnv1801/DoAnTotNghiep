@@ -1,14 +1,7 @@
 import { userService } from "../../services";
 import { createAction } from ".";
-import {
-  LOGIN_FAILED,
-  LOGIN_START,
-  LOGIN_SUCCESS,
-  LOGOUT_FAILED,
-  LOGOUT_START,
-  LOGOUT_SUCCESS,
-} from "../type/types";
-import Swal from "sweetalert2";
+import { LOGIN_FAILED, LOGIN_START, LOGIN_SUCCESS } from "../type/types";
+import { toast } from "react-toastify";
 
 export const loginStart = () => {
   return {
@@ -49,8 +42,10 @@ export const loginUser = async (user, dispatch, navigate) => {
       setTimeout(() => {
         window.location.reload(false);
         navigate("/");
-        Swal.fire("Chào mừng bạn quay lại!", "success");
       }, 1000);
+      toast.success("Chào Mừng Bạn Quay Lại!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     })
     .catch((err) => {
       console.log(err);
