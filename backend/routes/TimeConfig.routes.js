@@ -5,8 +5,8 @@ const TimeController = require("../controllers/TimeCofig.controller");
 router.post('/time', TimeController.createTime )
 router.get('/time/:id', TimeController.getTime )
 router.get('/time', TimeController.getAllTimes )
-router.put('/time/:id', TimeController.updateTime )
-router.post('/time/:id', TimeController.deleteTime )
+// router.put('/time/:id', TimeController.updateTime )
+router.delete('/time/:id', TimeController.deleteTime )
 
 
 module.exports = router;

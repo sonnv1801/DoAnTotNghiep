@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import "./style.css";
 import Button from "@mui/material/Button";
 import SaveIcon from "@mui/icons-material/Save";
 import TableTime from "./../../../components/tabletimeconfig/TableTimeConfig"
-import { createTimes } from "../../../redux/actions/time.action";
+import { createTimes, getAllTime } from "../../../redux/actions/time.action";
 
 
 export const TimeConfig = () => {
@@ -35,6 +35,10 @@ export const TimeConfig = () => {
   //   event.preventDefault();
   //   console.log(`Time in: ${time_in}, Time out: ${time_out}`);
   // };
+
+  //   useEffect(() => {
+  //   dispatch(getAllTime());
+  // }, []);
   return (
     <div className="timecf">
       <div className="title-time">

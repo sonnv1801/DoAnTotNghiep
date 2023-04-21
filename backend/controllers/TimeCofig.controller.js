@@ -37,23 +37,6 @@ exports.createTime = async (req, res) => {
   }
 };
 
-exports.updateTime = async (req, res) => {
-  const { id } = req.params;
-  const { time_in, time_out } = req.body;
-  try {
-    const time = await Time.findByIdAndUpdate(id);
-    if (!time) {
-      return res.status(404).json({ message: "Resource not found" });
-    }
-    time.time_in = time_in || time.time_in;
-    time.time_out = time_out || time.time_out;
-    await time.save();
-    res.status(200).json({ message: "Time update successfully" });
-  } catch (error) {
-    res.status(500).json({ message: "Server Error" });
-  }
-};
-
 exports.deleteTime = async (req, res) => {
   const { id } = req.params;
   try {
