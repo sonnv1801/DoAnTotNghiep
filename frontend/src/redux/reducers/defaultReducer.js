@@ -1,6 +1,8 @@
 import {
   CREATE_TIME,
+  DELETE_TIME,
   FETCH_STAFF,
+  FETCH_TIME_CONFIG,
   LOGIN_FAILED,
   LOGIN_START,
   LOGIN_SUCCESS,
@@ -79,6 +81,20 @@ const defaultReducer = (state = initialState, action) => {
       return { ...state };
     }
 
+    case FETCH_TIME_CONFIG: {
+      state.listTime = payload;
+      return { ...state };
+    }
+
+    case DELETE_TIME: {
+      let updateList = [...state.listTime];
+      let index = updateList.findIndex((time) => time.id === action.id);
+      if (index === -1) {
+        updateList.splice(payload, index);
+        state.listTime = updateList;
+      }
+        return {...state};
+    }
     default:
       return state;
   }

@@ -6,4 +6,10 @@ export class TimeService {
   createTime(time) {
     return Axios.post(`${API}/time`, time);
   }
+  getTime() {
+    return Axios.get(`${API}/time`);
+  }
+  deleteTime(id) {
+    return Axios.delete(`${API}/time/${id}`, );
+  }
 }
