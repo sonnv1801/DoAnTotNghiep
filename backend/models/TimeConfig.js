@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const moment = require('moment');
+const mongoose = require("mongoose");
+const moment = require("moment");
 
 const TimeSchema = new mongoose.Schema({
   time_in: {
@@ -16,4 +16,4 @@ const TimeSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Time', TimeSchema);
+module.exports = mongoose.model("Time", TimeSchema);

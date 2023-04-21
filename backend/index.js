@@ -29,7 +29,7 @@ app.use(express.json());
 //ROUTES
 app.use("/v1/auth", authRoute);
 app.use("/v1/user", userRoute);
-app.use("/v1/time", timeRoute)
+app.use("/v1/time", timeRoute);
 
 app.listen(8000, () => {
   console.log(`Server is runing port ${PORT}`);
