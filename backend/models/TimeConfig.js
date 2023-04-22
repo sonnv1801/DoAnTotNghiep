@@ -4,15 +4,13 @@ const moment = require("moment");
 const TimeSchema = new mongoose.Schema({
   time_in: {
     type: String,
-  
   },
   time_out: {
     type: String,
-  
   },
   created_at: {
     type: Date,
-    default: moment(),
+    default: Date.now,
   },
 });
 

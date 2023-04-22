@@ -13,7 +13,7 @@ import {
 
 const initialState = {
   listStaff: [],
-  listTime: [],
+  listTimeCf: [],
   search: [],
 
   login: {
@@ -74,26 +74,32 @@ const defaultReducer = (state = initialState, action) => {
       return { ...state };
     }
 
+    // case CREATE_TIME: {
+    //   let updateList = [...state.listTimeCf];
+    //   updateList.push(payload);
+    //   state.listTimeCf = updateList;
+    //   return { ...state };
+    // }
+
     case CREATE_TIME: {
-      let updateList = [...state.listTime];
-      updateList.push(payload);
-      state.listTime = updateList;
-      return { ...state };
+      const updatedList = [...state.listTimeCf];
+      updatedList.push(payload);
+      return { ...state, listTimeCf: updatedList };
     }
 
     case FETCH_TIME_CONFIG: {
-      state.listTime = payload;
+      state.listTimeCf = payload;
       return { ...state };
     }
 
     case DELETE_TIME: {
-      let updateList = [...state.listTime];
+      let updateList = [...state.listTimeCf];
       let index = updateList.findIndex((time) => time.id === action.id);
       if (index === -1) {
         updateList.splice(payload, index);
-        state.listTime = updateList;
+        state.listTimeCf = updateList;
       }
-        return {...state};
+      return { ...state };
     }
     default:
       return state;

@@ -27,6 +27,7 @@ function App() {
 
               <Route path="/cf-time" element={<TimeConfig />} />
               <Route path="/statistic" element={<Statistical />} />
+              <Route path="/timekp" element={<TimeKeeping />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           )}
@@ -38,4 +39,3 @@ function App() {
 }
 
 export default App;
-

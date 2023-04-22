@@ -4,9 +4,8 @@ import Button from "@mui/material/Button";
 import LegendToggleIcon from "@mui/icons-material/LegendToggle";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import TableStatistical from "../../../components/tablestatistical/TableStatistical";
-import { CSVLink } from 'react-csv';
-import { data } from './../../../data/Data'
-
+import { CSVLink } from "react-csv";
+import { data } from "./../../../data/Data";
 
 export const Statistical = (rows) => {
   return (
@@ -45,9 +44,9 @@ export const Statistical = (rows) => {
               </div>
               <div className="col-3">
                 <Button variant="outlined" startIcon={<ArrowDownwardIcon />}>
-                <CSVLink data={data} filename={'Chấm công.csv'}>
+                  <CSVLink data={data} filename={"Chấm công.csv"}>
                     Xuất File
-                </CSVLink>
+                  </CSVLink>
                 </Button>
               </div>
             </div>

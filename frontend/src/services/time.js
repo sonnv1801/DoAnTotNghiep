@@ -3,13 +3,17 @@ import Axios from "axios";
 const API = "http://localhost:8000/v1/time";
 
 export class TimeService {
-  createTime(time) {
-    return Axios.post(`${API}/time`, time);
+  createTime(time, accessToken) {
+    return Axios.post(API, time, {
+      headers: { token: `vanson ${accessToken}` },
+    });
   }
   getTime() {
-    return Axios.get(`${API}/time`);
+    return Axios.get(API);
   }
-  deleteTime(id) {
-    return Axios.delete(`${API}/time/${id}`, );
+  deleteTime(id, accessToken) {
+    return Axios.delete(`${API}/${id}`, {
+      headers: { token: `vanson ${accessToken}` },
+    });
   }
 }

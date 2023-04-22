@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./style.css";
 import Button from "@mui/material/Button";
 import SaveIcon from "@mui/icons-material/Save";
-import TableTime from "./../../../components/tabletimeconfig/TableTimeConfig"
-import { createTimes, getAllTime } from "../../../redux/actions/time.action";
-
+import TableTime from "./../../../components/tabletimeconfig/TableTimeConfig";
+import { addTime, getAllTimeCf } from "../../../redux/actions/time.action";
 
 export const TimeConfig = () => {
-  const [time_in, setTimeIn] = useState('');
-  const [time_out, setTimeOut] = useState('');
+  const currentUser = JSON.parse(localStorage.getItem("token"));
+  const listTime = useSelector((state) => state.defaultReducer.listTimeCf);
+  const [time_in, setTimeIn] = useState("");
+  const [time_out, setTimeOut] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllTimeCf());
+  }, []);
+
+  console.log(listTime);
 
   const handleTimeInChange = (event) => {
     setTimeIn(event.target.value);
   };
-
 
   const handleTimeOutChange = (event) => {
     setTimeOut(event.target.value);
@@ -23,38 +31,39 @@ export const TimeConfig = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newTime = {
-      time_in: time_in,
-      time_out : time_out
-    };
-    dispatch(createTimes(newTime));
-   
+
+    if (time_in !== "" && time_out !== "") {
+      const newTime = {
+        time_in: time_in,
+        time_out: time_out,
+      };
+      dispatch(addTime(newTime, currentUser?.accessToken));
+    } else {
+      toast.warning("Vui lòng không để trống trường này", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   };
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   console.log(`Time in: ${time_in}, Time out: ${time_out}`);
-  // };
-
-  //   useEffect(() => {
-  //   dispatch(getAllTime());
-  // }, []);
   return (
     <div className="timecf">
+      <ToastContainer />
       <div className="title-time">
         <p>Cấu hình thời gian</p>
       </div>
-      
-        <div className="sub-time-cf">
+
+      <div className="sub-time-cf">
         <form onSubmit={handleSubmit} className="sub-time-cf">
-        <div className="save-time">
-          <Button  type="submit" variant="outlined" startIcon={<SaveIcon />}>
-            Lưu cấu hình
-          </Button>
-        </div>
+          <div className="save-time">
+            <Button type="submit" variant="outlined" startIcon={<SaveIcon />}>
+              Lưu cấu hình
+            </Button>
+          </div>
         </form>
 
-      <div className="time-work">
+        {/* <p onClick={handleClick}>Lưu</p> */}
+
+        <div className="time-work">
           <div className="title-time-work">
             <p>Thiết lập thời gian</p>
           </div>
@@ -65,13 +74,23 @@ export const TimeConfig = () => {
                   <span>Thời gian vào</span>
                 </div>
                 <div className="col-8">
-                <input type="time" value={time_in} onChange={handleTimeInChange} />
+                  <input
+                    type="time"
+                    step="1"
+                    value={time_in}
+                    onChange={handleTimeInChange}
+                  />
                 </div>
                 <div className="col-4">
                   <span>Thời gian ra</span>
                 </div>
                 <div className="col-8">
-                <input type="time" value={time_out} onChange={handleTimeOutChange} />
+                  <input
+                    type="time"
+                    step="1"
+                    value={time_out}
+                    onChange={handleTimeOutChange}
+                  />
                 </div>
               </div>
             </div>
@@ -79,11 +98,9 @@ export const TimeConfig = () => {
         </div>
 
         <div className="table-time-config">
-            <TableTime />
-        </div>
+          <TableTime listTime={listTime} />
         </div>
       </div>
+    </div>
   );
 };
-
-
