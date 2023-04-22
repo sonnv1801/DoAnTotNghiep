@@ -1,7 +1,8 @@
 export const data = [
-  { Id: "NV1", Fullname: "Nguyễn Văn Sơn", Work: 29, Late: 3},
-  { Id: "NV2", Fullname: "Huỳnh Ngọc Huy", Work: 30, Late: 1},
-  { Id: "NV3", Fullname: "Nguyễn Phi Líp", Work: 28, Late: 4},
-  { Id: "NV4", Fullname: "Trần Ngọc Hoàng", Work: 30, Late: 5},
-  { Id: "NV5", Fullname: "Nguyễn Văn A", Work: 29, Late: 1},
+  { Id: "NV1", Fullname: "Nguyễn Văn Sơn", ChucVu: "CEO",LươngCB:"4.000.000", NgayCong:"19", LươngTT:"2.533.333.33", PhuCap:"2.500.000", BHXH:"450.000", BHYT:"50.000", ThucNhan:"4.533.333.33" },
+  { Id: "NV1", Fullname: "Nguyễn Văn Sơn", ChucVu: "CEO",LươngCB:"4.000.000", NgayCong:"19", LươngTT:"2.533.333.33", PhuCap:"2.500.000", BHXH:"450.000", BHYT:"50.000", ThucNhan:"4.533.333.33" },
+  { Id: "NV1", Fullname: "Nguyễn Văn Sơn", ChucVu: "CEO",LươngCB:"4.000.000", NgayCong:"19", LươngTT:"2.533.333.33", PhuCap:"2.500.000", BHXH:"450.000", BHYT:"50.000", ThucNhan:"4.533.333.33" },
+  { Id: "NV1", Fullname: "Nguyễn Văn Sơn", ChucVu: "CEO",LươngCB:"4.000.000", NgayCong:"19", LươngTT:"2.533.333.33", PhuCap:"2.500.000", BHXH:"450.000", BHYT:"50.000", ThucNhan:"4.533.333.33" },
+  { Id: "NV1", Fullname: "Nguyễn Văn Sơn", ChucVu: "CEO",LươngCB:"4.000.000", NgayCong:"19", LươngTT:"2.533.333.33", PhuCap:"2.500.000", BHXH:"450.000", BHYT:"50.000", ThucNhan:"4.533.333.33" },
+  { Id: "NV1", Fullname: "Nguyễn Văn Sơn", ChucVu: "CEO",LươngCB:"4.000.000", NgayCong:"19", LươngTT:"2.533.333.33", PhuCap:"2.500.000", BHXH:"450.000", BHYT:"50.000", ThucNhan:"4.533.333.33" },
 ] 

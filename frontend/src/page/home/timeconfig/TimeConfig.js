@@ -65,7 +65,7 @@ export const TimeConfig = () => {
                   <span>Thời gian vào</span>
                 </div>
                 <div className="col-8">
-                <input type="time" value={time_in} onChange={handleTimeInChange} />
+                <input type="time"  value={time_in} onChange={handleTimeInChange} />
                 </div>
                 <div className="col-4">
                   <span>Thời gian ra</span>

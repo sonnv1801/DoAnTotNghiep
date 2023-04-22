@@ -56,7 +56,7 @@ export const deleteTimes = (id) => {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          timeService.deleteTime(id, ).then((res) => {
+          timeService.deleteTime(id ).then((res) => {
             dispatch(createAction(DELETE_TIME, res.data));
             dispatch(getAllTime());
             dispatch(stopLoading());

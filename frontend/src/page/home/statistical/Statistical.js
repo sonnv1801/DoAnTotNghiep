@@ -12,7 +12,7 @@ export const Statistical = (rows) => {
   return (
     <div className="statistical">
       <div className="title-statistical">
-        <p>Thống kê</p>
+        <p>TÍnh Lương</p>
       </div>
       <div className="sub-statistical">
         <div className="header-statistical">
