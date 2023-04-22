@@ -99,6 +99,7 @@ export const deleteTimes = (id, accessToken) => {
       .then((result) => {
         if (result.isConfirmed) {
           timeService.deleteTime(id, accessToken).then((res) => {
+
             dispatch(createAction(DELETE_TIME, res.data));
             dispatch(getAllTimeCf());
             dispatch(stopLoading());

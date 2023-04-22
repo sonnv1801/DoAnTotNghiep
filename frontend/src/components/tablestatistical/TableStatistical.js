@@ -17,8 +17,13 @@ export default function BasicTable() {
           <TableRow>
             <TableCell>ID</TableCell>
             <TableCell align="right">Tên nhân viên</TableCell>
-            <TableCell align="right">Số công</TableCell>
-            <TableCell align="right">Sô buổi trễ</TableCell>
+            <TableCell align="right">Chức vụ</TableCell>
+            <TableCell align="right">Lương cơ bản</TableCell>
+            <TableCell align="right">Lương thực tế</TableCell>
+            <TableCell align="right">Phụ cấp</TableCell>
+            <TableCell align="right">BHXH</TableCell>
+            <TableCell align="right">BHYT</TableCell>
+            <TableCell align="right">Thực nhận</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -31,8 +36,17 @@ export default function BasicTable() {
                 {datas.Id}
               </TableCell>
               <TableCell align="right">{datas.Fullname}</TableCell>
-              <TableCell align="right">{datas.Work}</TableCell>
-              <TableCell align="right">{datas.Late}</TableCell>
+              <TableCell align="right">{datas.ChucVu}</TableCell>
+              <TableCell align="right">{datas.LươngCB}</TableCell>
+              {/* <TableCell align="right">{datas.NgayCong}</TableCell> */}
+              <TableCell align="right">{datas.LươngTT}</TableCell>
+              <TableCell align="right">{datas.PhuCap}</TableCell>
+              <TableCell align="right">{datas.BHXH}</TableCell>
+              <TableCell align="right">{datas.BHYT}</TableCell>
+              <TableCell align="right">{datas.ThucNhan}</TableCell>
+
+
+
             </TableRow>
           ))}
         </TableBody>

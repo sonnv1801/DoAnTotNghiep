@@ -80,6 +80,7 @@ export const TimeConfig = () => {
                     value={time_in}
                     onChange={handleTimeInChange}
                   />
+
                 </div>
                 <div className="col-4">
                   <span>Thời gian ra</span>

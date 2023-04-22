@@ -5,6 +5,8 @@ a {
   background: white;
   box-shadow: 0 3px 6px #00000029;
   border-radius: 1rem;
+  /* width: 220px; */
+  height: 250px;
   
 }
 
@@ -24,11 +26,12 @@ a {
 }
 
 .card .sub-card {
-  padding: 1rem;
+  padding: 1.5rem;
+  height: 250px;
 }
 
 .sub-card .card-body svg {
-  font-size: 234px;
+  font-size: 200px;
   color: #20e2ff;
 }
 
