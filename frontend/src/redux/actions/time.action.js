@@ -52,39 +52,6 @@ export const addTime = (type, accessToken) => {
       .catch((err) => console.log(err));
   };
 };
-
-// export const addTime = async (time, accessToken, dispatch) => {
-//   dispatch(startLoading());
-//   timeService
-//     .createTime(time, accessToken)
-//     .then((res) => {
-//       dispatch(createAction(CREATE_TIME, res.data));
-//       Swal.fire("Thêm thành công...", "", "success");
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       dispatch(stopLoading());
-//     });
-// };
-// export const getAllTime = () => {
-//   return async (dispatch) => {
-//     dispatch(startLoading());
-//     const data = await timeService.getTime().then((res) => res.data.times);
-
-//     dispatch(stopLoading());
-//     dispatch(createAction(FETCH_TIME_CONFIG, data));
-//   };
-
-// const data = await timeService.getTime().then((res) => {
-//   dispatch(createAction(FETCH_TIME_CONFIG, res.data));
-//   dispatch(stopLoading());
-// })
-// .catch((err) => {
-//   console.log(err);
-//   dispatch(stopLoading());
-// });
-// };
-
 export const deleteTimes = (id, accessToken) => {
   return (dispatch) => {
     Swal.fire({

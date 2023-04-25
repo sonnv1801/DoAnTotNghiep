@@ -22,8 +22,8 @@ const salarySchema = new mongoose.Schema(
       require: true,
     },
    
-    health_Insurance: {
-      type: number,
+    health_insurance: {
+      type: Number,
       require: true,
     },
   },

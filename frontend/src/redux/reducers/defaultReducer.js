@@ -1,6 +1,9 @@
 import {
+  CREATE_SALARY,
   CREATE_TIME,
+  DELETE_SALARY,
   DELETE_TIME,
+  FETCH_SALARY_CONFIG,
   FETCH_STAFF,
   FETCH_TIME_CONFIG,
   LOGIN_FAILED,
@@ -9,11 +12,15 @@ import {
   SEARCH_STAFF,
   START_LOADING,
   STOP_LOADING,
+  UPDATE_SALARY,
+  FETCH_ONLY_CONFIG
 } from "../type/types";
 
 const initialState = {
   listStaff: [],
+  salaryFecth: null,
   listTimeCf: [],
+  listSalary:[],
   search: [],
 
   login: {
@@ -74,13 +81,6 @@ const defaultReducer = (state = initialState, action) => {
       return { ...state };
     }
 
-    // case CREATE_TIME: {
-    //   let updateList = [...state.listTimeCf];
-    //   updateList.push(payload);
-    //   state.listTimeCf = updateList;
-    //   return { ...state };
-    // }
-
     case CREATE_TIME: {
       const updatedList = [...state.listTimeCf];
       updatedList.push(payload);
@@ -101,6 +101,49 @@ const defaultReducer = (state = initialState, action) => {
       }
       return { ...state };
     }
+
+    case CREATE_SALARY: {
+      const updatedList = [...state.listSalary];
+      updatedList.push(payload);
+      return { ...state, listSalary: updatedList };
+    }
+
+    case FETCH_SALARY_CONFIG: {
+      state.listSalary = payload;
+      return { ...state };
+    }
+
+    case FETCH_ONLY_CONFIG: {
+      state.salaryFecth = payload;
+      return { ...state };
+    }
+
+    case DELETE_SALARY: {
+      let updateList = [...state.listSalary];
+      let index = updateList.findIndex((salary) => salary.id === action.id);
+      if (index === -1) {
+        updateList.splice(payload, index);
+        state.listSalary = updateList;
+      }
+      return { ...state };
+    }
+
+    case UPDATE_SALARY: {
+      const updatedList = state.listSalary.map(salary => {
+        if (salary.id === action.id) {
+          return {
+            ...salary,
+            ...action.payload
+          };
+        }
+        return salary;
+      });
+      return {
+        ...state,
+        listSalary: updatedList
+      };
+    }
+
     default:
       return state;
   }
