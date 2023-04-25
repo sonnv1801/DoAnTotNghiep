@@ -95,19 +95,9 @@ export const listWorkStaff = (listKeeping) => {
   return staffWorkHour;
 };
 
-export const salaryStaff = (staffWorkHour, salaryPerHourStaff) => {
-  function getSalary(workTime, salaryPerHour) {
-    const [hours, minutes] = workTime.split(":");
-    const totalMinutes = parseInt(hours) * 60 + parseInt(minutes);
-    const salary = totalMinutes * (salaryPerHour / 60);
-    return salary;
-  }
-
-  const salaryPerHour = salaryPerHourStaff;
-
+export const salaryStaff = (staffWorkHour) => {
   const employeeSalaries = staffWorkHour.map((employee) => ({
     ...employee,
-    salary: getSalary(employee.workTime, salaryPerHour),
   }));
 
   return employeeSalaries;

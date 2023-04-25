@@ -12,11 +12,7 @@ import { CSVLink } from "react-csv";
 // import { data } from "../../data/Data";
 import _ from "lodash";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllStaff,
-  listWorkStaff,
-  salaryStaff,
-} from "../../redux/actions/staff.action";
+import { getAllStaff, listWorkStaff } from "../../redux/actions/staff.action";
 
 export default function BasicTable({ monthStaff, yearStaff }) {
   const dispatch = useDispatch();
@@ -26,90 +22,48 @@ export default function BasicTable({ monthStaff, yearStaff }) {
     dispatch(getAllStaff());
   }, []);
 
-  console.log(yearStaff, "yearStaff");
-  console.log(monthStaff, "yearStaff");
+  const salaryDep = [
+    {
+      Dep: "IT",
+      basicSalary: 10000,
+      allowance: 10000,
+      social_insurance: 10000,
+      health_insurance: 10000,
+    },
+    {
+      Dep: "Computer",
+      basicSalary: 20000,
+      allowance: 20000,
+      social_insurance: 20000,
+      health_insurance: 20000,
+    },
+  ];
 
-  const basicSalary = 10000;
-  const allowance = 10000;
-  const social_insurance = 10000;
-  const health_insurance = 10000;
-  const salary = salaryStaff(staffWorkHour, basicSalary);
+  console.log(salaryDep, "salaryDep");
 
-  // function calculateSalary(data, month, year) {
-  //   const totalWorktime = {};
-  //   const totalDays = {};
-
-  //   data.forEach(({ Student_Id, name, day, workTime }) => {
-  //     const [_, monthStr, __] = day.split("/");
-  //     const monthValue = parseInt(monthStr);
-  //     if (monthValue === month) {
-  //       const [hours, minutes] = workTime.split(":").map(Number);
-  //       const totalMinutes = hours * 60 + minutes;
-  //       const adjustedMinutes = Math.max(0, totalMinutes - 60); // trừ đi 1 tiếng nghỉ trưa (60 phút)
-  //       const adjustedHours = Math.floor(adjustedMinutes / 60);
-  //       if (totalWorktime[Student_Id]) {
-  //         totalWorktime[Student_Id].worktime += adjustedHours;
-  //         totalDays[Student_Id] += 1;
-  //       } else {
-  //         totalWorktime[Student_Id] = { name: name, worktime: adjustedHours };
-  //         totalDays[Student_Id] = 1;
-  //       }
-  //     }
-  //   });
-
-  //   const results = [];
-  //   for (const [id, { name, worktime }] of Object.entries(totalWorktime)) {
-  //     const days = totalDays[id];
-  //     const averageDailyWorktime = Math.round((worktime / days) * 10) / 10;
-  //     const salary = Math.round(averageDailyWorktime * 100000);
-  //     const data = {
-  //       id,
-  //       name,
-  //       worktime,
-  //       total_days: days,
-  //       basicSalary: basicSalary,
-  //       allowance: allowance,
-  //       social_insurance: social_insurance,
-  //       health_insurance: health_insurance,
-  //       average_daily_worktime: averageDailyWorktime,
-  //       salaryStaff: worktime * basicSalary,
-  //       total:
-  //         worktime * basicSalary -
-  //         (social_insurance + health_insurance) +
-  //         allowance,
-  //       month,
-  //     };
-  //     results.push(data);
-  //   }
-
-  //   return results;
-  // }
-
-  // const salaryData = calculateSalary(salary, monthStaff.monthStaff);
-
-  // console.log(salaryData);
-
-  function calculateSalary(data, month, year) {
+  function calculateSalaryWithSalaryDep(data, month, year, salaryDep) {
     const totalWorktime = {};
     const totalDays = {};
+    const departmentMap = {};
 
-    data.forEach(({ Student_Id, name, day, workTime }) => {
+    data.forEach(({ Student_Id, name, day, workTime, Dep }) => {
       const [dayStr, monthStr, yearStr] = day.split("/");
-      const dayValue = parseInt(dayStr);
       const monthValue = parseInt(monthStr);
       const yearValue = parseInt(yearStr);
-      console.log(yearValue);
+
       if (monthValue === month && yearValue === year) {
         const [hours, minutes] = workTime.split(":").map(Number);
         const totalMinutes = hours * 60 + minutes;
-        const adjustedMinutes = Math.max(0, totalMinutes - 60); // trừ đi 1 tiếng nghỉ trưa (60 phút)
+        const adjustedMinutes = Math.max(0, totalMinutes - 60);
         const adjustedHours = Math.floor(adjustedMinutes / 60);
+
         if (totalWorktime[Student_Id]) {
           totalWorktime[Student_Id].worktime += adjustedHours;
           totalDays[Student_Id] += 1;
         } else {
           totalWorktime[Student_Id] = { name: name, worktime: adjustedHours };
           totalDays[Student_Id] = 1;
+          departmentMap[Student_Id] = Dep;
         }
       }
     });
@@ -117,40 +71,58 @@ export default function BasicTable({ monthStaff, yearStaff }) {
     const results = [];
     for (const [id, { name, worktime }] of Object.entries(totalWorktime)) {
       const days = totalDays[id];
+      const department = departmentMap[id];
       const averageDailyWorktime = Math.round((worktime / days) * 10) / 10;
-      const salary = Math.round(averageDailyWorktime * 100000);
-      const data = {
-        id,
-        name,
-        worktime,
-        total_days: days,
-        basicSalary: basicSalary,
-        allowance: allowance,
-        social_insurance: social_insurance,
-        health_insurance: health_insurance,
-        average_daily_worktime: averageDailyWorktime,
-        salaryStaff: worktime * basicSalary,
-        total:
-          worktime * basicSalary -
-          (social_insurance + health_insurance) +
-          allowance,
-        month,
-        year,
-      };
-      results.push(data);
+
+      // Tìm thông tin lương cơ bản, phụ cấp, và các khoản khấu trừ cho phòng ban của nhân viên
+      const depInfo = salaryDep.find((info) => info.Dep === department);
+      if (depInfo) {
+        const basicSalary = depInfo.basicSalary;
+        const allowance = depInfo.allowance;
+        const social_insurance = depInfo.social_insurance;
+        const health_insurance = depInfo.health_insurance;
+
+        const data = {
+          id,
+          department: department,
+          name,
+          worktime,
+          total_days: days,
+          basicSalary: basicSalary,
+          allowance: allowance,
+          social_insurance: social_insurance,
+          health_insurance: health_insurance,
+          average_daily_worktime: averageDailyWorktime,
+          salaryStaff: worktime * basicSalary,
+          total:
+            worktime * basicSalary -
+            (social_insurance + health_insurance) +
+            allowance,
+          month,
+          year,
+        };
+        results.push(data);
+      } else {
+        console.log(`Không tìm thấy thông tin về phòng ban ${department}`);
+      }
     }
 
     return results;
   }
 
-  const salaryData = calculateSalary(salary, monthStaff, yearStaff);
+  const salaryDataWithSalaryDep = calculateSalaryWithSalaryDep(
+    staffWorkHour,
+    monthStaff,
+    yearStaff,
+    salaryDep
+  );
 
-  console.log(salaryData, "salaryData");
+  console.log(salaryDataWithSalaryDep, "salaryDataWithSalaryDep");
 
   return (
     <TableContainer component={Paper}>
       <Button variant="outlined" startIcon={<ArrowDownwardIcon />}>
-        <CSVLink data={salaryData} filename={"Chấm công.csv"}>
+        <CSVLink data={salaryDataWithSalaryDep} filename={"Chấm công.csv"}>
           Xuất File
         </CSVLink>
       </Button>
@@ -159,6 +131,7 @@ export default function BasicTable({ monthStaff, yearStaff }) {
           <TableRow>
             <TableCell>ID</TableCell>
             <TableCell align="right">Tên nhân viên</TableCell>
+            <TableCell align="right">Phòng Ban</TableCell>
             <TableCell align="right">Tổng Số Ngày làm trong tháng</TableCell>
             <TableCell align="right">Năm</TableCell>
             <TableCell align="right">Lương cơ bản</TableCell>
@@ -171,7 +144,7 @@ export default function BasicTable({ monthStaff, yearStaff }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {salaryData?.map((datas, index) => (
+          {salaryDataWithSalaryDep?.map((datas, index) => (
             <TableRow
               key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -180,6 +153,7 @@ export default function BasicTable({ monthStaff, yearStaff }) {
                 {index + 1}
               </TableCell>
               <TableCell align="right">{datas.name}</TableCell>
+              <TableCell align="right">{datas.department}</TableCell>
               <TableCell align="right">{`Đã làm ${datas.total_days} ngày trong tháng ${datas.month}`}</TableCell>
               <TableCell align="right">{`${datas.month}/${datas.year}`}</TableCell>
               <TableCell align="right">
@@ -193,15 +167,12 @@ export default function BasicTable({ monthStaff, yearStaff }) {
               <TableCell align="right">{datas.worktime}</TableCell>
 
               <TableCell align="right">
-                {(parseInt(datas.worktime) * basicSalary).toLocaleString(
-                  "vi-VN",
-                  {
-                    style: "currency",
-                    currency: "VND",
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                  }
-                )}
+                {datas.salaryStaff.toLocaleString("vi-VN", {
+                  style: "currency",
+                  currency: "VND",
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 0,
+                })}
               </TableCell>
 
               <TableCell align="right">
