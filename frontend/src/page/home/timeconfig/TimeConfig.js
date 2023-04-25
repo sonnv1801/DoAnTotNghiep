@@ -11,8 +11,8 @@ import { addTime, getAllTimeCf } from "../../../redux/actions/time.action";
 export const TimeConfig = () => {
   const currentUser = JSON.parse(localStorage.getItem("token"));
   const listTime = useSelector((state) => state.defaultReducer.listTimeCf);
-  const [time_in, setTimeIn] = useState("");
-  const [time_out, setTimeOut] = useState("");
+  const [time_morning, setTimeMorning] = useState("");
+  const [time_afternoon, setTimeAfternoon] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,21 +21,21 @@ export const TimeConfig = () => {
 
   console.log(listTime);
 
-  const handleTimeInChange = (event) => {
-    setTimeIn(event.target.value);
+  const handleTimeMorningChange = (event) => {
+    setTimeMorning(event.target.value);
   };
 
-  const handleTimeOutChange = (event) => {
-    setTimeOut(event.target.value);
+  const handleTimeAfternoonChange = (event) => {
+    setTimeAfternoon(event.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (time_in !== "" && time_out !== "") {
+    if (time_morning !== "" &&  time_afternoon !== "") {
       const newTime = {
-        time_in: time_in,
-        time_out: time_out,
+        time_morning: time_morning,
+        time_afternoon: time_afternoon,
       };
       dispatch(addTime(newTime, currentUser?.accessToken));
     } else {
@@ -60,9 +60,6 @@ export const TimeConfig = () => {
             </Button>
           </div>
         </form>
-
-        {/* <p onClick={handleClick}>Lưu</p> */}
-
         <div className="time-work">
           <div className="title-time-work">
             <p>Thiết lập thời gian</p>
@@ -71,29 +68,30 @@ export const TimeConfig = () => {
             <div className="sub-body-time">
               <div className="row">
                 <div className="col-4">
-                  <span>Thời gian vào</span>
+                  <span>Thời gian buổi sáng </span>
                 </div>
                 <div className="col-8">
                   <input
                     type="time"
                     step="1"
-                    value={time_in}
-                    onChange={handleTimeInChange}
+                    value={time_morning}
+                    onChange={handleTimeMorningChange}
                   />
 
                 </div>
                 <div className="col-4">
-                  <span>Thời gian ra</span>
+                  <span>Thời gian buổi chiều</span>
                 </div>
                 <div className="col-8">
                   <input
                     type="time"
                     step="1"
-                    value={time_out}
-                    onChange={handleTimeOutChange}
+                    value={time_afternoon}
+                    onChange={handleTimeAfternoonChange}
                   />
                 </div>
               </div>
+             
             </div>
           </div>
         </div>

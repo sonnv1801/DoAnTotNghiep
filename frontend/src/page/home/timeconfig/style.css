@@ -55,6 +55,10 @@ input {
 .sub-time-cf .time-work {
   border: 1px solid #ffffff;
 }
+.morning {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
 
 .time-work .title-time-work {
   background: #4499fd;

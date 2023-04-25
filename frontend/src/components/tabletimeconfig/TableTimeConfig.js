@@ -43,8 +43,8 @@ export const TableTime = (listTime) => {
               <TableHead>
                 <TableRow>
                   <TableCell>STT</TableCell>
-                  <TableCell align="right">Thời gian vào</TableCell>
-                  <TableCell align="right">Thời gian ra</TableCell>
+                  <TableCell align="right">Thời gian buổi sáng</TableCell>
+                  <TableCell align="right">Thời gian buổi chiều</TableCell>
                   <TableCell align="right">Ngày tạo</TableCell>
                   <TableCell align="right"></TableCell>
                 </TableRow>
@@ -58,8 +58,8 @@ export const TableTime = (listTime) => {
                     <TableCell component="th" scope="row">
                       {index + 1}
                     </TableCell>
-                    <TableCell align="right">{item.time_in}</TableCell>
-                    <TableCell align="right">{item.time_out}</TableCell>
+                    <TableCell align="right">{item.time_morning}</TableCell>
+                    <TableCell align="right">{item.time_afternoon}</TableCell>
                     <TableCell align="right">
                       {moment(item.created_at).format("DD/MM/YYYY")}
                     </TableCell>

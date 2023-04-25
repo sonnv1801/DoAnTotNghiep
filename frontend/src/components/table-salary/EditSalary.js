@@ -89,7 +89,7 @@ const EditSalary = () => {
             type="text"
             className="form-control"
           /> */}
-          <select onChange={handleDepChange}>
+<select onChange={handleDepChange}>
             <option>Chọn Phòng Ban</option>
             {filteredData.map((item, index) => (
               <option key={index} value={item.Dep}>
