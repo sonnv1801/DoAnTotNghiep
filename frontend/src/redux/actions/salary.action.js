@@ -8,7 +8,7 @@ import {
   FETCH_SALARY_CONFIG,
   START_LOADING,
   STOP_LOADING,
-  FETCH_ONLY_CONFIG
+  FETCH_ONLY_CONFIG,
 } from "../type/types";
 import { toast } from "react-toastify";
 
@@ -56,7 +56,6 @@ export const getIdSalary = (id) => {
   };
 };
 
-
 export const addSalary = (salary, accessToken) => {
   return (dispatch) => {
     // console.log("toi day r")
@@ -94,7 +93,7 @@ export const updateSalarys = (id, accessToken, salary, navigate) => {
           toast.success("Cập nhật thành công!", {
             position: toast.POSITION.TOP_RIGHT,
           });
-          navigate("/salary")
+          navigate("/salary");
           dispatch(stopLoading());
         }
       })
@@ -116,7 +115,6 @@ export const deleteSalarys = (id, accessToken) => {
       .then((result) => {
         if (result.isConfirmed) {
           salaryService.deleteSalary(id, accessToken).then((res) => {
-
             dispatch(createAction(DELETE_SALARY, res.data));
             dispatch(getAllSalary());
             dispatch(stopLoading());
@@ -129,4 +127,103 @@ export const deleteSalarys = (id, accessToken) => {
       })
       .catch((err) => console.log(err));
   };
+};
+
+export const salaryStaffWithDep = (
+  fillerDay,
+  staffWorkHour,
+  monthStaff,
+  yearStaff,
+  salaryDep
+) => {
+  function calculateSalaryWithSalaryDep(
+    data,
+    month,
+    year,
+    salaryDep,
+    sortByDays = fillerDay
+  ) {
+    const totalWorktime = {};
+    const totalDays = {};
+    const departmentMap = {};
+
+    data.forEach(({ Student_Id, name, day, workTime, Dep }) => {
+      const [dayStr, monthStr, yearStr] = day.split("/");
+      const monthValue = parseInt(monthStr);
+      const yearValue = parseInt(yearStr);
+
+      if (monthValue === month && yearValue === year) {
+        const [hours, minutes] = workTime.split(":").map(Number);
+        const totalMinutes = hours * 60 + minutes;
+        const adjustedMinutes = Math.max(0, totalMinutes - 60);
+        const adjustedHours = Math.floor(adjustedMinutes / 60);
+
+        if (totalWorktime[Student_Id]) {
+          totalWorktime[Student_Id].worktime += adjustedHours;
+          totalDays[Student_Id] += 1;
+        } else {
+          totalWorktime[Student_Id] = { name: name, worktime: adjustedHours };
+          totalDays[Student_Id] = 1;
+          departmentMap[Student_Id] = Dep;
+        }
+      }
+    });
+
+    const results = [];
+    for (const [id, { name, worktime }] of Object.entries(totalWorktime)) {
+      const days = totalDays[id];
+      const department = departmentMap[id];
+      const averageDailyWorktime = Math.round((worktime / days) * 10) / 10;
+
+      // Tìm thông tin lương cơ bản, phụ cấp, và các khoản khấu trừ cho phòng ban của nhân viên
+      const depInfo = salaryDep.find((info) => info.Dep === department);
+      if (depInfo) {
+        const basicSalary = depInfo.basicSalary;
+        const allowance = depInfo.allowance;
+        const social_insurance = depInfo.social_insurance;
+        const health_insurance = depInfo.health_insurance;
+
+        const data = {
+          id,
+          department: department,
+          name,
+          worktime,
+          total_days: days,
+          basicSalary: basicSalary,
+          allowance: allowance,
+          social_insurance: social_insurance,
+          health_insurance: health_insurance,
+          average_daily_worktime: averageDailyWorktime,
+          salaryStaff: worktime * basicSalary,
+          total:
+            worktime * basicSalary -
+            (social_insurance + health_insurance) +
+            allowance,
+          month,
+          year,
+        };
+        results.push(data);
+      } else {
+        console.log(`Không tìm thấy thông tin về phòng ban ${department}`);
+      }
+    }
+
+    // Sort results array based on total_days property
+    if (sortByDays === "asc") {
+      results.sort((a, b) => a.total_days - b.total_days);
+    } else if (sortByDays === "desc") {
+      results.sort((a, b) => b.total_days - a.total_days);
+    }
+
+    return results;
+  }
+
+  const salaryDataWithSalaryDep = calculateSalaryWithSalaryDep(
+    staffWorkHour,
+    monthStaff,
+    yearStaff,
+    salaryDep
+  );
+
+  return salaryDataWithSalaryDep;
 };

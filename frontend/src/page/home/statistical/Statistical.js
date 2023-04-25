@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import "./style.css";
-import Button from "@mui/material/Button";
-import LegendToggleIcon from "@mui/icons-material/LegendToggle";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import TableStatistical from "../../../components/tablestatistical/TableStatistical";
+import Button from "@mui/material/Button";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { CSVLink } from "react-csv";
-import { data } from "./../../../data/Data";
-
+import { useSelector } from "react-redux";
+import { salaryStaffWithDep } from "../../../redux/actions/salary.action";
+import { listWorkStaff } from "../../../redux/actions/staff.action";
 export const Statistical = (rows) => {
   const [month, setMonth] = useState(1);
   const [year, setYear] = useState(2023);
+
+  const [fillerDay, setFillerDay] = useState("desc");
+  const listKeeping = useSelector((state) => state.defaultReducer.listStaff);
+  const salaryDep = useSelector((state) => state.defaultReducer.listSalary);
+  const staffWorkHour = listWorkStaff(listKeeping);
+  const salaryDataWithSalaryDep = salaryStaffWithDep(
+    fillerDay,
+    staffWorkHour,
+    month,
+    year,
+    salaryDep
+  );
 
   // hàm xử lý khi người dùng thay đổi tháng
   function handleMonthChange(event) {
@@ -20,6 +32,11 @@ export const Statistical = (rows) => {
   function handleMonthChangeYear(event) {
     const selectedYear = Number(event.target.value);
     setYear(selectedYear);
+  }
+
+  function handleSortChange(event) {
+    const sortedList = String(event.target.value);
+    setFillerDay(sortedList);
   }
   return (
     <div className="statistical">
@@ -33,8 +50,14 @@ export const Statistical = (rows) => {
               <div className="col-3">
                 <span>Năm</span>
               </div>
-              <div className="col-9">
+              <div className="col-3">
                 <span>Tháng</span>
+              </div>
+              <div className="col-3">
+                <span>Thống Kê Ngày Làm Việc</span>
+              </div>
+              <div className="col-3">
+                <span>Xuất Dữ Liệu Excel</span>
               </div>
               <div className="col-3">
                 <select value={year} onChange={handleMonthChangeYear}>
@@ -68,13 +91,17 @@ export const Statistical = (rows) => {
                 </select>
               </div>
               <div className="col-3">
-                <Button variant="outlined" startIcon={<LegendToggleIcon />}>
-                  Thống kê
-                </Button>
+                <select id="sort" value={fillerDay} onChange={handleSortChange}>
+                  <option value="desc">Từ cao đến thấp</option>
+                  <option value="asc">Từ thấp đến cao</option>
+                </select>
               </div>
               <div className="col-3">
                 <Button variant="outlined" startIcon={<ArrowDownwardIcon />}>
-                  <CSVLink data={data} filename={"Chấm công.csv"}>
+                  <CSVLink
+                    data={salaryDataWithSalaryDep}
+                    filename={"Chấm công.csv"}
+                  >
                     Xuất File
                   </CSVLink>
                 </Button>
@@ -83,7 +110,11 @@ export const Statistical = (rows) => {
           </div>
         </div>
         <div className="table-list-statistical">
-          <TableStatistical monthStaff={month} yearStaff={year} />
+          <TableStatistical
+            monthStaff={month}
+            yearStaff={year}
+            fillerDay={fillerDay}
+          />
         </div>
       </div>
     </div>

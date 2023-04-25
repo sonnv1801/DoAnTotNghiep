@@ -51,6 +51,7 @@
   background: #4499fd;
   border-radius: 15px;
   color: #ffffff;
+  width: 100%;
 }
 
 .sub-header button svg {
