@@ -75,23 +75,23 @@ const navigate = useNavigate()
       </div>
       <div className="mb-3">
         <label  className="form-label">Phòng/Ban</label>
-        <input placeholder={salaryFecth?.Dep} onChange={handleDepChange} type="text" className="form-control"  />
+        <input defaultValue={salaryFecth?.Dep} onChange={handleDepChange} type="text" className="form-control"  />
       </div>
       <div className="mb-3">
         <label  className="form-label">Lương cơ bản</label>
-        <input placeholder={salaryFecth?.basicSalary} onChange={handleBasicSalaryChange} type="text" className="form-control" />
+        <input defaultValue={salaryFecth?.basicSalary} onChange={handleBasicSalaryChange} type="text" className="form-control" />
       </div>
       <div className="mb-3">
         <label className="form-label">Phụ cấp</label>
-        <input placeholder={salaryFecth?.allowance} onChange={handleAllowanceChange} type="text" className="form-control" />
+        <input defaultValue={salaryFecth?.allowance} onChange={handleAllowanceChange} type="text" className="form-control" />
       </div>
       <div className="mb-3">
         <label className="form-label">BHXH</label>
-        <input placeholder={salaryFecth?.social_insurance} onChange={handleSocialChange} type="text" className="form-control" />
+        <input defaultValue={salaryFecth?.social_insurance} onChange={handleSocialChange} type="text" className="form-control" />
       </div>
       <div className="mb-3">
         <label className="form-label">BHYT</label>
-        <input placeholder={salaryFecth?.health_insurance} onChange={handleHealthChange} type="text" className="form-control"/>
+        <input defaultValue={salaryFecth?.health_insurance} onChange={handleHealthChange} type="text" className="form-control"/>
       </div>
       <Button onClick={handleSubmit} type="submit" variant="primary"  >Lưu thay đổi</Button>
     </form>

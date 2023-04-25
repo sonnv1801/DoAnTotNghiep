@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteSalarys } from "../../redux/actions/salary.action";
 import { updateSalarys } from "../../redux/actions/salary.action";
 import { Link } from "react-router-dom";
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
 
 export const TableSalary = (
   listSalary
@@ -69,21 +71,16 @@ export const TableSalary = (
                     <TableCell align="right">{item.social_insurance}</TableCell>
                     <TableCell align="right">{item.health_insurance}</TableCell>
                     <TableCell align="right">
-                      <button
-                        onClick={() => {
+                      <DeleteForeverOutlinedIcon style={{
+              color: "red",
+              cursor: "pointer"}} onClick={() => {
                           dispatch(
                             deleteSalarys(item._id, currentUser?.accessToken)
                           );
-                        }}
-                      >
-                        delete
-                      </button>
+                        }} />
                       <Link to={`/edit-salary/${item._id}`}>
-                      <button
-                    
-                    >
-                      Update
-                    </button>
+                      
+                  < NoteAltOutlinedIcon    style={{cursor: "pointer" }}/>
                       </Link>
                     </TableCell>
                   </TableRow>
