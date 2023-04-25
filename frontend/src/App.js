@@ -9,6 +9,8 @@ import { Statistical } from "./page/home/statistical/Statistical";
 import { TimeKeeping } from "./page/home/timekeeping/TimeKepping";
 import NotFound from "./page/home/notfound/NotFound";
 import { LayOut } from "./components/layout/LayOut";
+import { CreateSalary } from "./page/home/salary/Salary";
+import EditSalary from "./components/table-salary/EditSalary";
 
 function App() {
   const user = JSON.parse(localStorage.getItem("token"));
@@ -28,6 +30,8 @@ function App() {
               <Route path="/cf-time" element={<TimeConfig />} />
               <Route path="/statistic" element={<Statistical />} />
               <Route path="/timekp" element={<TimeKeeping/>}/>
+              <Route path="/salary" element={<CreateSalary/>}/>
+              <Route path="/edit-salary/:id" element={<EditSalary/>}/>
               <Route path="*" element={<NotFound />} />
             </Route>
           )}
