@@ -38,12 +38,12 @@ const listmenu = [
     title: "Bảng lương nhân viên",
     img: menu5,
   },
-  {
-    id: 5,
-    link: "/salary",
-    title: "Ò Ó O",
-    img: menu5,
-  },
+  // {
+  //   id: 5,
+  //   link: "/salary",
+  //   title: "Ò Ó O",
+  //   img: menu5,
+  // },
 ];
 
 export const HomePage = () => {
