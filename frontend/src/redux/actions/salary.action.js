@@ -134,7 +134,8 @@ export const salaryStaffWithDep = (
   staffWorkHour,
   monthStaff,
   yearStaff,
-  salaryDep
+  salaryDep,
+  departmStaff = null
 ) => {
   function calculateSalaryWithSalaryDep(
     data,
@@ -143,16 +144,22 @@ export const salaryStaffWithDep = (
     salaryDep,
     sortByDays = fillerDay
   ) {
+    console.log(data, "data");
     const totalWorktime = {};
     const totalDays = {};
     const departmentMap = {};
 
     data.forEach(({ Student_Id, name, day, workTime, Dep }) => {
+      console.log(Dep, "DepDepDepDep");
       const [dayStr, monthStr, yearStr] = day.split("/");
       const monthValue = parseInt(monthStr);
       const yearValue = parseInt(yearStr);
 
-      if (monthValue === month && yearValue === year) {
+      if (
+        monthValue === month &&
+        yearValue === year &&
+        (!departmStaff || Dep === departmStaff)
+      ) {
         const [hours, minutes] = workTime.split(":").map(Number);
         const totalMinutes = hours * 60 + minutes;
         const adjustedMinutes = Math.max(0, totalMinutes - 60);
