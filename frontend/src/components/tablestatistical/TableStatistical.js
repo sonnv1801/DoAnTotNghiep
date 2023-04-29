@@ -18,7 +18,12 @@ import {
   salaryStaffWithDep,
 } from "../../redux/actions/salary.action";
 
-export default function BasicTable({ monthStaff, yearStaff, fillerDay }) {
+export default function BasicTable({
+  monthStaff,
+  yearStaff,
+  fillerDay,
+  departmStaff,
+}) {
   const dispatch = useDispatch();
   const listKeeping = useSelector((state) => state.defaultReducer.listStaff);
   const salaryDep = useSelector((state) => state.defaultReducer.listSalary);
@@ -36,8 +41,11 @@ export default function BasicTable({ monthStaff, yearStaff, fillerDay }) {
     staffWorkHour,
     monthStaff,
     yearStaff,
-    salaryDep
+    salaryDep,
+    departmStaff
   );
+
+  console.log(salaryDataWithSalaryDep, "salaryDataWithSalaryDep");
 
   return (
     <TableContainer component={Paper}>
