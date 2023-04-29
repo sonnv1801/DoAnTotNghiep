@@ -11,6 +11,7 @@ import NotFound from "./page/admin/notfound/NotFound";
 import { LayOut } from "./components/layout/LayOut";
 import { CreateSalary } from "./page/admin/salary/Salary";
 import EditSalary from "./components/table-salary/EditSalary";
+import { HomePageStaff } from "./page/home/homepage/HomePageStaff";
 
 function App() {
   const user = JSON.parse(localStorage.getItem("token"));
@@ -23,17 +24,31 @@ function App() {
               <Route path="/" element={<Login />} />
             </>
           ) : (
-            <Route element={<LayOut />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/list-staff" element={<Staff />} />
+            <Route path="*" element={<NotFound />} />
+          )}
 
-              <Route path="/cf-time" element={<TimeConfig />} />
-              <Route path="/statistic" element={<Statistical />} />
-              <Route path="/timekp" element={<TimeKeeping />} />
-              <Route path="/salary" element={<CreateSalary />} />
-              <Route path="/edit-salary/:id" element={<EditSalary />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
+          {user?.role === true ? (
+            <>
+              <Route element={<LayOut />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/list-staff" element={<Staff />} />
+
+                <Route path="/cf-time" element={<TimeConfig />} />
+                <Route path="/statistic" element={<Statistical />} />
+                <Route path="/timekp" element={<TimeKeeping />} />
+                <Route path="/salary" element={<CreateSalary />} />
+                <Route path="/edit-salary/:id" element={<EditSalary />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+            </>
+          ) : (
+            <>
+              <Route element={<LayOut />}>
+                <Route path="/" element={<HomePageStaff />} />
+                <Route path="/statistic" element={<Statistical />} />
+                <Route path="/timekp" element={<TimeKeeping />} />
+              </Route>
+            </>
           )}
           <Route path="*" element={<NotFound />} />
         </Routes>

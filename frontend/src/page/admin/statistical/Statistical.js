@@ -11,11 +11,14 @@ import {
   listWorkStaff,
 } from "../../../redux/actions/staff.action";
 import _ from "lodash";
+import SearchIcon from "@mui/icons-material/Search";
 export const Statistical = (rows) => {
   const dispatch = useDispatch();
   const [month, setMonth] = useState();
   const [year, setYear] = useState();
   const [departm, setDepartm] = useState("");
+  const [nameFilter, setNameFilter] = useState("");
+  const user = JSON.parse(localStorage.getItem("token"));
 
   const [fillerDay, setFillerDay] = useState("desc");
   const listKeeping = useSelector((state) => state.defaultReducer.listStaff);
@@ -33,7 +36,8 @@ export const Statistical = (rows) => {
     month,
     year,
     salaryDep,
-    departm
+    departm,
+    nameFilter
   );
 
   // hàm xử lý khi người dùng thay đổi tháng
@@ -55,6 +59,10 @@ export const Statistical = (rows) => {
     const departm = String(event.target.value);
     setDepartm(departm);
   }
+
+  const handleSearchChange = (event) => {
+    setNameFilter(event.target.value);
+  };
   return (
     <div className="statistical">
       <div className="title-statistical">
@@ -65,6 +73,9 @@ export const Statistical = (rows) => {
           <div className="sub-header">
             <div className="row">
               <div className="col-2">
+                <span>Tìm Kiếm</span>
+              </div>
+              <div className="col-2">
                 <span>Năm</span>
               </div>
               <div className="col-2">
@@ -74,13 +85,30 @@ export const Statistical = (rows) => {
                 <span>Phòng Ban</span>
               </div>
               <div className="col-2">
-                <span>Thống Kê Ngày Làm Việc</span>
+                <span>Sắp Xếp</span>
               </div>
               <div className="col-2">
-                <span></span>
+                {user.role === true ? <span>Xuất Dữ Liệu Excel</span> : null}
               </div>
               <div className="col-2">
-                <span>Xuất Dữ Liệu Excel</span>
+                <div className="list-search">
+                  <form className="form-inline my-3 my-lg-0 ml-5">
+                    <div
+                      className="search-staff"
+                      style={{ marginTop: "1.1rem", width: "100%" }}
+                    >
+                      <input
+                        className="form-control mr-sm-3"
+                        type="text"
+                        name="search"
+                        placeholder="Tìm Kiếm"
+                        onChange={handleSearchChange}
+                        aria-label="Search"
+                      />
+                      <SearchIcon className="icon-search" />
+                    </div>
+                  </form>
+                </div>
               </div>
               <div className="col-2">
                 <select value={year} onChange={handleMonthChangeYear}>
@@ -131,15 +159,17 @@ export const Statistical = (rows) => {
                   <option value="asc">Từ thấp đến cao</option>
                 </select>
               </div>
-              <div className="col-4">
-                <Button variant="outlined" startIcon={<ArrowDownwardIcon />}>
-                  <CSVLink
-                    data={salaryDataWithSalaryDep}
-                    filename={"Chấm công.csv"}
-                  >
-                    Xuất File
-                  </CSVLink>
-                </Button>
+              <div className="col-2">
+                {user.role === true ? (
+                  <Button variant="outlined" startIcon={<ArrowDownwardIcon />}>
+                    <CSVLink
+                      data={salaryDataWithSalaryDep}
+                      filename={"Chấm công.csv"}
+                    >
+                      Xuất File
+                    </CSVLink>
+                  </Button>
+                ) : null}
               </div>
             </div>
           </div>
@@ -150,6 +180,7 @@ export const Statistical = (rows) => {
             yearStaff={year}
             fillerDay={fillerDay}
             departmStaff={departm}
+            nameFilter={nameFilter}
           />
         </div>
       </div>

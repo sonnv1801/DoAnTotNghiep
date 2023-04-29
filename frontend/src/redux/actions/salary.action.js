@@ -135,7 +135,8 @@ export const salaryStaffWithDep = (
   monthStaff,
   yearStaff,
   salaryDep,
-  departmStaff = null
+  departmStaff = null,
+  nameFilter = null
 ) => {
   function calculateSalaryWithSalaryDep(
     data,
@@ -144,6 +145,7 @@ export const salaryStaffWithDep = (
     salaryDep,
     sortByDays = fillerDay
   ) {
+    console.log(nameFilter, "nameFilternameFilternameFilternameFilter");
     console.log(data, "data");
     const totalWorktime = {};
     const totalDays = {};
@@ -154,11 +156,11 @@ export const salaryStaffWithDep = (
       const [dayStr, monthStr, yearStr] = day.split("/");
       const monthValue = parseInt(monthStr);
       const yearValue = parseInt(yearStr);
-
       if (
         monthValue === month &&
         yearValue === year &&
-        (!departmStaff || Dep === departmStaff)
+        (!departmStaff || Dep === departmStaff) &&
+        (!nameFilter || name.toLowerCase().includes(nameFilter.toLowerCase()))
       ) {
         const [hours, minutes] = workTime.split(":").map(Number);
         const totalMinutes = hours * 60 + minutes;
@@ -195,17 +197,24 @@ export const salaryStaffWithDep = (
           department: department,
           name,
           worktime,
-          total_days: days,
+          total_days: worktime / 8,
           basicSalary: basicSalary,
           allowance: allowance,
           social_insurance: social_insurance,
           health_insurance: health_insurance,
           average_daily_worktime: averageDailyWorktime,
-          salaryStaff: worktime * basicSalary,
+          salaryStaff: ((worktime / 8) * basicSalary) / 26,
+          // total:
+          //   worktime * basicSalary -
+          //   (social_insurance + health_insurance) +
+          //   allowance,
           total:
-            worktime * basicSalary -
-            (social_insurance + health_insurance) +
-            allowance,
+            worktime / 8 >= 26
+              ? ((worktime / 8) * basicSalary) / 26 -
+                (social_insurance + health_insurance) +
+                allowance
+              : ((worktime / 8) * basicSalary) / 26 -
+                (social_insurance + health_insurance),
           month,
           year,
         };
@@ -229,7 +238,8 @@ export const salaryStaffWithDep = (
     staffWorkHour,
     monthStaff,
     yearStaff,
-    salaryDep
+    salaryDep,
+    nameFilter
   );
 
   return salaryDataWithSalaryDep;
