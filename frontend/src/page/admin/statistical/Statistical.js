@@ -1,26 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import TableStatistical from "../../../components/tablestatistical/TableStatistical";
 import Button from "@mui/material/Button";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { CSVLink } from "react-csv";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { salaryStaffWithDep } from "../../../redux/actions/salary.action";
-import { listWorkStaff } from "../../../redux/actions/staff.action";
+import {
+  getAllStaff,
+  listWorkStaff,
+} from "../../../redux/actions/staff.action";
+import _ from "lodash";
+import SearchIcon from "@mui/icons-material/Search";
 export const Statistical = (rows) => {
-  const [month, setMonth] = useState(1);
-  const [year, setYear] = useState(2023);
+  const dispatch = useDispatch();
+  const [month, setMonth] = useState();
+  const [year, setYear] = useState();
+  const [departm, setDepartm] = useState("");
+  const [nameFilter, setNameFilter] = useState("");
+  const user = JSON.parse(localStorage.getItem("token"));
 
   const [fillerDay, setFillerDay] = useState("desc");
   const listKeeping = useSelector((state) => state.defaultReducer.listStaff);
   const salaryDep = useSelector((state) => state.defaultReducer.listSalary);
   const staffWorkHour = listWorkStaff(listKeeping);
+  const filteredData = _.uniqBy(listKeeping, "Dep");
+
+  useEffect(() => {
+    dispatch(getAllStaff());
+  }, []);
+
   const salaryDataWithSalaryDep = salaryStaffWithDep(
     fillerDay,
     staffWorkHour,
     month,
     year,
-    salaryDep
+    salaryDep,
+    departm,
+    nameFilter
   );
 
   // hàm xử lý khi người dùng thay đổi tháng
@@ -38,6 +55,14 @@ export const Statistical = (rows) => {
     const sortedList = String(event.target.value);
     setFillerDay(sortedList);
   }
+  function handleDepartm(event) {
+    const departm = String(event.target.value);
+    setDepartm(departm);
+  }
+
+  const handleSearchChange = (event) => {
+    setNameFilter(event.target.value);
+  };
   return (
     <div className="statistical">
       <div className="title-statistical">
@@ -47,20 +72,47 @@ export const Statistical = (rows) => {
         <div className="header-statistical">
           <div className="sub-header">
             <div className="row">
-              <div className="col-3">
+              <div className="col-2">
+                <span>Tìm Kiếm</span>
+              </div>
+              <div className="col-2">
                 <span>Năm</span>
               </div>
-              <div className="col-3">
+              <div className="col-2">
                 <span>Tháng</span>
               </div>
-              <div className="col-3">
-                <span>Thống Kê Ngày Làm Việc</span>
+              <div className="col-2">
+                <span>Phòng Ban</span>
               </div>
-              <div className="col-3">
-                <span>Xuất Dữ Liệu Excel</span>
+              <div className="col-2">
+                <span>Sắp Xếp</span>
               </div>
-              <div className="col-3">
+              <div className="col-2">
+                {user.role === true ? <span>Xuất Dữ Liệu Excel</span> : null}
+              </div>
+              <div className="col-2">
+                <div className="list-search">
+                  <form className="form-inline my-3 my-lg-0 ml-5">
+                    <div
+                      className="search-staff"
+                      style={{ marginTop: "1.1rem", width: "100%" }}
+                    >
+                      <input
+                        className="form-control mr-sm-3"
+                        type="text"
+                        name="search"
+                        placeholder="Tìm Kiếm"
+                        onChange={handleSearchChange}
+                        aria-label="Search"
+                      />
+                      <SearchIcon className="icon-search" />
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div className="col-2">
                 <select value={year} onChange={handleMonthChangeYear}>
+                  <option value="">Chọn Năm</option>
                   <option value={2023}>Năm 2023</option>
                   <option value={2024}>Năm 2024</option>
                   <option value={2025}>Năm 2025</option>
@@ -74,8 +126,9 @@ export const Statistical = (rows) => {
                   <option value={2033}>Năm 2033</option>
                 </select>
               </div>
-              <div className="col-3">
+              <div className="col-2">
                 <select value={month} onChange={handleMonthChange}>
+                  <option value="">Chọn Tháng</option>
                   <option value={1}>Tháng 1</option>
                   <option value={2}>Tháng 2</option>
                   <option value={3}>Tháng 3</option>
@@ -90,21 +143,33 @@ export const Statistical = (rows) => {
                   <option value={12}>Tháng 12</option>
                 </select>
               </div>
-              <div className="col-3">
+              <div className="col-2">
+                <select value={departm} onChange={handleDepartm}>
+                  <option value="">Chọn Phòng Ban</option>
+                  {filteredData?.map((item, index) => (
+                    <option key={index} value={item.Dep}>
+                      {item.Dep}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="col-2">
                 <select id="sort" value={fillerDay} onChange={handleSortChange}>
                   <option value="desc">Từ cao đến thấp</option>
                   <option value="asc">Từ thấp đến cao</option>
                 </select>
               </div>
-              <div className="col-3">
-                <Button variant="outlined" startIcon={<ArrowDownwardIcon />}>
-                  <CSVLink
-                    data={salaryDataWithSalaryDep}
-                    filename={"Chấm công.csv"}
-                  >
-                    Xuất File
-                  </CSVLink>
-                </Button>
+              <div className="col-2">
+                {user.role === true ? (
+                  <Button variant="outlined" startIcon={<ArrowDownwardIcon />}>
+                    <CSVLink
+                      data={salaryDataWithSalaryDep}
+                      filename={"Chấm công.csv"}
+                    >
+                      Xuất File
+                    </CSVLink>
+                  </Button>
+                ) : null}
               </div>
             </div>
           </div>
@@ -114,6 +179,8 @@ export const Statistical = (rows) => {
             monthStaff={month}
             yearStaff={year}
             fillerDay={fillerDay}
+            departmStaff={departm}
+            nameFilter={nameFilter}
           />
         </div>
       </div>

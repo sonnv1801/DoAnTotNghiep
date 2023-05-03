@@ -19,3 +19,13 @@
 .title-time p {
   margin: 0;
 }
+
+.timekeeping .table-time-keeping select {
+  box-sizing: border-box;
+  width: 100%;
+  height: 45px;
+  top: 322px;
+  background: #fffefe;
+  border: 2px solid #e1dede;
+  border-radius: 15px;
+}
