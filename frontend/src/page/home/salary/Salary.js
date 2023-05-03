@@ -57,13 +57,19 @@ export const CreateSalary = () => {
   const handleShow = () => setShow(true);
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (Deps.has(Dep)) {
+      setDep('');
+    }else {
+      alert(`Phong ban ${Dep} da ton tai`) ;
+      }
+    
     if (
       Dep !== "" &&
       basicSalary !== "" &&
       allowance !== "" &&
       social_insurance !== "" &&
       health_insurance !== ""
+      
     ) {
       const newSalary = {
         Dep: Dep,
@@ -75,12 +81,15 @@ export const CreateSalary = () => {
       console.log(newSalary);
       dispatch(addSalary(newSalary, currentUser?.accessToken));
       setShow(false);
+      
     } else {
-      toast.warning("Vui lòng không để trống trường này", {
+      toast.warning("Vui lòng không để trống trường này",    {
         position: toast.POSITION.TOP_RIGHT,
       });
+   
     }
   };
+const Deps = new Set(listSalary.map((item) => item.Dep));
 
   return (
     <div className="timecf">
@@ -205,3 +214,5 @@ export const CreateSalary = () => {
     </div>
   );
 };
+
+

@@ -8,6 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import "./style.css";
 import { getAllStaff } from "../../redux/actions/staff.action";
 import _ from "lodash";
+
+
+
 const EditSalary = () => {
   const currentUser = JSON.parse(localStorage.getItem("token"));
   const [Dep, setDep] = useState("");
@@ -83,13 +86,7 @@ const EditSalary = () => {
         </div>
         <div className="mb-3">
           <label className="form-label">Phòng/Ban</label>
-          {/* <input
-            defaultValue={salaryFecth?.Dep}
-            onChange={handleDepChange}
-            type="text"
-            className="form-control"
-          /> */}
-<select onChange={handleDepChange}>
+          <select onChange={handleDepChange}>
             <option>Chọn Phòng Ban</option>
             {filteredData.map((item, index) => (
               <option key={index} value={item.Dep}>
@@ -98,6 +95,7 @@ const EditSalary = () => {
             ))}
           </select>
         </div>
+
         <div className="mb-3">
           <label className="form-label">Lương cơ bản</label>
           <input
@@ -107,6 +105,7 @@ const EditSalary = () => {
             className="form-control"
           />
         </div>
+
         <div className="mb-3">
           <label className="form-label">Phụ cấp</label>
           <input
@@ -116,6 +115,7 @@ const EditSalary = () => {
             className="form-control"
           />
         </div>
+
         <div className="mb-3">
           <label className="form-label">BHXH</label>
           <input
@@ -125,6 +125,7 @@ const EditSalary = () => {
             className="form-control"
           />
         </div>
+
         <div className="mb-3">
           <label className="form-label">BHYT</label>
           <input
@@ -134,6 +135,7 @@ const EditSalary = () => {
             className="form-control"
           />
         </div>
+        
         <Button onClick={handleSubmit} type="submit" variant="primary">
           Lưu thay đổi
         </Button>

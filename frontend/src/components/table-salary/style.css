@@ -7,9 +7,7 @@
   font-family: "Poppins";
 
 }
-/* .title {
-  padding: 0.5rem;
-} */
+
 .container .title p {
   font-style: normal;
   font-weight: 700;
@@ -21,4 +19,5 @@
 .container form {
 padding-bottom: 1rem;
 }
+
 
