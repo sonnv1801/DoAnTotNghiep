@@ -1,0 +1,10 @@
+.list-account {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+.list-account .add-account button {
+  float: right;
+  margin-bottom: 1rem;
+  background: #4499fd;
+}

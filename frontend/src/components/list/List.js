@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import SearchIcon from "@mui/icons-material/Search";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Tables from "./tables/Tables";
 import Paginate from "../pagination/Pagination";
-import { useDispatch } from "react-redux";
-import { searchStaff } from "../../redux/actions/staff.action";
-import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllStaff, searchStaff } from "../../redux/actions/staff.action";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import _ from "lodash";
+const itemsPerPage = 5;
 
-export const List = (listStaff) => {
+export const List = () => {
   const dispatch = useDispatch();
+
+  const listStaff = useSelector((state) => state.defaultReducer.listStaff);
   const [key, setkey] = useState("");
   const handleChange = (e) => {
     const key = e.target.value;
@@ -29,6 +31,41 @@ export const List = (listStaff) => {
     }
   };
 
+  //Phân Trang
+  const [items, setItems] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const datalist = _.uniqBy(listStaff, "Student_Id");
+
+  useEffect(() => {
+    dispatch(getAllStaff());
+    const data = datalist;
+    setItems(data);
+    setTotalPages(Math.ceil(data.length / itemsPerPage));
+  }, []);
+
+  const handleClickPrev = () => {
+    setCurrentPage((prev) => prev - 1);
+  };
+
+  const handleClickNext = () => {
+    setCurrentPage((prev) => prev + 1);
+  };
+
+  const handleChangeItemsPerPage = (e) => {
+    const value = parseInt(e.target.value);
+    setCurrentPage(1);
+    setTotalPages(Math.ceil(items.length / value));
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const visibleItems = items.slice(startIndex, endIndex);
   return (
     <div className="list">
       <ToastContainer />
@@ -50,31 +87,19 @@ export const List = (listStaff) => {
             <SearchIcon className="icon-search" />
           </div>
         </form>
-
-        {/* <div className="sub-list-filter">
-          <div className="filler">
-            <div className="filler-list">
-              <div className="icon-filter">
-                <FilterAltIcon />
-              </div>
-              <div className="title-filter">
-                <select className="sl-op">
-                  <option>Lọc</option>
-                  <option>Nguyễn Văn Sơn</option>
-                  <option>Huỳnh Ngọc Huy</option>
-                  <option>Trần Ngọc Hoàng</option>
-                  <option>Nguyễn Phi Líp</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
       <div className="ilst-table">
-        <Tables listStaff={listStaff.listStaff} />
+        <Tables listStaff={visibleItems} />
       </div>
       <div className="pagination">
-        <Paginate />
+        <Paginate
+          handleClickPrev={handleClickPrev}
+          handleClickNext={handleClickNext}
+          handleChangeItemsPerPage={handleChangeItemsPerPage}
+          handlePageChange={handlePageChange}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
       </div>
     </div>
   );
