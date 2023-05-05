@@ -21,8 +21,8 @@ const listmenu = [
 
 export const HomePageStaff = () => {
   return (
-    <div className="homepage-staff">
-      <div className="row">
+    <div className="bg-black h-screen flex  items-center w-full">
+      <div className="">
         {listmenu?.map((item, index) => (
           <div className="col-xl-4" key={index}>
             <Card link={item?.link} title={item?.title} img={item?.img} />

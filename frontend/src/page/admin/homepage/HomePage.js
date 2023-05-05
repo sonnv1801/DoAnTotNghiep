@@ -38,20 +38,14 @@ const listmenu = [
     title: "Bảng lương nhân viên",
     img: menu5,
   },
-  // {
-  //   id: 5,
-  //   link: "/salary",
-  //   title: "Ò Ó O",
-  //   img: menu5,
-  // },
 ];
 
 export const HomePage = () => {
   return (
-    <div className="homepage">
-      <div className="row ">
+    <div className="h-screen mt-20  items-center w-full  ">
+      <div className="grid lg:grid-cols-5 gap-3 mx-8 md:grid-cols-4 sm:grid-cols-3">
         {listmenu?.map((item, index) => (
-          <div className="col-xl-2" key={index}>
+          <div className="w-full " key={index}>
             <Card link={item?.link} title={item?.title} img={item?.img} />
           </div>
         ))}

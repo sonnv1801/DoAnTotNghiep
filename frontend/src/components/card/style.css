@@ -30,10 +30,10 @@ a {
 }
 
 .sub-card .card-body svg {
-  font-size: 200px;
+  /* font-size: 200px; */
   color: #20e2ff;
 }
 
 .sub-card .card-body img {
-  width: 100%;
+  /* width: 100%; */
 }

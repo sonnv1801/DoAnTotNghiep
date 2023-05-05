@@ -40,17 +40,17 @@ input {
 .time-work .body-time-work {
   box-shadow: 0 3px 6px #00000029;
 }
-.save-time button {
+/* .save-time button {
   color: #ffffff;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
   line-height: 30px;
   border: none;
-}
-.save-time button:hover {
+} */
+/* .save-time button:hover {
   border: none;
-}
+} */
 
 .sub-time-cf .time-work {
   border: 1px solid #ffffff;
@@ -66,7 +66,7 @@ input {
   margin-top: 3rem;
 }
 
-.title-time-work p {
+/* .title-time-work p {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
@@ -76,7 +76,7 @@ input {
 
   color: #fcf9f9;
   margin: 0;
-}
+} */
 
 .time-work .body-time-work .sub-body-time {
   background: #ffffff;

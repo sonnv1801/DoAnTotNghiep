@@ -192,7 +192,7 @@ export default function NavBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <ToastContainer />
-      <AppBar position="static">
+      <AppBar className="bg-white text-black" position="static">
         <Toolbar>
           <IconButton
             size="large"
@@ -205,7 +205,7 @@ export default function NavBar() {
           </IconButton>
           <Link to="/">
             <Typography
-              className="title-navbar"
+              className="bg-blue-400 py-3 px-6 text-base text-white hover:text-black"
               variant="h6"
               noWrap
               component="div"
@@ -214,7 +214,7 @@ export default function NavBar() {
               Quản lý chấm công
             </Typography>
           </Link>
-          <Search id="search-navbar">
+          {/* <Search className="border border-black-600 rounded-3xl" >
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -222,27 +222,9 @@ export default function NavBar() {
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-          </Search>
+          </Search> */}
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
             <IconButton
               size="large"
               edge="end"

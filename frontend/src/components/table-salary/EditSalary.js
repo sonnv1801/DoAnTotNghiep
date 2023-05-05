@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getIdSalary, updateSalarys } from "../../redux/actions/salary.action";
-import Button from "react-bootstrap/Button";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./style.css";
 import { getAllStaff } from "../../redux/actions/staff.action";
 import _ from "lodash";
+
 
 
 
@@ -50,6 +49,7 @@ const EditSalary = () => {
     setHealthInsurance(event.target.value);
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -79,18 +79,19 @@ const EditSalary = () => {
   };
   console.log(salaryFecth, "salaryFecth");
   return (
-    <div className="container">
-      <form>
-        <div className="title">
+    <div className="w-full h-full flex justify-content-center">
+      <div className="w-2/5 m-6 border-2 border-black  ">
+      <form className="min-h-full px-4">
+        <div className="text-xl font-bold text-center py-3">
           <p>Chỉnh sửa lương nhân viên</p>
         </div>
         <div className="mb-3">
-          <label className="form-label">Phòng/Ban</label>
-          <select onChange={handleDepChange}>
-            <option>Chọn Phòng Ban</option>
+          <label className="form-label">Phòng/Ban</label><br />
+          <select className="border border-gray-200 rounded w-full py-1"  onChange={handleDepChange}>
+          <option>{salaryFecth?.Dep}</option>
             {filteredData.map((item, index) => (
               <option key={index} value={item.Dep}>
-                {item.Dep}
+            {item.Dep} 
               </option>
             ))}
           </select>
@@ -99,7 +100,7 @@ const EditSalary = () => {
         <div className="mb-3">
           <label className="form-label">Lương cơ bản</label>
           <input
-            defaultValue={salaryFecth?.basicSalary}
+            value={salaryFecth?.basicSalary}
             onChange={handleBasicSalaryChange}
             type="text"
             className="form-control"
@@ -135,11 +136,15 @@ const EditSalary = () => {
             className="form-control"
           />
         </div>
-        
-        <Button onClick={handleSubmit} type="submit" variant="primary">
+        <div className="mb-4">
+        <button className="p-2 bg-blue-400 rounded text-base text-white font-semibold hover:bg-blue-700"  onClick={handleSubmit} type="submit" >
           Lưu thay đổi
-        </Button>
+        </button>
+        </div>
+      
       </form>
+      </div>
+      
     </div>
   );
 };

@@ -4,7 +4,6 @@ import Modal from "react-bootstrap/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
-import Button from "react-bootstrap/Button";
 import { addSalary, getAllSalary } from "../../../redux/actions/salary.action";
 import TableSalary from "../../../components/table-salary/TableSalary";
 import { getAllStaff } from "../../../redux/actions/staff.action";
@@ -57,11 +56,11 @@ export const CreateSalary = () => {
   const handleShow = () => setShow(true);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (Deps.has(Dep)) {
-      setDep('');
-    }else {
-      alert(`Phong ban ${Dep} da ton tai`) ;
-      }
+    // if (Deps.has(Dep)) {
+    //   setDep('');
+    // }else {
+    //   alert(`Phong ban ${Dep} da ton tai`) ;
+    //   }
     
     if (
       Dep !== "" &&
@@ -92,17 +91,17 @@ export const CreateSalary = () => {
 const Deps = new Set(listSalary.map((item) => item.Dep));
 
   return (
-    <div className="timecf">
+    <div className="px-16 mt-8 ">
       <ToastContainer />
-      <div className="title-time">
-        <p>Thêm lương nhân viên</p>
+      <div className="w-11/12 text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
+        <p className="ml-2">Bảng lương nhân viên</p>
       </div>
-      <div className="sub-time-cf">
-        <div className="sub-time-cf">
-          <div className="save-time">
-            <Button variant="primary" onClick={handleShow}>
-              Thêm lương nhân viên
-            </Button>
+      <div className="w-full bg-white">
+        <div className="mb-3 float-right ">
+          <div className="rounded-md ">
+            <button className="bg-white-400 border-2 border-blue-400 text-blue-400 uppercase p-3 rounded-md font-bold hover:bg-blue-400 hover:text-white"  onClick={handleShow}>
+              Thêm lương NV
+            </button>
           </div>
         </div>
 
@@ -118,17 +117,11 @@ const Deps = new Set(listSalary.map((item) => item.Dep));
                 controlId="exampleForm.ControlInput1"
               >
                 <Form.Label>Phòng/Ban</Form.Label>
-                {/* <Form.Control
-                  type="text"
-                  placeholder="Phòng/Ban"
-                  autoFocus
-                  value={Dep}
-                  onChange={handleDepChange}
-                /> */}
                 <Form.Select
                   aria-label="Default select example"
                   onChange={handleDepChange}
                 >
+                  <option >Chọn Phòng Ban</option>
                   {filteredData.map((item, index) => (
                     <option key={index} value={item.Dep}>
                       {item.Dep}
@@ -198,12 +191,12 @@ const Deps = new Set(listSalary.map((item) => item.Dep));
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button type="submit" variant="primary" onClick={handleSubmit}>
+            <button className="py-2 px-3 rounded-md  bg-red-500 text-white border-2 " onClick={handleClose}>
+              Đóng
+            </button>
+            <button className="py-2 px-3 rounded-md  bg-blue-400 text-white border-2  " type="submit" onClick={handleSubmit}>
               Lưu thông tin
-            </Button>
+            </button>
           </Modal.Footer>
         </Modal>
 

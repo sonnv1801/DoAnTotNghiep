@@ -3,6 +3,7 @@ import "./style.css";
 import SearchIcon from "@mui/icons-material/Search";
 import TableTimeKp from "./../../../components/table-tiemkeeping/TableTimeKp";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 import {
   getAllStaff,
   listWorkStaff,
@@ -56,11 +57,12 @@ export const TimeKeeping = () => {
     return nameMatch && monthMatch && depMatch;
   });
   return (
-    <div className="timekeeping">
-      <div className="title-timekeeping">
+    <div className="w-full px-16 mt-8 ">
+      <ToastContainer />
+      <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         {user?.role === true ? (
           <>
-            <p>Chấm công</p>
+            <p className="ml-2">Chấm công</p>
           </>
         ) : (
           <>
@@ -68,27 +70,24 @@ export const TimeKeeping = () => {
           </>
         )}
       </div>
-      <div className="table-time-keeping">
-        <div className="row">
-          <div className="col-3">
-            <div className="list-search">
-              <form className="form-inline my-2 my-lg-0 ml-5">
-                <div className="search-staff">
-                  <input
-                    className="form-control mr-sm-2"
-                    type="text"
-                    name="search"
-                    placeholder="Tìm Kiếm"
-                    onChange={handleSearchChange}
-                    aria-label="Search"
-                  />
-                  <SearchIcon className="icon-search" />
+      <div className="w-full">
+        <div className="flex">
+          <div className="w-3/12 mt-2  mr-8">
+            <div class="max-w-2xl mt-2">
+              <form class="flex items-center">
+                <label for="simple-search" class="sr-only">Search</label>
+                <div class="relative w-full">
+                  <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                  </div>
+                  <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required onChange={handleSearchChange} />
                 </div>
+
               </form>
             </div>
           </div>
-          <div className="col-3">
-            <select onChange={handleMonthChange}>
+          <div className="w-1/5 my-2 mr-8">
+            <select className="w-full h-8 my-2 rounded-md border border-gray-200" onChange={handleMonthChange}>
               <option value="">Chọn Tháng</option>
               <option value="01">Tháng 1</option>
               <option value="02">Tháng 2</option>
@@ -104,9 +103,9 @@ export const TimeKeeping = () => {
               <option value="12">Tháng 12</option>
             </select>
           </div>
-          <div className="col-3">
+          <div className="w-1/5 my-2">
             <div>
-              <select onChange={handleDepChange}>
+              <select className="w-full h-8 my-2 rounded-md border border-gray-200" onChange={handleDepChange}>
                 <option value="">Tất cả phòng ban</option>
                 <option value="IT">IT</option>
                 <option value="Computer">Computer</option>

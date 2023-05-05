@@ -54,21 +54,21 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
               ) : (
                 <>
                   <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <Table aria-label="simple table">
                       <TableHead>
-                        <TableRow>
-                          <TableCell>#</TableCell>
-                          <TableCell align="right">ID</TableCell>
-                          <TableCell align="right">Tên Nhân Viên</TableCell>
-                          <TableCell align="right">Phòng Ban</TableCell>
-                          <TableCell align="right">Ngày</TableCell>
-                          <TableCell align="right">Thời gian vào</TableCell>
-                          <TableCell align="right">Thời gian ra</TableCell>
-                          <TableCell align="right">
+                        <TableRow className="bg-black">
+                          <TableCell className="text-white">#</TableCell>
+                          <TableCell className="text-white" align="right">ID</TableCell>
+                          <TableCell className="text-white" align="right">Tên Nhân Viên</TableCell>
+                          <TableCell className="text-white" align="right">Phòng Ban</TableCell>
+                          <TableCell className="text-white" align="right">Ngày</TableCell>
+                          <TableCell className="text-white" align="right">Thời gian vào</TableCell>
+                          <TableCell className="text-white" align="right">Thời gian ra</TableCell>
+                          <TableCell className="text-white" align="right">
                             Thời gian nghỉ ngơi
                           </TableCell>
-                          <TableCell align="right">Thời gian thực tế</TableCell>
-                          <TableCell align="right">Đánh giá</TableCell>
+                          <TableCell className="text-white" align="right">Thời gian thực tế</TableCell>
+                          <TableCell className="text-white" align="right">Đánh giá</TableCell>
                         </TableRow>
                       </TableHead>
                       {filteredStudents.map((item, index) => (

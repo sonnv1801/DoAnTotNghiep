@@ -48,29 +48,31 @@ export const TimeConfig = () => {
   return (
     <div className="timecf">
       <ToastContainer />
-      <div className="title-time">
-        <p>Cấu hình thời gian</p>
+      <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
+        <p className="ml-2">Cấu hình thời gian</p>
       </div>
 
-      <div className="sub-time-cf">
-        <form onSubmit={handleSubmit} className="sub-time-cf">
-          <div className="save-time">
-            <Button type="submit" variant="outlined" startIcon={<SaveIcon />}>
+      <div className="w-full inline-block">
+        <div className="mb-6">
+        <form onSubmit={handleSubmit} >
+          <div className="float-right block">
+            <button className="bg-blue-400 text-white text-sm uppercase font-semibold p-2 px-4 rounded-md my-2 hover:bg-blue-700" type="submit" variant="outlined" startIcon={<SaveIcon />}>
               Lưu cấu hình
-            </Button>
+            </button>
           </div>
         </form>
-        <div className="time-work">
-          <div className="title-time-work">
+        </div>
+        <div className="my-12 shadow-md ">
+          <div className="bg-blue-400 text-xl uppercase text-white font-bold p-4">
             <p>Thiết lập thời gian</p>
           </div>
-          <div className="body-time-work">
-            <div className="sub-body-time">
-              <div className="row">
-                <div className="col-4">
-                  <span>Thời gian buổi sáng </span>
+          <div className="p-4">
+            <div >
+              <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-3 gap-y-4">
+                <div className="text-xl font-semibold">
+                  <span >Thời gian buổi sáng </span>
                 </div>
-                <div className="col-8">
+                <div className="col-span-2">
                   <input
                     type="time"
                     step="1"
@@ -79,10 +81,10 @@ export const TimeConfig = () => {
                   />
 
                 </div>
-                <div className="col-4">
+                <div className="text-xl font-semibold">
                   <span>Thời gian buổi chiều</span>
                 </div>
-                <div className="col-8">
+                <div className="col-span-2">
                   <input
                     type="time"
                     step="1"

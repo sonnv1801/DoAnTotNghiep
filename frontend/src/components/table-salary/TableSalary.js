@@ -27,8 +27,8 @@ export const TableSalary = (
     <>
       {loading ? (
         <>
-          <div className="spinner-border" role="status">
-            <span className="visually-hidden">Loading...</span>
+          <div  role="status">
+            <span >Loading...</span>
           </div>
           <span
             style={{
@@ -44,16 +44,16 @@ export const TableSalary = (
       ) : (
         <>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table caria-label="simple table">
               <TableHead>
-                <TableRow>
-                  <TableCell>STT</TableCell>
-                  <TableCell align="right">Phòng/Ban</TableCell>
-                  <TableCell align="right">Lương Cơ Bản</TableCell>
-                  <TableCell align="right">Phụ cấp</TableCell>
-                  <TableCell align="right">BHXH</TableCell>
-                  <TableCell align="right">BHYT</TableCell>
-                  <TableCell align="right"></TableCell>
+                <TableRow className="bg-black ">
+                  <TableCell className="text-white">STT</TableCell>
+                  <TableCell className="text-white" align="right">Phòng/Ban</TableCell>
+                  <TableCell className="text-white" align="right">Lương Cơ Bản</TableCell>
+                  <TableCell className="text-white" align="right">Phụ cấp</TableCell>
+                  <TableCell className="text-white" align="right">BHXH</TableCell>
+                  <TableCell className="text-white" align="right">BHYT</TableCell>
+                  <TableCell className="text-white" align="right"></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
