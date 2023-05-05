@@ -13,20 +13,31 @@ import {
   START_LOADING,
   STOP_LOADING,
   UPDATE_SALARY,
-  FETCH_ONLY_CONFIG
+  FETCH_ONLY_CONFIG,
+  REGISTER_START,
+  REGISTER_SUCCESS,
+  REGISTER_FAILED,
+  FETCH_USERS,
+  DELETE_USER,
 } from "../type/types";
 
 const initialState = {
   listStaff: [],
   salaryFecth: null,
   listTimeCf: [],
-  listSalary:[],
+  listSalary: [],
   search: [],
+  listUser: [],
 
   login: {
     currentUser: null,
     isFetching: false,
     error: false,
+  },
+  register: {
+    isFetching: false,
+    error: false,
+    success: false,
   },
 };
 
@@ -36,6 +47,22 @@ const defaultReducer = (state = initialState, action) => {
     case FETCH_STAFF: {
       state.listStaff = payload;
       return { ...state }; //setState
+    }
+
+    case FETCH_USERS: {
+      state.listUser = payload;
+      return { ...state }; //setState
+    }
+
+    case DELETE_USER: {
+      let updateList = [...state.listUser];
+      let index = updateList.findIndex((user) => user.id === action.id);
+      if (index === -1) {
+        updateList.splice(payload, index);
+        state.listUser = updateList;
+      }
+
+      return { ...state };
     }
 
     case SEARCH_STAFF: {
@@ -78,6 +105,23 @@ const defaultReducer = (state = initialState, action) => {
     case LOGIN_FAILED: {
       state.login.isFetching = false;
       state.login.error = true;
+      return { ...state };
+    }
+
+    case REGISTER_START: {
+      state.register.isFetching = true;
+      return { ...state };
+    }
+    case REGISTER_SUCCESS: {
+      state.register.isFetching = false;
+      state.register.error = false;
+      state.register.success = true;
+      return { ...state };
+    }
+    case REGISTER_FAILED: {
+      state.register.isFetching = false;
+      state.register.error = true;
+      state.register.success = false;
       return { ...state };
     }
 
@@ -129,18 +173,18 @@ const defaultReducer = (state = initialState, action) => {
     }
 
     case UPDATE_SALARY: {
-      const updatedList = state.listSalary.map(salary => {
+      const updatedList = state.listSalary.map((salary) => {
         if (salary.id === action.id) {
           return {
             ...salary,
-            ...action.payload
+            ...action.payload,
           };
         }
         return salary;
       });
       return {
         ...state,
-        listSalary: updatedList
+        listSalary: updatedList,
       };
     }
 

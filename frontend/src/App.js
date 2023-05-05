@@ -13,6 +13,8 @@ import { LayOut } from "./components/layout/LayOut";
 import { CreateSalary } from "./page/admin/salary/Salary";
 import EditSalary from "./components/table-salary/EditSalary";
 import { HomePageStaff } from "./page/home/homepage/HomePageStaff";
+import RegisterAccount from "./page/admin/registerAccount/RegisterAccount";
+import Test from "./components/Test";
 
 function App() {
   const user = JSON.parse(localStorage.getItem("token"));
@@ -39,6 +41,8 @@ function App() {
                 <Route path="/timekp" element={<TimeKeeping />} />
                 <Route path="/salary" element={<CreateSalary />} />
                 <Route path="/edit-salary/:id" element={<EditSalary />} />
+                <Route path="/register-account" element={<RegisterAccount />} />
+                <Route path="/test" element={<Test />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             </>

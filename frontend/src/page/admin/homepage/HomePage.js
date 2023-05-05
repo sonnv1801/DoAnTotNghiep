@@ -5,7 +5,7 @@ import menu1 from "../../../assets/menu1.png";
 import menu2 from "../../../assets/menu3.png";
 import menu3 from "../../../assets/menu4.png";
 import menu4 from "../../../assets/menu2.png";
-import menu5 from "../../../assets/menu5.png"
+import menu5 from "../../../assets/menu5.png";
 
 const listmenu = [
   {
@@ -36,6 +36,12 @@ const listmenu = [
     id: 5,
     link: "/salary",
     title: "Bảng lương nhân viên",
+    img: menu5,
+  },
+  {
+    id: 6,
+    link: "/register-account",
+    title: "Cấp Tài Khoản",
     img: menu5,
   },
 ];

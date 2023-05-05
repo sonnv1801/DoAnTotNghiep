@@ -1,11 +1,45 @@
 import * as React from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-
-export default function Paginate() {
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+export default function Paginate({
+  handleClickPrev,
+  handleClickNext,
+  handlePageChange,
+  handleChangeItemsPerPage,
+  currentPage,
+  totalPages,
+}) {
   return (
-    <Stack spacing={2}>
-      <Pagination count={10} variant="outlined" shape="rounded" />
-    </Stack>
+    <div className="flex justify-center mt-4 mb-14">
+      <button
+        className="mr-2   px-4 py-2 rounded btnx bg-white"
+        onClick={handleClickPrev}
+        disabled={currentPage === 1}
+      >
+        <KeyboardArrowLeftIcon />
+      </button>
+      {Array.from({ length: totalPages }).map((_, index) => (
+        <button
+          key={index}
+          onClick={() => handlePageChange(index + 1)}
+          className={`mr-2  px-4 py-2 rounded  btnx  ${
+            currentPage === index + 1
+              ? "active bg-red-700 text-gray-50"
+              : "bg-white"
+          } `}
+        >
+          {index + 1}
+        </button>
+      ))}
+      <button
+        className=" px-4 py-2 rounded btnx bg-white"
+        onClick={handleClickNext}
+        disabled={currentPage === totalPages}
+      >
+        <KeyboardArrowRightIcon />
+      </button>
+    </div>
   );
 }
