@@ -21,11 +21,11 @@ const listmenu = [
 
 export const HomePageStaff = () => {
   return (
-    <div className="bg-black h-screen flex  items-center w-full">
-      <div className="">
+    <div className="h-screen   items-center w-full flex ">
+      <div className="grid grid-cols-2   mx-auto w-1/2">
         {listmenu?.map((item, index) => (
-          <div className="col-xl-4" key={index}>
-            <Card link={item?.link} title={item?.title} img={item?.img} />
+          <div className=" w-9/12" key={index}>
+            <Card  link={item?.link} title={item?.title} img={item?.img} />
           </div>
         ))}
       </div>

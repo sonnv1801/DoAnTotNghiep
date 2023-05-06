@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import "./style.css";
 import Logo from "../../../assets/logo.png";
-import BrgLogin from "../../../assets/login-bgr.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Alert from "@mui/material/Alert";
-
-import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../redux/actions/user.action";

@@ -71,8 +71,8 @@ export const TimeKeeping = () => {
         )}
       </div>
       <div className="w-full">
-        <div className="flex">
-          <div className="w-3/12 mt-2  mr-8">
+        <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3">
+          <div className="w-7/12 mt-2  ">
             <div class="max-w-2xl mt-2">
               <form class="flex items-center">
                 <label for="simple-search" class="sr-only">Search</label>
@@ -86,7 +86,7 @@ export const TimeKeeping = () => {
               </form>
             </div>
           </div>
-          <div className="w-1/5 my-2 mr-8">
+          <div className="w-7/12 my-2">
             <select className="w-full h-8 my-2 rounded-md border border-gray-200" onChange={handleMonthChange}>
               <option value="">Chọn Tháng</option>
               <option value="01">Tháng 1</option>
@@ -103,7 +103,7 @@ export const TimeKeeping = () => {
               <option value="12">Tháng 12</option>
             </select>
           </div>
-          <div className="w-1/5 my-2">
+          <div className="w-7/12 my-2">
             <div>
               <select className="w-full h-8 my-2 rounded-md border border-gray-200" onChange={handleDepChange}>
                 <option value="">Tất cả phòng ban</option>

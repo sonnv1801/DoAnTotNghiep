@@ -98,8 +98,8 @@ const Deps = new Set(listSalary.map((item) => item.Dep));
       </div>
       <div className="w-full bg-white">
         <div className="mb-3 float-right ">
-          <div className="rounded-md ">
-            <button className="bg-white-400 border-2 border-blue-400 text-blue-400 uppercase p-3 rounded-md font-bold hover:bg-blue-400 hover:text-white"  onClick={handleShow}>
+          <div className="rounded-md text-blue-400 uppercase p-2 font-bold hover:bg-blue-400 hover:text-white border-2 border-blue-400">
+            <button className="  "  onClick={handleShow}>
               Thêm lương NV
             </button>
           </div>

@@ -103,12 +103,6 @@ export const List = () => {
           </div>
         </form>
       </div>
-      <div>
-        <Tables listStaff={listStaff.listStaff} />
-      </div>
-      <div className="mt-4 flex justify-center">
-        <Paginate />
-      </div>
       <div className="ilst-table">
         <Tables listStaff={visibleItems} />
       </div>
