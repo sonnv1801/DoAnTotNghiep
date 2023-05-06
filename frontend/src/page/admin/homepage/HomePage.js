@@ -6,6 +6,7 @@ import menu2 from "../../../assets/menu3.png";
 import menu3 from "../../../assets/menu4.png";
 import menu4 from "../../../assets/menu2.png";
 import menu5 from "../../../assets/menu5.png";
+import menu6 from "../../../assets/menu6.png";
 
 const listmenu = [
   {
@@ -42,14 +43,14 @@ const listmenu = [
     id: 6,
     link: "/register-account",
     title: "Cấp Tài Khoản",
-    img: menu5,
+    img: menu6,
   },
 ];
 
 export const HomePage = () => {
   return (
-    <div className="h-screen mt-20  items-center w-full  ">
-      <div className="grid lg:grid-cols-5 gap-3 mx-8 md:grid-cols-4 sm:grid-cols-3">
+    <div className="h-screen mt-20  items-center w-full">
+      <div className="grid lg:grid-cols-6 gap-3 mx-8 md:grid-cols-4 sm:grid-cols-3">
         {listmenu?.map((item, index) => (
           <div className="w-full " key={index}>
             <Card link={item?.link} title={item?.title} img={item?.img} />

@@ -58,12 +58,13 @@ export const ListAccount = () => {
     dispatch(getAllUser(currentUser?.accessToken));
   }, []);
   return (
-    <div className="list-account">
+    <div className="mt-8 w-full">
+      <div className="w-11/12 m-auto">
       <ToastContainer />
-      <div className="add-account">
-        <Button variant="contained" color="success" onClick={handleShow}>
+      <div className="float-right mb-2 bg-blue-400 rounded-md hover:bg-blue-600">
+        <button className="p-2 text-md uppercase text-white font-bold "  onClick={handleShow}>
           Thêm Tài Khoản
-        </Button>
+        </button>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Cấp Tài khoản</Modal.Title>
@@ -132,13 +133,13 @@ export const ListAccount = () => {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button type="submit" variant="primary" onClick={handleRegister}>
+            <button className="border-2 border-blue-500 text-blue-400 p-2 rounded-md text-base font-semibold hover:bg-blue-500 hover:text-white" type="submit" onClick={handleRegister}>
               Lưu thông tin
-            </Button>
+            </button>
           </Modal.Footer>
         </Modal>
       </div>
-      <TableContainer component={Paper}>
+      <TableContainer className="shadow-lg shadow-slate-600 mt-4" component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -209,6 +210,7 @@ export const ListAccount = () => {
           )}
         </Table>
       </TableContainer>
+      </div>
     </div>
   );
 };

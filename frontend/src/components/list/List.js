@@ -103,7 +103,6 @@ export const List = () => {
           </div>
         </form>
       </div>
-
       <div className="ilst-table">
         <Tables listStaff={visibleItems} />
       </div>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./style.css";
 import { styled, alpha } from "@mui/material/styles";
+import Logo from "../../assets/logo.png";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,8 +11,6 @@ import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -201,7 +200,10 @@ export default function NavBar() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <Link to="/">
+           <img src={Logo} className="w-16" alt="home" />
+           </Link>
+
           </IconButton>
           <Link to="/">
             <Typography

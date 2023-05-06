@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
 import Logo from "../../../assets/logo.png";
-import BrgLogin from "../../../assets/login-bgr.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Alert from "@mui/material/Alert";
