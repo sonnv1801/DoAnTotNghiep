@@ -3,6 +3,7 @@ import "./style.css";
 import { Card } from "../../../components/card/Card";
 import logo1 from "../../../assets/logo1.png";
 import logo2 from "../../../assets/logo2.png";
+import { ChatBox } from "../chatbox/ChatBox";
 
 const listmenu = [
   {

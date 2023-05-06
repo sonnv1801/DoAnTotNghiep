@@ -1,5 +1,5 @@
 import "./App.css";
-import './index.css';
+import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/navbar/NavBar";
 import { HomePage } from "./page/admin/homepage/HomePage";
@@ -15,11 +15,17 @@ import EditSalary from "./components/table-salary/EditSalary";
 import { HomePageStaff } from "./page/home/homepage/HomePageStaff";
 import RegisterAccount from "./page/admin/registerAccount/RegisterAccount";
 import Test from "./components/Test";
+import KommunicateChat from "./page/home/chatbox/ChatBox";
+
+import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
+
+Kommunicate.init("3df8fbf7aa958bd54c3732cacff94409f");
 
 function App() {
   const user = JSON.parse(localStorage.getItem("token"));
   return (
     <div>
+      <KommunicateChat />
       <Router>
         <Routes>
           {user === null ? (

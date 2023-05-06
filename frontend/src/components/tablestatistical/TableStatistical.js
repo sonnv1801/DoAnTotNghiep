@@ -100,8 +100,12 @@ export default function BasicTable({
                     <TableCell align="right">{datas.name}</TableCell>
                     <TableCell align="right">{datas.department}</TableCell>
                     <TableCell align="right">{`${datas.month}/${datas.year}`}</TableCell>
-                    <TableCell align="right">{datas.worktime}</TableCell>
-                    <TableCell align="right">{`Đã làm ${datas.total_days} công trong tháng ${datas.month}`}</TableCell>
+                    <TableCell align="right">
+                      {datas.worktime.toFixed(2).toString()}
+                    </TableCell>
+                    <TableCell align="right">{`Đã làm ${datas.total_days
+                      .toFixed(2)
+                      .toString()} công trong tháng ${datas.month}`}</TableCell>
                     <TableCell align="right">
                       {datas.basicSalary.toLocaleString("vi-VN", {
                         style: "currency",

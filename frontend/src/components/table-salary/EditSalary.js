@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getIdSalary, updateSalarys } from "../../redux/actions/salary.action";
+import {
+  getAllSalary,
+  getIdSalary,
+  updateSalarys,
+} from "../../redux/actions/salary.action";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getAllStaff } from "../../redux/actions/staff.action";
 import _ from "lodash";
 
-
-
-
 const EditSalary = () => {
   const currentUser = JSON.parse(localStorage.getItem("token"));
-  const [Dep, setDep] = useState("");
-  const [basicSalary, setBasicSalary] = useState("");
-  const [allowance, setAllowance] = useState("");
-  const [social_insurance, setSocialInsurance] = useState("");
-  const [health_insurance, setHealthInsurance] = useState("");
+  const salaryFecth = useSelector((state) => state.defaultReducer?.salaryFecth);
+  console.log(salaryFecth, "salaryFecth");
+  const [Dep, setDep] = useState(salaryFecth?.Dep);
+  const [basicSalary, setBasicSalary] = useState(salaryFecth?.basicSalary);
+  const [allowance, setAllowance] = useState(salaryFecth?.allowance);
+  const [social_insurance, setSocialInsurance] = useState(
+    salaryFecth?.social_insurance
+  );
+  const [health_insurance, setHealthInsurance] = useState(
+    salaryFecth?.health_insurance
+  );
+
+  console.log(basicSalary, "basicSalary");
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,11 +35,14 @@ const EditSalary = () => {
   useEffect(() => {
     dispatch(getAllStaff());
   }, []);
+
+  useEffect(() => {
+    dispatch(getAllSalary());
+  }, []);
   console.log(id, "id");
   useEffect(() => {
     dispatch(getIdSalary(id));
   }, []);
-  const salaryFecth = useSelector((state) => state.defaultReducer?.salaryFecth);
 
   const handleDepChange = (event) => {
     setDep(event.target.value);
@@ -48,7 +60,6 @@ const EditSalary = () => {
   const handleHealthChange = (event) => {
     setHealthInsurance(event.target.value);
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,70 +92,76 @@ const EditSalary = () => {
   return (
     <div className="w-full h-full flex justify-content-center">
       <div className="w-2/5 m-6 border-2 border-black  ">
-      <form className="min-h-full px-4">
-        <div className="text-xl font-bold text-center py-3">
-          <p>Chỉnh sửa lương nhân viên</p>
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Phòng/Ban</label><br />
-          <select className="border border-gray-200 rounded w-full py-1"  onChange={handleDepChange}>
-          <option>{salaryFecth?.Dep}</option>
-            {filteredData.map((item, index) => (
-              <option key={index} value={item.Dep}>
-            {item.Dep} 
-              </option>
-            ))}
-          </select>
-        </div>
+        <form className="min-h-full px-4">
+          <div className="text-xl font-bold text-center py-3">
+            <p>Chỉnh sửa lương nhân viên</p>
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Phòng/Ban</label>
+            <br />
+            <select
+              className="border border-gray-200 rounded w-full py-1"
+              onChange={handleDepChange}
+            >
+              <option>{Dep}</option>
+              {filteredData.map((item, index) => (
+                <option key={index} value={item.Dep}>
+                  {item.Dep}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div className="mb-3">
-          <label className="form-label">Lương cơ bản</label>
-          <input
-            value={salaryFecth?.basicSalary}
-            onChange={handleBasicSalaryChange}
-            type="text"
-            className="form-control"
-          />
-        </div>
+          <div className="mb-3">
+            <label className="form-label">Lương cơ bản</label>
+            <input
+              value={basicSalary}
+              onChange={handleBasicSalaryChange}
+              type="text"
+              className="form-control"
+            />
+          </div>
 
-        <div className="mb-3">
-          <label className="form-label">Phụ cấp</label>
-          <input
-            defaultValue={salaryFecth?.allowance}
-            onChange={handleAllowanceChange}
-            type="text"
-            className="form-control"
-          />
-        </div>
+          <div className="mb-3">
+            <label className="form-label">Phụ cấp</label>
+            <input
+              defaultValue={allowance}
+              onChange={handleAllowanceChange}
+              type="text"
+              className="form-control"
+            />
+          </div>
 
-        <div className="mb-3">
-          <label className="form-label">BHXH</label>
-          <input
-            defaultValue={salaryFecth?.social_insurance}
-            onChange={handleSocialChange}
-            type="text"
-            className="form-control"
-          />
-        </div>
+          <div className="mb-3">
+            <label className="form-label">BHXH</label>
+            <input
+              defaultValue={social_insurance}
+              onChange={handleSocialChange}
+              type="text"
+              className="form-control"
+            />
+          </div>
 
-        <div className="mb-3">
-          <label className="form-label">BHYT</label>
-          <input
-            defaultValue={salaryFecth?.health_insurance}
-            onChange={handleHealthChange}
-            type="text"
-            className="form-control"
-          />
-        </div>
-        <div className="mb-4">
-        <button className="p-2 bg-blue-400 rounded text-base text-white font-semibold hover:bg-blue-700"  onClick={handleSubmit} type="submit" >
-          Lưu thay đổi
-        </button>
-        </div>
-      
-      </form>
+          <div className="mb-3">
+            <label className="form-label">BHYT</label>
+            <input
+              defaultValue={health_insurance}
+              onChange={handleHealthChange}
+              type="text"
+              className="form-control"
+            />
+          </div>
+          <div className="mb-4">
+            <button
+              className="p-2 bg-blue-400 rounded text-base text-white font-semibold hover:bg-blue-700"
+              onClick={handleSubmit}
+              type="submit"
+            >
+              Lưu thay đổi
+            </button>
+          </div>
+        </form>
       </div>
-      
     </div>
   );
 };

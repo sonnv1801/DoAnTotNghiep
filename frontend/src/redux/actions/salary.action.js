@@ -58,7 +58,6 @@ export const getIdSalary = (id) => {
 
 export const addSalary = (salary, accessToken) => {
   return (dispatch) => {
-    // console.log("toi day r")
     salaryService
       .createSalary(salary, accessToken)
       .then((res) => {
@@ -68,7 +67,11 @@ export const addSalary = (salary, accessToken) => {
           position: toast.POSITION.TOP_RIGHT,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>
+        toast.error(`${err.response.data.error}`, {
+          position: toast.POSITION.TOP_RIGHT,
+        })
+      );
   };
 };
 
@@ -82,22 +85,35 @@ export const updateSalarys = (id, accessToken, salary, navigate) => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "OK !",
-    })
-      .then((result) => {
-        if (result.isConfirmed) {
-          salaryService.updateSalary(id, accessToken, salary).then((res) => {
-            dispatch(createAction(UPDATE_SALARY, res.data));
-            dispatch(getAllSalary());
-            dispatch(stopLoading());
+    }).then((result) => {
+      if (result.isConfirmed) {
+        salaryService
+          .updateSalary(id, accessToken, salary)
+          .then((res) => {
+            try {
+              dispatch(createAction(UPDATE_SALARY, res.data));
+              dispatch(getAllSalary());
+              dispatch(stopLoading());
+              console.log(res);
+              toast.success("Cập nhật thành công!", {
+                position: toast.POSITION.TOP_RIGHT,
+              });
+              navigate("/salary");
+            } catch (error) {
+              console.log(error);
+              toast.error(`${error}`, {
+                position: toast.POSITION.TOP_RIGHT,
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error.response.data.error);
+            toast.error(`${error.response.data.error}`, {
+              position: toast.POSITION.TOP_RIGHT,
+            });
           });
-          toast.success("Cập nhật thành công!", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-          navigate("/salary");
-          dispatch(stopLoading());
-        }
-      })
-      .catch((err) => console.log(err));
+      }
+    });
   };
 };
 
@@ -138,21 +154,14 @@ export const salaryStaffWithDep = (
   departmStaff = null,
   nameFilter = null
 ) => {
-  function calculateSalaryWithSalaryDep(
-    data,
-    month,
-    year,
-    salaryDep,
-    sortByDays = fillerDay
-  ) {
-    console.log(nameFilter, "nameFilternameFilternameFilternameFilter");
-    console.log(data, "data");
+  console.log(fillerDay, "fillerDayfillerDayfillerDayfillerDay");
+  function calculateSalaryWithSalaryDep(data, month, year, salaryDep) {
     const totalWorktime = {};
     const totalDays = {};
     const departmentMap = {};
 
+    console.log(fillerDay, "console.log");
     data.forEach(({ Student_Id, name, day, workTime, Dep }) => {
-      console.log(Dep, "DepDepDepDep");
       const [dayStr, monthStr, yearStr] = day.split("/");
       const monthValue = parseInt(monthStr);
       const yearValue = parseInt(yearStr);
@@ -165,7 +174,7 @@ export const salaryStaffWithDep = (
         const [hours, minutes] = workTime.split(":").map(Number);
         const totalMinutes = hours * 60 + minutes;
         const adjustedMinutes = Math.max(0, totalMinutes - 60);
-        const adjustedHours = Math.floor(adjustedMinutes / 60);
+        const adjustedHours = Math.max(adjustedMinutes / 60);
 
         if (totalWorktime[Student_Id]) {
           totalWorktime[Student_Id].worktime += adjustedHours;
@@ -225,10 +234,12 @@ export const salaryStaffWithDep = (
     }
 
     // Sort results array based on total_days property
-    if (sortByDays === "asc") {
-      results.sort((a, b) => a.total_days - b.total_days);
-    } else if (sortByDays === "desc") {
-      results.sort((a, b) => b.total_days - a.total_days);
+    if (fillerDay === "asc") {
+      results.sort((a, b) => (a.total_days < b.total_days ? -1 : 1));
+      console.log("Nguyen Van A");
+    } else if (fillerDay === "desc") {
+      results.sort((a, b) => (a.total_days > b.total_days ? -1 : 1));
+      console.log("Nguyen Van B");
     }
 
     return results;

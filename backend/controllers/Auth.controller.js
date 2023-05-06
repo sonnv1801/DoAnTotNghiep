@@ -6,8 +6,33 @@ dotenv.config();
 
 let refreshTokens = [];
 const authController = {
+  // registerUser: async (req, res) => {
+  //   try {
+  //     const salt = await bcrypt.genSalt(10);
+  //     const hashed = await bcrypt.hash(req.body.password, salt);
+
+  //     //Create new user
+  //     const newUser = await new User({
+  //       fullname: req.body.fullname,
+  //       username: req.body.username,
+  //       password: hashed,
+  //     });
+
+  //     //Save user to DB
+  //     const user = await newUser.save();
+  //     res.status(200).json(user);
+  //   } catch (err) {
+  //     res.status(500).json(err);
+  //   }
+  // },
+
   registerUser: async (req, res) => {
     try {
+      const existingUser = await User.findOne({ username: req.body.username });
+      if (existingUser) {
+        return res.status(400).json({ error: "Tên đăng nhập đã tồn tại" });
+      }
+
       const salt = await bcrypt.genSalt(10);
       const hashed = await bcrypt.hash(req.body.password, salt);
 
@@ -15,10 +40,8 @@ const authController = {
       const newUser = await new User({
         fullname: req.body.fullname,
         username: req.body.username,
-        phone: req.body.phone,
-        address: req.body.address,
-        email: req.body.email,
         password: hashed,
+        role: req.body.role,
       });
 
       //Save user to DB
