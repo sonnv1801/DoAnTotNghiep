@@ -6,8 +6,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 export default function Paginate({
   handleClickPrev,
   handleClickNext,
-  handlePageChange,
-  handleChangeItemsPerPage,
+  handlePageClick,
   currentPage,
   totalPages,
 }) {
@@ -23,7 +22,7 @@ export default function Paginate({
       {Array.from({ length: totalPages }).map((_, index) => (
         <button
           key={index}
-          onClick={() => handlePageChange(index + 1)}
+          onClick={() => handlePageClick(index + 1)}
           className={`mr-2  px-4 py-2 rounded  btnx  ${
             currentPage === index + 1
               ? "active bg-red-700 text-gray-50"

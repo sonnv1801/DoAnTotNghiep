@@ -64,7 +64,7 @@ export const Statistical = (rows) => {
     setNameFilter(event.target.value);
   };
   return (
-    <div className="w-full mb-4 -ml-16 mt-8 ">
+    <div className=" mb-4 -ml-16 mt-8 ">
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         <p className="ml-2">Tính lương Nhân viên</p>
       </div>
@@ -73,21 +73,44 @@ export const Statistical = (rows) => {
           <div className="w-full">
             <div className="grid  gap-4 text-sm xl:grid-cols-6 lg:grid-cols-3 sm:grid-cols-1">
               <div className="w-full">
-              <div class="max-w-2xl ">
-              <form class="flex items-center">
-                <label for="simple-search" class="sr-only">Search</label>
-                <div class="relative w-full">
-                  <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
-                  </div>
-                  <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required onChange={handleSearchChange} />
+                <div class="max-w-2xl ">
+                  <form class="flex items-center">
+                    <label for="simple-search" class="sr-only">
+                      Search
+                    </label>
+                    <div class="relative w-full">
+                      <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <svg
+                          class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <input
+                        type="text"
+                        id="simple-search"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search"
+                        required
+                        onChange={handleSearchChange}
+                      />
+                    </div>
+                  </form>
                 </div>
-
-              </form>
-            </div>
               </div>
               <div className="w-full  ">
-                <select className="w-full h-8 border border-gray-800 rounded-md" value={year} onChange={handleMonthChangeYear}>
+                <select
+                  className="w-full h-8 border border-gray-800 rounded-md"
+                  value={year}
+                  onChange={handleMonthChangeYear}
+                >
                   <option value="">Chọn Năm</option>
                   <option value={2023}>Năm 2023</option>
                   <option value={2024}>Năm 2024</option>
@@ -103,7 +126,11 @@ export const Statistical = (rows) => {
                 </select>
               </div>
               <div className="w-full">
-                <select className="w-full h-8 border border-gray-800 rounded-md" value={month} onChange={handleMonthChange}>
+                <select
+                  className="w-full h-8 border border-gray-800 rounded-md"
+                  value={month}
+                  onChange={handleMonthChange}
+                >
                   <option value="">Chọn Tháng</option>
                   <option value={1}>Tháng 1</option>
                   <option value={2}>Tháng 2</option>
@@ -120,7 +147,11 @@ export const Statistical = (rows) => {
                 </select>
               </div>
               <div className="w-full">
-                <select className="w-full h-8 border border-gray-800 rounded-md" value={departm} onChange={handleDepartm}>
+                <select
+                  className="w-full h-8 border border-gray-800 rounded-md"
+                  value={departm}
+                  onChange={handleDepartm}
+                >
                   <option value="">Chọn Phòng Ban</option>
                   {filteredData?.map((item, index) => (
                     <option key={index} value={item.Dep}>
@@ -130,15 +161,24 @@ export const Statistical = (rows) => {
                 </select>
               </div>
               <div className="w-full">
-                <select className="w-full h-8 border border-gray-800 rounded-md" id="sort" value={fillerDay} onChange={handleSortChange}>
+                <select
+                  className="w-full h-8 border border-gray-800 rounded-md"
+                  id="sort"
+                  value={fillerDay}
+                  onChange={handleSortChange}
+                >
                   <option value="desc">Từ cao đến thấp</option>
                   <option value="asc">Từ thấp đến cao</option>
                 </select>
               </div>
               <div className="">
                 {user.role === true ? (
-                  <button className="rounded-md py-1 border-2  px-3 bg-blue-400   font-bold text-white text-base" variant="outlined" >
-                    <CSVLink className=""
+                  <button
+                    className="rounded-md py-1 border-2  px-3 bg-blue-400   font-bold text-white text-base"
+                    variant="outlined"
+                  >
+                    <CSVLink
+                      className=""
                       data={salaryDataWithSalaryDep}
                       filename={"Chấm công.csv"}
                     >

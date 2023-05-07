@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTimes } from "../../redux/actions/time.action";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 
 export const TableTime = (listTime) => {
   const dispatch = useDispatch();
@@ -64,15 +65,17 @@ export const TableTime = (listTime) => {
                       {moment(item.created_at).format("DD/MM/YYYY")}
                     </TableCell>
                     <TableCell align="right">
-                      <button
+                      <DeleteForeverOutlinedIcon
+                        style={{
+                          color: "red",
+                          cursor: "pointer",
+                        }}
                         onClick={() => {
                           dispatch(
                             deleteTimes(item._id, currentUser?.accessToken)
                           );
                         }}
-                      >
-                        delete
-                      </button>
+                      />
                     </TableCell>
                   </TableRow>
                 ))}

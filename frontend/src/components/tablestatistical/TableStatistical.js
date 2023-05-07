@@ -5,11 +5,8 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Paginate from ".././pagination/Pagination";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { CSVLink } from "react-csv";
-// import { data } from "../../data/Data";
 import _ from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllStaff, listWorkStaff } from "../../redux/actions/staff.action";
@@ -48,11 +45,31 @@ export default function BasicTable({
     nameFilter
   );
 
-  console.log(salaryDataWithSalaryDep, "salaryDataWithSalaryDep");
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 5;
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentStaff = salaryDataWithSalaryDep.slice(
+    indexOfFirstUser,
+    indexOfLastUser
+  );
+  const totalPages = Math.ceil(salaryDataWithSalaryDep.length / usersPerPage);
 
+  console.log(currentStaff, "currentStaff");
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   return (
     <>
-      {salaryDataWithSalaryDep.length === 0 ? (
+      {currentStaff.length === 0 ? (
         <>
           <div className="spinner-border" role="status">
             <span className="visually-hidden">Loading...</span>
@@ -89,7 +106,7 @@ export default function BasicTable({
                 </TableRow>
               </TableHead>
               <TableBody>
-                {salaryDataWithSalaryDep?.map((datas, index) => (
+                {currentStaff?.map((datas, index) => (
                   <TableRow
                     key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -103,9 +120,9 @@ export default function BasicTable({
                     <TableCell align="right">
                       {datas.worktime.toFixed(2).toString()}
                     </TableCell>
-                    <TableCell align="right">{`Đã làm ${datas.total_days
+                    <TableCell align="right">{` ${datas.total_days
                       .toFixed(2)
-                      .toString()} công trong tháng ${datas.month}`}</TableCell>
+                      .toString()} `}</TableCell>
                     <TableCell align="right">
                       {datas.basicSalary.toLocaleString("vi-VN", {
                         style: "currency",
@@ -164,6 +181,15 @@ export default function BasicTable({
           </TableContainer>
         </>
       )}
+      <div className="pagination">
+        <Paginate
+          handleClickPrev={handlePreviousPage}
+          handleClickNext={handleNextPage}
+          currentPage={currentPage}
+          handlePageClick={handlePageClick}
+          totalPages={totalPages}
+        />
+      </div>
     </>
   );
 }
