@@ -30,7 +30,7 @@ const navLinks = [
     title: "Cấu hình thời gian",
     icon: <ManageHistoryOutlinedIcon className="nav-icon" />,
   },
-  
+
   {
     id: 2,
     link: "/statistic",
@@ -51,7 +51,7 @@ const navLinks = [
   },
   {
     id: 5,
-     link: "/register-account",
+    link: "/register-account",
     title: "Cấp tài khoản",
     icon: <PersonAddOutlinedIcon className="nav-icon" />,
   },
@@ -83,58 +83,58 @@ export const NavBar = () => {
     );
   };
   return (
-    <nav className="col-span-2 border-r border-gray-200 h-screen w-[80px] xl:w-[250px] pt-8 px-1 flex flex-col items-start justify-between ">
-      <ToastContainer/>
-    <div className="space-y-8 w-full ">
-    <Link to="/">
+    <nav className="col-row-2 border-r border-gray-400  min-h-screen w-[80px] xl:w-[250px]  px-1 flex flex-col items-start ">
+      <div className=" my-4 xl:ml-[72px]">
+        <Link to="/">
           <img src={Logo} className="w-16" alt="home" />
         </Link>
-      {navLinks.slice(0, 6).map((link) => (
-        <NavItem link={link} key={link.id} />
-      ))}
-      <div className="w-full border-t border-gray-200" />
-    
-      <div
-       onClick={handlelogout}
-   
-    className="w-full flex items-center justify-start space-x-8 px-5 cursor-pointer
+      </div>
+      <div className="space-y-8  w-full ">
+        {navLinks.slice(0, 6).map((link) => (
+          <NavItem link={link} key={link.id} />
+        ))}
+        <div className="w-full border-t border-gray-200" />
+
+        <div
+          onClick={handlelogout}
+
+          className="w-full flex items-center justify-start space-x-8 px-5 cursor-pointer
      group hover:border-gray-900 border-l-4 border-transparent"
-  >
-    <span className=" -ml-8"><LogoutTwoToneIcon/></span>
-    
-    <h1
-      className="text-gray-600 group-hover:text-black xl:flex hidden "
-    >
-Đăng Xuất
-    </h1>
-  </div>
-    </div>
-  </nav>
+        >
+          <span className=" -ml-8"><LogoutTwoToneIcon /></span>
+
+          <h1
+            className="text-gray-600 group-hover:text-black xl:flex hidden "
+          >
+            Đăng Xuất
+          </h1>
+        </div>
+      </div>
+      <ToastContainer />
+    </nav>
   );
 };
 
 function NavItem({ link }) {
   const [activeNav, setActiveNav] = useRecoilState(activeNavItemState);
   return (
-<div
-    
-    onClick={() => setActiveNav(link.id)}
-    key={link.id}
-    className={`w-full flex items-center justify-start space-x-8 px-5 cursor-pointer
-     group hover:border-gray-900 border-l-4 border-transparent ${
-       activeNav === link.id && "border-gray-900 "
-     } `}
-  >
-    <span className=" -ml-8"> {link.icon}</span>
-    <Link to={link.link}>
-    <h1
-      className={`text-gray-600 group-hover:text-black xl:flex hidden ${
-        activeNav === link.id && "text-black "
-      }} `}
+    <div
+
+      onClick={() => setActiveNav(link.id)}
+      key={link.id}
+      className={`w-full flex items-center justify-start space-x-8 px-5 cursor-pointer
+     group hover:border-gray-900 border-l-4 border-transparent ${activeNav === link.id && "border-gray-900 "
+        } `}
     >
-      {link.title}
-    </h1>
+      <span className=" -ml-8"> {link.icon}</span>
+      <Link to={link.link}>
+        <h1
+          className={`text-gray-600 group-hover:text-black xl:flex text-sm hidden ${activeNav === link.id && "text-black "
+            }} `}
+        >
+          {link.title}
+        </h1>
       </Link>
-  </div>
+    </div>
   );
 }

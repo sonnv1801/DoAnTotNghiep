@@ -58,8 +58,8 @@ export const ListAccount = () => {
     dispatch(getAllUser(currentUser?.accessToken));
   }, []);
   return (
-    <div className="mt-8 w-full">
-      <div className="w-11/12 m-auto">
+    <div className="w-full mb-4 -ml-16 mt-8">
+      <div className="">
       <ToastContainer />
       <div className="float-right mb-2 bg-blue-400 rounded-md hover:bg-blue-600">
         <button className="p-2 text-md uppercase text-white font-bold "  onClick={handleShow}>

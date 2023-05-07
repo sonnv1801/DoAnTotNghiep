@@ -46,8 +46,8 @@ export const TimeConfig = () => {
   };
 
   return (
-    <div className="timecf">
-      <ToastContainer />
+    <div className="w-full mb-4 -ml-16 mt-8">
+       <ToastContainer />
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         <p className="ml-2">Cấu hình thời gian</p>
       </div>
