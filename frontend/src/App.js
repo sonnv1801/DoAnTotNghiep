@@ -25,7 +25,7 @@ function App() {
   const user = JSON.parse(localStorage.getItem("token"));
   return (
     <div>
-      <KommunicateChat />
+      {/* <KommunicateChat /> */}
       <Router>
         <Routes>
           {user === null ? (
