@@ -5,12 +5,12 @@ import NavHome from "../../page/home/navhome/NavHome";
 export const LayOut = () => {
   const user = JSON.parse(localStorage.getItem("token"));
   return (
-    <div>
-     <div className="row">
+    <div className=" ">
+     <div className="row ">
      
-        {user?.role === true ? (  <div className="col-3"><NavBar/>      </div>) : (<NavHome/>)}
+        {user?.role === true ? (  <div className="col-3" ><NavBar/>      </div>) : (<NavHome/>)}
 
-      <div className="col-9">
+      <div className=" col-9">
       <Outlet />
       </div>
      </div>

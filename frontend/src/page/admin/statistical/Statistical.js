@@ -64,8 +64,8 @@ export const Statistical = (rows) => {
     setNameFilter(event.target.value);
   };
   return (
-    <div className="w-full mt-8 lg:-ml-16 ">
-      <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ml-16">
+    <div className="w-full mb-4 -ml-16 mt-8 ">
+      <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         <p className="ml-2">Tính lương Nhân viên</p>
       </div>
       <div className="mx-16 ">

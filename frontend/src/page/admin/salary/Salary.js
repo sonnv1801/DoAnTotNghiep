@@ -91,9 +91,9 @@ export const CreateSalary = () => {
 const Deps = new Set(listSalary.map((item) => item.Dep));
 
   return (
-    <div className="px-16 mt-8 ">
+    <div className="w-full mb-4 -ml-16 mt-8">
       <ToastContainer />
-      <div className="w-11/12 text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
+      <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         <p className="ml-2">Bảng lương nhân viên</p>
       </div>
       <div className="w-full bg-white">
