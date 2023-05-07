@@ -33,18 +33,18 @@ const listmenu = [
     title: "Bảng công nhân viên",
     img: menu4,
   },
-  {
-    id: 5,
-    link: "/salary",
-    title: "Bảng lương nhân viên",
-    img: menu5,
-  },
-  {
-    id: 6,
-    link: "/register-account",
-    title: "Cấp Tài Khoản",
-    img: menu6,
-  },
+  // {
+  //   id: 5,
+  //   link: "/salary",
+  //   title: "Bảng lương nhân viên",
+  //   img: menu5,
+  // },
+  // {
+  //   id: 6,
+  //   link: "/register-account",
+  //   title: "Cấp Tài Khoản",
+  //   img: menu6,
+  // },
 ];
 
 export const HomePage = () => {
