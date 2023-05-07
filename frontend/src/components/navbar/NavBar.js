@@ -1,66 +1,73 @@
-import * as React from "react";
+
+import React from "react";
 import "./style.css";
-import { styled, alpha } from "@mui/material/styles";
 import Logo from "../../assets/logo.png";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
+import { useRecoilState } from "recoil";
+import { activeNavItemState } from "../../page/admin/atoms/ActiveNavBarAtom";
+import Person4OutlinedIcon from '@mui/icons-material/Person4Outlined';
+import ManageHistoryOutlinedIcon from '@mui/icons-material/ManageHistoryOutlined';
+import CalculateOutlinedIcon from '@mui/icons-material/CalculateOutlined';
+import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
+import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
+import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
+import LogoutTwoToneIcon from '@mui/icons-material/LogoutTwoTone';
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
+const navLinks = [
+  {
+    id: 0,
+    link: "/list-staff",
+    title: "Thông tin nhân viên",
+    icon: <Person4OutlinedIcon className="nav-icon" />,
   },
-}));
+  {
+    id: 1,
+    link: "/cf-time",
+    title: "Cấu hình thời gian",
+    icon: <ManageHistoryOutlinedIcon className="nav-icon" />,
+  },
+  
+  {
+    id: 2,
+    link: "/statistic",
+    title: "Tính lương",
+    icon: <CalculateOutlinedIcon className="nav-icon" />,
+  },
+  {
+    id: 3,
+    link: "/timekp",
+    title: "Bảng công",
+    icon: <ListAltOutlinedIcon className="nav-icon" />,
+  },
+  {
+    id: 4,
+    link: "/salary",
+    title: "Thêm lương",
+    icon: <EditCalendarOutlinedIcon className="nav-icon" />,
+  },
+  {
+    id: 5,
+     link: "/register-account",
+    title: "Cấp tài khoản",
+    icon: <PersonAddOutlinedIcon className="nav-icon" />,
+  },
+  {
+    id: 6,
+    title: "Cấp tài khoản",
+    icon: <LogoutTwoToneIcon className="nav-icon" />,
+  },
+  {
+    id: 7,
+    title: "LogOut",
+    icon: <LogoutTwoToneIcon className="nav-icon" />,
+  }
+];
 
-export default function NavBar() {
-  const user = JSON.parse(localStorage.getItem("token"));
+export const NavBar = () => {
   const navigate = useNavigate();
   const handlelogout = () => {
     localStorage.removeItem("token");
@@ -75,186 +82,59 @@ export default function NavBar() {
       }
     );
   };
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      {user === null ? (
-        <>
-          <MenuItem onClick={handleMenuClose}>
-            <Link to="/login">Đăng Nhập</Link>
-          </MenuItem>
-          <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        </>
-      ) : (
-        <>
-          <MenuItem onClick={handleMenuClose}>
-            <Link to="/" onClick={handlelogout}>
-              Đăng Xuất
-            </Link>
-          </MenuItem>
-        </>
-      )}
-    </Menu>
-  );
-
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <SettingsSuggestIcon />
-        </IconButton>
-        <p>
-          <Link to="/login">Login</Link>
-        </p>
-      </MenuItem>
-    </Menu>
-  );
-
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <ToastContainer />
-      <AppBar className="bg-white text-black" position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <Link to="/">
-           <img src={Logo} className="w-16" alt="home" />
-           </Link>
+    <nav className="col-span-2 border-r border-gray-200 h-screen w-[80px] xl:w-[250px] pt-8 px-1 flex flex-col items-start justify-between ">
+      <ToastContainer/>
+    <div className="space-y-8 w-full ">
+    <Link to="/">
+          <img src={Logo} className="w-16" alt="home" />
+        </Link>
+      {navLinks.slice(0, 6).map((link) => (
+        <NavItem link={link} key={link.id} />
+      ))}
+      <div className="w-full border-t border-gray-200" />
+    
+      <div
+       onClick={handlelogout}
+   
+    className="w-full flex items-center justify-start space-x-8 px-5 cursor-pointer
+     group hover:border-gray-900 border-l-4 border-transparent"
+  >
+    <span className=" -ml-8"><LogoutTwoToneIcon/></span>
+    
+    <h1
+      className="text-gray-600 group-hover:text-black xl:flex hidden "
+    >
+Đăng Xuất
+    </h1>
+  </div>
+    </div>
+  </nav>
+  );
+};
 
-          </IconButton>
-          <Link to="/">
-            <Typography
-              className="bg-blue-400 py-3 px-6 text-base text-white hover:text-black"
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: "none", sm: "block" } }}
-            >
-              Quản lý chấm công
-            </Typography>
-          </Link>
-          {/* <Search className="border border-black-600 rounded-3xl" >
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search> */}
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <SettingsSuggestIcon />
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </Box>
+function NavItem({ link }) {
+  const [activeNav, setActiveNav] = useRecoilState(activeNavItemState);
+  return (
+<div
+    
+    onClick={() => setActiveNav(link.id)}
+    key={link.id}
+    className={`w-full flex items-center justify-start space-x-8 px-5 cursor-pointer
+     group hover:border-gray-900 border-l-4 border-transparent ${
+       activeNav === link.id && "border-gray-900 "
+     } `}
+  >
+    <span className=" -ml-8"> {link.icon}</span>
+    <Link to={link.link}>
+    <h1
+      className={`text-gray-600 group-hover:text-black xl:flex hidden ${
+        activeNav === link.id && "text-black "
+      }} `}
+    >
+      {link.title}
+    </h1>
+      </Link>
+  </div>
   );
 }

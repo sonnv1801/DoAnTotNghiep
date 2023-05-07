@@ -1,8 +1,7 @@
 import "./App.css";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NavBar from "./components/navbar/NavBar";
-import { HomePage } from "./page/admin/homepage/HomePage";
+import  {HomePage}  from "./page/admin/homepage/HomePage";
 import { Staff } from "./page/admin/staff/Staff";
 import { Login } from "./page/admin/login/Login";
 import { TimeConfig } from "./page/admin/timeconfig/TimeConfig";
@@ -18,6 +17,7 @@ import Test from "./components/Test";
 import KommunicateChat from "./page/home/chatbox/ChatBox";
 
 import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
+import NavBarTest from "./page/admin/testHome/TestHome";
 
 Kommunicate.init("3df8fbf7aa958bd54c3732cacff94409f");
 
@@ -25,7 +25,7 @@ function App() {
   const user = JSON.parse(localStorage.getItem("token"));
   return (
     <div>
-      <KommunicateChat />
+      {/* <KommunicateChat /> */}
       <Router>
         <Routes>
           {user === null ? (
@@ -50,6 +50,8 @@ function App() {
                 <Route path="/register-account" element={<RegisterAccount />} />
                 <Route path="/test" element={<Test />} />
                 <Route path="*" element={<NotFound />} />
+                <Route path="/testh" element={<NavBarTest />} />
+
               </Route>
             </>
           ) : (
