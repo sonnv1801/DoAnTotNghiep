@@ -2,18 +2,23 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import {NavBar} from "../navbar/NavBar";
 import NavHome from "../../page/home/navhome/NavHome";
+import Footer from "../../page/home/footer/Footer";
 export const LayOut = () => {
   const user = JSON.parse(localStorage.getItem("token"));
   return (
-    <div className=" ">
-     <div className="row ">
+    <div className="w-[100vw] overflow-x-clip">
+     <div className="">
      
-        {user?.role === true ? (  <div className="col-3" ><NavBar/>      </div>) : (<NavHome/>)}
-
-      <div className=" col-9">
+        {user?.role === true ? (  <div className="flex"><NavBar/> 
+        <div className="w-full mr-[5%]">
       <Outlet />
-      </div>
+      </div> </div>    ) : (<div className=""><NavHome/>  <div className="cols-9">
+      <Outlet />
+      </div></div> )}
+
+      {user?.role === true ? (  ``) : (<Footer/>)}
      </div>
+     
     </div>
   );
 };

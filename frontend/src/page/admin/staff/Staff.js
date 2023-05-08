@@ -12,7 +12,7 @@ export const Staff = () => {
     dispatch(getAllStaff());
   }, []);
   return (
-    <div className="staff">
+    <div className="w-full m-auto">
       <List listStaff={listStaff} />
     </div>
   );

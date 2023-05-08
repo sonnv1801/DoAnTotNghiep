@@ -64,11 +64,11 @@ export const Statistical = (rows) => {
     setNameFilter(event.target.value);
   };
   return (
-    <div className="w-full mb-4 -ml-16 mt-8 ">
+    <div className="container mb-4 ml-4 mt-8 ">
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         <p className="ml-2">Tính lương Nhân viên</p>
       </div>
-      <div className="mx-16 ">
+      <div className="">
         <div className="header-statistical">
           <div className="w-full">
             <div className="grid  gap-4 text-sm xl:grid-cols-6 lg:grid-cols-3 sm:grid-cols-1">
