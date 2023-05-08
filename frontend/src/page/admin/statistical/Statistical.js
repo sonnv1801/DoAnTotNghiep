@@ -64,7 +64,7 @@ export const Statistical = (rows) => {
     setNameFilter(event.target.value);
   };
   return (
-    <div className="container mb-4 ml-4 mt-8 ">
+    <div className="mb-4 ml-4 mt-8 ">
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         <p className="ml-2">Tính lương Nhân viên</p>
       </div>
@@ -190,7 +190,7 @@ export const Statistical = (rows) => {
             </div>
           </div>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 w-[95%]">
           <TableStatistical
             monthStaff={month}
             yearStaff={year}

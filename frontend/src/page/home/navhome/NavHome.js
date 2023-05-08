@@ -189,7 +189,7 @@ export default function NavHome() {
   );
 
   return (
-    <Box >
+    <Box>
       <ToastContainer />
       <AppBar className="bg-white text-black w-full" position="static">
         <Toolbar>
@@ -201,13 +201,12 @@ export default function NavHome() {
             sx={{ mr: 2 }}
           >
             <Link to="/">
-           <img src={Logo} className="w-16" alt="home" />
-           </Link>
-
+              <img src={Logo} className="w-16" alt="home" />
+            </Link>
           </IconButton>
           <Link to="/">
             <Typography
-              className="bg-blue-400 py-3 text-base text-white hover:text-black"
+              className="bg-blue-400 py-3 text-base text-white hover:text-black p-4"
               variant="h6"
               noWrap
               component="div"
