@@ -77,7 +77,7 @@ export const ListAccount = () => {
     setCurrentPage(pageNumber);
   };
   return (
-    <div className="w-full mb-4 -ml-16 mt-8">
+    <div className="w-full mb-4 ml-4 mt-8">
       <div className="">
         <ToastContainer />
         <div className="float-right mb-2 bg-blue-400 rounded-md hover:bg-blue-600">

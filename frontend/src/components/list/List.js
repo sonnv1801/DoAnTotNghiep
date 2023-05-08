@@ -52,7 +52,7 @@ export const List = () => {
   };
 
   return (
-    <div className="w-full mb-4">
+    <div className="ml-4 mt-8">
       <ToastContainer />
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         <p className="ml-2">Thông tin nhân viên</p>

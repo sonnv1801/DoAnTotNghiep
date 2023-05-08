@@ -69,12 +69,12 @@ export const TimeKeeping = () => {
 
   console.log(currentStaff, "currentStaff");
   return (
-    <div className="w-full mb-4 -ml-16 mt-8 ">
-      <ToastContainer />
+    <div className="container mb-4 ml-4 mt-8 ">
+  
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         {user?.role === true ? (
           <>
-            <p className="ml-2">Bảng công</p>
+            <p className="ml-4">Bảng công</p>
           </>
         ) : (
           <>

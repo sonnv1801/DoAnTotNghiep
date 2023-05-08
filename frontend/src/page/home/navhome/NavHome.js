@@ -189,9 +189,9 @@ export default function NavHome() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box >
       <ToastContainer />
-      <AppBar className="bg-white text-black" position="static">
+      <AppBar className="bg-white text-black w-full" position="static">
         <Toolbar>
           <IconButton
             size="large"
@@ -207,7 +207,7 @@ export default function NavHome() {
           </IconButton>
           <Link to="/">
             <Typography
-              className="bg-blue-400 py-3 px-6 text-base text-white hover:text-black"
+              className="bg-blue-400 py-3 text-base text-white hover:text-black"
               variant="h6"
               noWrap
               component="div"

@@ -87,7 +87,11 @@ export const NavBar = () => {
     );
   };
   return (
+<<<<<<< HEAD
     <nav className="col-row-2 border-r border-gray-400  min-h-screen w-[80px] xl:w-[250px]  px-1 flex flex-col items-start w-full">
+=======
+    <nav className=" border-r border-gray-400  min-h-screen w-[80px] xl:w-[250px]  px-1 flex flex-col items-start ">
+>>>>>>> feature/13-create-ui-user
       <div className=" my-4 xl:ml-[72px]">
         <Link to="/">
           <img src={Logo} className="w-16" alt="home" />
