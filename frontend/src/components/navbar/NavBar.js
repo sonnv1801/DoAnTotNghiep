@@ -87,7 +87,7 @@ export const NavBar = () => {
     );
   };
   return (
-    <nav className=" border-r border-gray-400  min-h-screen w-[100px] xl:w-[250px]  px-1 flex flex-col items-start ">
+    <nav className=" shadow-xl shadow-slate-300 min-h-screen w-[100px] xl:w-[250px]  px-1 flex flex-col items-start ">
       <div className=" my-4 xl:ml-[72px]">
         <Link to="/">
           <img src={Logo} className="w-16" alt="home" />

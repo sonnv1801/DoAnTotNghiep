@@ -97,7 +97,7 @@ const Deps = new Set(listSalary.map((item) => item.Dep));
         <p className="ml-2">Thêm lương</p>
       </div>
       <div className="w-full bg-white">
-        <div className="mb-3 float-right ">
+        <div className="mb-3 float-right mr-4">
           <div className="rounded-md text-blue-400 uppercase p-2 font-bold hover:bg-blue-400 hover:text-white border-2 border-blue-400">
             <button className="  "  onClick={handleShow}>
               Thêm lương NV
@@ -200,7 +200,7 @@ const Deps = new Set(listSalary.map((item) => item.Dep));
           </Modal.Footer>
         </Modal>
 
-        <div className="mt-4 w-full">
+        <div className="mt-4 mr-4">
           <TableSalary listSalary={listSalary} />
         </div>
       </div>
