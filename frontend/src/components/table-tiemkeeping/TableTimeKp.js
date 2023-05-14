@@ -274,7 +274,7 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
               ) : (
                 <>
                   <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <Table sx={{ minWidth: 750 }} aria-label="simple table">
                       <TableHead>
                         <TableRow>
                           <TableCell>#</TableCell>

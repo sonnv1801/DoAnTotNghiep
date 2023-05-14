@@ -90,19 +90,19 @@ export default function BasicTable({
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
-                <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell align="right">Tên nhân viên</TableCell>
-                  <TableCell align="right">Phòng Ban</TableCell>
-                  <TableCell align="right">Năm</TableCell>
-                  <TableCell align="right">Số Giờ Công</TableCell>
-                  <TableCell align="right">Số Công Đã Làm</TableCell>
-                  <TableCell align="right">Lương cơ bản</TableCell>
-                  <TableCell align="right">Lương thực tế</TableCell>
-                  <TableCell align="right">Phụ cấp</TableCell>
-                  <TableCell align="right">BHXH</TableCell>
-                  <TableCell align="right">BHYT</TableCell>
-                  <TableCell align="right">Thực nhận</TableCell>
+                <TableRow className="text-white bg-black ">
+                  <TableCell className="text-white">ID</TableCell>
+                  <TableCell className="text-white" align="right">Tên nhân viên</TableCell>
+                  <TableCell className="text-white" align="right">Phòng Ban</TableCell>
+                  <TableCell className="text-white" align="right">Năm</TableCell>
+                  <TableCell className="text-white" align="right">Số Giờ Công</TableCell>
+                  <TableCell className="text-white" align="right">Số Công</TableCell>
+                  <TableCell className="text-white" align="right">Lương cơ bản</TableCell>
+                  <TableCell align="right" className="text-white">Lương thực tế</TableCell>
+                  <TableCell align="right" className="text-white">Phụ cấp</TableCell>
+                  <TableCell align="right" className="text-white">BHXH</TableCell>
+                  <TableCell align="right" className="text-white">BHYT</TableCell>
+                  <TableCell align="right" className="text-white">Thực nhận</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

@@ -39,8 +39,8 @@ export const TableTime = (listTime) => {
         </>
       ) : (
         <>
-          <TableContainer component={Paper} className="w-full">
-            <Table  aria-label="simple table">
+          <TableContainer component={Paper} className="">
+            <Table sx={{ minWidth: 700 }}  aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell>STT</TableCell>

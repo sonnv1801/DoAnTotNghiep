@@ -9,13 +9,18 @@ import {
 } from "../../../redux/actions/staff.action";
 import Paginate from "../../../components/pagination/Pagination";
 
+import _ from "lodash";
+
 export const TimeKeeping = () => {
   const dispatch = useDispatch();
   const listKeeping = useSelector((state) => state.defaultReducer.listStaff);
   const staffWorkHour = listWorkStaff(listKeeping);
+  const DepOption = _.uniqBy(staffWorkHour, "Dep");
+  
   useEffect(() => {
     dispatch(getAllStaff());
   }, []);
+  
 
   const user = JSON.parse(localStorage.getItem("token"));
   const [searchTerm, setSearchTerm] = useState("");
@@ -40,7 +45,7 @@ export const TimeKeeping = () => {
       .includes(searchTerm.toLowerCase());
     const depMatch = staff.Dep.toLowerCase().includes(searchDep.toLowerCase());
     const monthMatch = searchMonth
-      ? staff.day.includes(`/${searchMonth}/`)
+      ? staff.day.includes(`-${searchMonth}-`)
       : true;
     return nameMatch && monthMatch && depMatch;
   });
@@ -78,7 +83,7 @@ export const TimeKeeping = () => {
           </>
         ) : (
           <>
-            <p>Thời gian đi làm</p>
+            <p className="ml-2">Thời gian đi làm</p>
           </>
         )}
       </div>
@@ -142,11 +147,13 @@ export const TimeKeeping = () => {
               <select
                 className="w-full h-8 my-2 rounded-md border border-gray-200"
                 onChange={handleDepChange}
+               
               >
-                <option value="">Tất cả phòng ban</option>
-                <option value="IT">IT</option>
-                <option value="Computer">Computer</option>
-                <option value="Human">Human</option>
+                 <option value="">Tất cả phòng ban</option>
+                {DepOption.map((item, index) => (
+                <option value={item.Dep} key={index}>{item.Dep}</option>
+              ))}
+               
               </select>
             </div>
           </div>

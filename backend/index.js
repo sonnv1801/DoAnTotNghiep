@@ -7,6 +7,7 @@ const authRoute = require("./routes/Auth.routes");
 const userRoute = require("./routes/User.routes");
 const timeRoute = require("./routes/TimeConfig.routes");
 const salaryRoute = require("./routes/Salary.routes");
+const timeKPRoute = require("./routes/TimeKeeping.routes");
 const PORT = 8000;
 const app = express();
 
@@ -32,6 +33,7 @@ app.use("/v1/auth", authRoute);
 app.use("/v1/user", userRoute);
 app.use("/v1/time", timeRoute);
 app.use("/v1/salary", salaryRoute);
+app.use("/v1/timekp", timeKPRoute);
 
 app.listen(8000, () => {
   console.log(`Server is runing port ${PORT}`);

@@ -94,7 +94,7 @@ const Deps = new Set(listSalary.map((item) => item.Dep));
     <div className="w-full mb-4 ml-4  mt-8">
       <ToastContainer />
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
-        <p className="ml-2">Bảng lương nhân viên</p>
+        <p className="ml-2">Thêm lương</p>
       </div>
       <div className="w-full bg-white">
         <div className="mb-3 float-right ">
@@ -200,7 +200,7 @@ const Deps = new Set(listSalary.map((item) => item.Dep));
           </Modal.Footer>
         </Modal>
 
-        <div className="table-time-config">
+        <div className="mt-4 w-full">
           <TableSalary listSalary={listSalary} />
         </div>
       </div>

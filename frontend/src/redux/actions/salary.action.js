@@ -162,7 +162,7 @@ export const salaryStaffWithDep = (
 
     console.log(fillerDay, "console.log");
     data.forEach(({ Student_Id, name, day, workTime, Dep }) => {
-      const [dayStr, monthStr, yearStr] = day.split("/");
+      const [dayStr, monthStr, yearStr] = day.split("-");
       const monthValue = parseInt(monthStr);
       const yearValue = parseInt(yearStr);
       if (

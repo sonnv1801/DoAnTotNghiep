@@ -66,7 +66,7 @@ export const Statistical = (rows) => {
   return (
     <div className="mb-4 ml-4 mt-8 ">
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
-        <p className="ml-2">Tính lương Nhân viên</p>
+        <p className="ml-2">Tính lương</p>
       </div>
       <div className="">
         <div className="header-statistical">
@@ -190,7 +190,7 @@ export const Statistical = (rows) => {
             </div>
           </div>
         </div>
-        <div className="mt-4 w-[95%]">
+        <div className="mt-4 w-full">
           <TableStatistical
             monthStaff={month}
             yearStaff={year}

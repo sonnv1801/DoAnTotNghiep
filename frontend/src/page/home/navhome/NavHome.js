@@ -189,9 +189,9 @@ export default function NavHome() {
   );
 
   return (
-    <Box>
+ <Box className="w-full bg-black">
       <ToastContainer />
-      <AppBar className="bg-white text-black w-full" position="static">
+      <nav className="bg-white text-black w-full" position="static">
         <Toolbar>
           <IconButton
             size="large"
@@ -215,15 +215,7 @@ export default function NavHome() {
               Quản lý chấm công
             </Typography>
           </Link>
-          {/* <Search className="border border-black-600 rounded-3xl" >
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search> */}
+    
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
@@ -251,9 +243,9 @@ export default function NavHome() {
             </IconButton>
           </Box>
         </Toolbar>
-      </AppBar>
+      </nav>
       {renderMobileMenu}
       {renderMenu}
-    </Box>
+      </Box>
   );
 }

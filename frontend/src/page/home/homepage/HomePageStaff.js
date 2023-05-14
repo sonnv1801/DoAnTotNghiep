@@ -23,20 +23,10 @@ const listmenu = [
 
 export const HomePageStaff = () => {
   return (
-    // <div className="h-screen   items-center w-full flex ">
-    //   <div className="grid grid-cols-2   mx-auto w-1/2">
-    //     {listmenu?.map((item, index) => (
-    //       <div className=" w-9/12" key={index}>
-    //         <Card  link={item?.link} title={item?.title} img={item?.img} />
-    //       </div>
-    //     ))}
-    //   </div>
-    // </div>
-
     <div className="h-screen w-full   ">
-      <div className="w-full h-[500px] bg-gray-900/90 absolute ">
+      <div className="w-full h-[500px] bg-gray-900/90 absolute">
         <img
-          className="w-full h-full object-cover mix-blend-overlay"
+          className="w-full h-full object-cover xl:mb-auto mb-8  mix-blend-overlay"
           src={BackImage}
           alt="/"
         />
@@ -51,10 +41,10 @@ export const HomePageStaff = () => {
             I-Work Company
           </h3>
         </div>
-        <div className="w-[50%] flex  m-auto ">
+        <div className="xl:w-[50%] w-[80%] flex lg:m-auto mx-auto">
           {listmenu?.map((item, index) => (
-            <div className="mx-4" key={index}>
-              <Card link={item?.link} title={item?.title} img={item?.img} />
+            <div className="lg:mx-4 mx-2" key={index}>
+              <Card link={item?.link} title={item?.title} img={item?.img}/>
             </div>
           ))}
         </div>

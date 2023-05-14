@@ -43,8 +43,8 @@ export const TableSalary = (
         </>
       ) : (
         <>
-          <TableContainer component={Paper}>
-            <Table caria-label="simple table">
+          <TableContainer component={Paper} >
+            <Table  sx={{ minWidth: 700 }}  caria-label="simple table">
               <TableHead>
                 <TableRow className="bg-black ">
                   <TableCell className="text-white">STT</TableCell>
