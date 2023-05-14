@@ -16,11 +16,10 @@ export const TimeKeeping = () => {
   const listKeeping = useSelector((state) => state.defaultReducer.listStaff);
   const staffWorkHour = listWorkStaff(listKeeping);
   const DepOption = _.uniqBy(staffWorkHour, "Dep");
-  
+
   useEffect(() => {
     dispatch(getAllStaff());
   }, []);
-  
 
   const user = JSON.parse(localStorage.getItem("token"));
   const [searchTerm, setSearchTerm] = useState("");
@@ -75,7 +74,6 @@ export const TimeKeeping = () => {
   console.log(currentStaff, "currentStaff");
   return (
     <div className="container mb-4 ml-4 mt-8 ">
-  
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         {user?.role === true ? (
           <>
@@ -147,13 +145,13 @@ export const TimeKeeping = () => {
               <select
                 className="w-full h-8 my-2 rounded-md border border-gray-200"
                 onChange={handleDepChange}
-               
               >
-                 <option value="">Tất cả phòng ban</option>
+                <option value="">Tất cả phòng ban</option>
                 {DepOption.map((item, index) => (
-                <option value={item.Dep} key={index}>{item.Dep}</option>
-              ))}
-               
+                  <option value={item.Dep} key={index}>
+                    {item.Dep}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

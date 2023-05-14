@@ -91,18 +91,41 @@ export default function BasicTable({
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow className="text-white bg-black ">
+                  <TableCell className="text-white">#</TableCell>
                   <TableCell className="text-white">ID</TableCell>
-                  <TableCell className="text-white" align="right">Tên nhân viên</TableCell>
-                  <TableCell className="text-white" align="right">Phòng Ban</TableCell>
-                  <TableCell className="text-white" align="right">Năm</TableCell>
-                  <TableCell className="text-white" align="right">Số Giờ Công</TableCell>
-                  <TableCell className="text-white" align="right">Số Công</TableCell>
-                  <TableCell className="text-white" align="right">Lương cơ bản</TableCell>
-                  <TableCell align="right" className="text-white">Lương thực tế</TableCell>
-                  <TableCell align="right" className="text-white">Phụ cấp</TableCell>
-                  <TableCell align="right" className="text-white">BHXH</TableCell>
-                  <TableCell align="right" className="text-white">BHYT</TableCell>
-                  <TableCell align="right" className="text-white">Thực nhận</TableCell>
+                  <TableCell className="text-white" align="right">
+                    Tên nhân viên
+                  </TableCell>
+                  <TableCell className="text-white" align="right">
+                    Phòng Ban
+                  </TableCell>
+                  <TableCell className="text-white" align="right">
+                    Năm
+                  </TableCell>
+                  <TableCell className="text-white" align="right">
+                    Số Giờ Công
+                  </TableCell>
+                  <TableCell className="text-white" align="right">
+                    Số Công
+                  </TableCell>
+                  <TableCell className="text-white" align="right">
+                    Lương cơ bản
+                  </TableCell>
+                  <TableCell align="right" className="text-white">
+                    Lương thực tế
+                  </TableCell>
+                  <TableCell align="right" className="text-white">
+                    Phụ cấp
+                  </TableCell>
+                  <TableCell align="right" className="text-white">
+                    BHXH
+                  </TableCell>
+                  <TableCell align="right" className="text-white">
+                    BHYT
+                  </TableCell>
+                  <TableCell align="right" className="text-white">
+                    Thực nhận
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -114,7 +137,9 @@ export default function BasicTable({
                     <TableCell component="th" scope="row">
                       {index + 1}
                     </TableCell>
+                    <TableCell align="right">{datas.id}</TableCell>
                     <TableCell align="right">{datas.name}</TableCell>
+
                     <TableCell align="right">{datas.department}</TableCell>
                     <TableCell align="right">{`${datas.month}/${datas.year}`}</TableCell>
                     <TableCell align="right">
