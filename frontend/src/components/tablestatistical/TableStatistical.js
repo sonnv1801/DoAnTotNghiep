@@ -26,7 +26,7 @@ export default function BasicTable({
   const dispatch = useDispatch();
   const listKeeping = useSelector((state) => state.defaultReducer.listStaff);
   const salaryDep = useSelector((state) => state.defaultReducer.listSalary);
-  const staffWorkHour = listWorkStaff(listKeeping);
+  const staffWorkHour = listWorkStaff(listKeeping, "staffWorkHour");
   useEffect(() => {
     dispatch(getAllStaff());
   }, []);

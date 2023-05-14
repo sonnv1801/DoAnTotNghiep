@@ -35,10 +35,12 @@ export const TimeKeeping = () => {
   };
 
   const filteredStudents = staffWorkHour.filter((staff) => {
-    const nameMatch = staff.name
+    const nameMatch = staff.ful_name
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-    const depMatch = staff.Dep.toLowerCase().includes(searchDep.toLowerCase());
+    const depMatch = staff.Depement.toLowerCase().includes(
+      searchDep.toLowerCase()
+    );
     const monthMatch = searchMonth
       ? staff.day.includes(`/${searchMonth}/`)
       : true;
@@ -70,7 +72,6 @@ export const TimeKeeping = () => {
   console.log(currentStaff, "currentStaff");
   return (
     <div className="container mb-4 ml-4 mt-8 ">
-  
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         {user?.role === true ? (
           <>
