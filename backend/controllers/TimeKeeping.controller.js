@@ -15,8 +15,8 @@ const TimeKeepingController = {
       const newTime = await new TimeKeeping({
         Id: req.body.Id,
         roll: req.body.roll,
-        ful_name: req.body.ful_name,
-        Depement: req.body.Depement,
+        name: req.body.name,
+        Dep: req.body.Dep,
         day: req.body.day,
         time: req.body.time,
       });

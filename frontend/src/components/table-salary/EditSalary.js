@@ -100,15 +100,16 @@ const EditSalary = () => {
             <label className="form-label">Phòng/Ban</label>
             <br />
             <select
+              disabled
               className="border border-gray-200 rounded w-full py-1"
               onChange={handleDepChange}
             >
               <option>{Dep}</option>
-              {filteredData.map((item, index) => (
+              {/* {filteredData.map((item, index) => (
                 <option key={index} value={item.Dep}>
                   {item.Dep}
                 </option>
-              ))}
+              ))} */}
             </select>
           </div>
 

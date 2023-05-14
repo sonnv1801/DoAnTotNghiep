@@ -33,8 +33,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function Tables(listStaff) {
   const isLoading = useSelector((state) => state.defaultReducer.isLoading);
   const search = useSelector((state) => state.defaultReducer.search);
-  const filteredData = _.uniqBy(listStaff.listStaff, "Student_Id");
-  const filteredsearch = _.uniqBy(search, "Student_Id");
+  const filteredData = _.uniqBy(listStaff.listStaff, "Id");
+  const filteredsearch = _.uniqBy(search, "Id");
 
   return (
     <>
@@ -76,9 +76,7 @@ export default function Tables(listStaff) {
                       <StyledTableCell component="th" scope="row">
                         {index + 1}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
-                        {row.Student_Id}
-                      </StyledTableCell>
+                      <StyledTableCell align="right">{row.Id}</StyledTableCell>
                       <StyledTableCell align="right">
                         {row.name}
                       </StyledTableCell>
@@ -132,9 +130,7 @@ export default function Tables(listStaff) {
                       <StyledTableCell component="th" scope="row">
                         {index + 1}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
-                        {row.Student_Id}
-                      </StyledTableCell>
+                      <StyledTableCell align="right">{row.Id}</StyledTableCell>
                       <StyledTableCell align="right">
                         {row.name}
                       </StyledTableCell>

@@ -75,7 +75,7 @@ const defaultReducer = (state = initialState, action) => {
           (staff) =>
             staff.name.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
             staff.Dep.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-            staff.Student_Id.toString().includes(key)
+            staff.Id.toString().includes(key)
         );
         state.search = update;
       }

@@ -11,7 +11,7 @@ import _ from "lodash";
 export const List = () => {
   const dispatch = useDispatch();
   const listStaff = useSelector((state) => state.defaultReducer.listStaff);
-  const datalist = _.uniqBy(listStaff, "Student_Id");
+  const datalist = _.uniqBy(listStaff, "Id");
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 7;
   const indexOfLastUser = currentPage * usersPerPage;

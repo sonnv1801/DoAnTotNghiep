@@ -14,12 +14,12 @@ export const ss = (listKeeping) => {
   const staff = morningData
     .concat(afternoonData)
     .reduce((map, user) => {
-      const existingUser = map.get(user.Student_Id + user.day);
+      const existingUser = map.get(user.Id + user.day);
       if (existingUser) {
         existingUser.time_out = user.time;
       } else {
-        map.set(user.Student_Id + user.day, {
-          Student_Id: user.Student_Id,
+        map.set(user.Id + user.day, {
+          Id: user.Id,
           name: user.name,
           day: user.day,
           time_in: user.time,

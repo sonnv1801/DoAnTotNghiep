@@ -13,7 +13,7 @@ import moment from "moment";
 
 export default function TableTimeKp({ staffkeeping, filteredStudents }) {
   // console.log(staffkeeping.staffkeeping, "staffkeeping11111");
-  const filteredData = _.uniqBy(staffkeeping.staffkeeping, "Student_Id");
+  const filteredData = _.uniqBy(staffkeeping.staffkeeping, "Id");
   const isLoading = useSelector((state) => state.defaultReducer.isLoading);
   const user = JSON.parse(localStorage.getItem("token"));
   const off = "1";
@@ -58,31 +58,45 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
                       <TableHead>
                         <TableRow className="bg-black">
                           <TableCell className="text-white">#</TableCell>
-                          <TableCell className="text-white" align="right">ID</TableCell>
-                          <TableCell className="text-white" align="right">Tên Nhân Viên</TableCell>
-                          <TableCell className="text-white" align="right">Phòng Ban</TableCell>
-                          <TableCell className="text-white" align="right">Ngày</TableCell>
-                          <TableCell className="text-white" align="right">Thời gian vào</TableCell>
-                          <TableCell className="text-white" align="right">Thời gian ra</TableCell>
+                          <TableCell className="text-white" align="right">
+                            ID
+                          </TableCell>
+                          <TableCell className="text-white" align="right">
+                            Tên Nhân Viên
+                          </TableCell>
+                          <TableCell className="text-white" align="right">
+                            Phòng Ban
+                          </TableCell>
+                          <TableCell className="text-white" align="right">
+                            Ngày
+                          </TableCell>
+                          <TableCell className="text-white" align="right">
+                            Thời gian vào
+                          </TableCell>
+                          <TableCell className="text-white" align="right">
+                            Thời gian ra
+                          </TableCell>
                           <TableCell className="text-white" align="right">
                             Thời gian nghỉ ngơi
                           </TableCell>
-                          <TableCell className="text-white" align="right">Thời gian thực tế</TableCell>
-                          <TableCell className="text-white" align="right">Đánh giá</TableCell>
+                          <TableCell className="text-white" align="right">
+                            Thời gian thực tế
+                          </TableCell>
+                          <TableCell className="text-white" align="right">
+                            Đánh giá
+                          </TableCell>
                         </TableRow>
                       </TableHead>
                       {filteredStudents.map((item, index) => (
                         <TableBody>
                           <TableRow
-                            key={item.Student_Id}
+                            key={item.Id}
                             sx={{
                               "&:last-child td, &:last-child th": { border: 0 },
                             }}
                           >
                             <TableCell align="right">{index + 1}</TableCell>
-                            <TableCell align="right">
-                              {item.Student_Id}
-                            </TableCell>
+                            <TableCell align="right">{item.Id}</TableCell>
                             <TableCell align="right">{item.name}</TableCell>
                             <TableCell align="right">{item.Dep}</TableCell>
                             <TableCell align="right">{item.day}</TableCell>
@@ -182,15 +196,13 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
                       {staffkeeping.map((item, index) => (
                         <TableBody>
                           <TableRow
-                            key={item.Student_Id}
+                            key={item.Id}
                             sx={{
                               "&:last-child td, &:last-child th": { border: 0 },
                             }}
                           >
                             <TableCell align="right">{index + 1}</TableCell>
-                            <TableCell align="right">
-                              {item.Student_Id}
-                            </TableCell>
+                            <TableCell align="right">{item.Id}</TableCell>
                             <TableCell align="right">{item.name}</TableCell>
                             <TableCell align="right">{item.Dep}</TableCell>
                             <TableCell align="right">{item.day}</TableCell>
@@ -289,15 +301,13 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
                       {filteredStudents.map((item, index) => (
                         <TableBody>
                           <TableRow
-                            key={item.Student_Id}
+                            key={item.Id}
                             sx={{
                               "&:last-child td, &:last-child th": { border: 0 },
                             }}
                           >
                             <TableCell align="right">{index + 1}</TableCell>
-                            <TableCell align="right">
-                              {item.Student_Id}
-                            </TableCell>
+                            <TableCell align="right">{item.Id}</TableCell>
                             <TableCell align="right">{item.name}</TableCell>
                             <TableCell align="right">{item.Dep}</TableCell>
                             <TableCell align="right">{item.day}</TableCell>
@@ -347,15 +357,13 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
                       {staffkeeping.map((item, index) => (
                         <TableBody>
                           <TableRow
-                            key={item.Student_Id}
+                            key={item.Id}
                             sx={{
                               "&:last-child td, &:last-child th": { border: 0 },
                             }}
                           >
                             <TableCell align="right">{index + 1}</TableCell>
-                            <TableCell align="right">
-                              {item.Student_Id}
-                            </TableCell>
+                            <TableCell align="right">{item.Id}</TableCell>
                             <TableCell align="right">{item.name}</TableCell>
                             <TableCell align="right">{item.Dep}</TableCell>
                             <TableCell align="right">{item.day}</TableCell>

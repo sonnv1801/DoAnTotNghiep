@@ -161,7 +161,7 @@ export const salaryStaffWithDep = (
     const departmentMap = {};
 
     console.log(fillerDay, "console.log");
-    data.forEach(({ Student_Id, name, day, workTime, Dep }) => {
+    data.forEach(({ Id, name, day, workTime, Dep }) => {
       const [dayStr, monthStr, yearStr] = day.split("-");
       const monthValue = parseInt(monthStr);
       const yearValue = parseInt(yearStr);
@@ -176,13 +176,13 @@ export const salaryStaffWithDep = (
         const adjustedMinutes = Math.max(0, totalMinutes - 60);
         const adjustedHours = Math.max(adjustedMinutes / 60);
 
-        if (totalWorktime[Student_Id]) {
-          totalWorktime[Student_Id].worktime += adjustedHours;
-          totalDays[Student_Id] += 1;
+        if (totalWorktime[Id]) {
+          totalWorktime[Id].worktime += adjustedHours;
+          totalDays[Id] += 1;
         } else {
-          totalWorktime[Student_Id] = { name: name, worktime: adjustedHours };
-          totalDays[Student_Id] = 1;
-          departmentMap[Student_Id] = Dep;
+          totalWorktime[Id] = { name: name, worktime: adjustedHours };
+          totalDays[Id] = 1;
+          departmentMap[Id] = Dep;
         }
       }
     });
