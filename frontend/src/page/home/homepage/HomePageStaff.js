@@ -19,6 +19,12 @@ const listmenu = [
     title: "Xem Công",
     img: logo2,
   },
+  {
+    id: 3,
+    link: "/feedback",
+    title: "Phản hồi",
+    img: logo2,
+  },
 ];
 
 export const HomePageStaff = () => {
@@ -41,7 +47,7 @@ export const HomePageStaff = () => {
             I-Work Company
           </h3>
         </div>
-        <div className="xl:w-[50%] w-[80%] flex lg:m-auto mx-auto">
+        <div className=" w-[80%] flex lg:m-auto mx-auto">
           {listmenu?.map((item, index) => (
             <div className="lg:mx-4 mx-2" key={index}>
               <Card link={item?.link} title={item?.title} img={item?.img}/>

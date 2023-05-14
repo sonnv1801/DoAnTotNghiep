@@ -189,7 +189,7 @@ export default function NavHome() {
   );
 
   return (
- <Box className="w-full bg-black">
+ <Box className="w-full bg-black shadow-xl">
       <ToastContainer />
       <nav className="bg-white text-black w-full" position="static">
         <Toolbar>
