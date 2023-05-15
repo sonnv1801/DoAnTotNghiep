@@ -68,7 +68,7 @@ export const Statistical = (rows) => {
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         <p className="ml-2">Tính lương</p>
       </div>
-      <div className="">
+      <div className="w-[90%] m-auto">
         <div className="header-statistical">
           <div className="w-full">
             <div className="grid  gap-8 text-sm xl:grid-cols-6 lg:grid-cols-3 sm:grid-cols-1">
@@ -171,7 +171,7 @@ export const Statistical = (rows) => {
                   <option value="asc">Từ thấp đến cao</option>
                 </select>
               </div>
-              <div >
+              <div>
                 {user.role === true ? (
                   <button
                     className="rounded-md py-1 border-2  px-3 bg-blue-400   font-bold text-white text-base float-right"

@@ -4,4 +4,123 @@
   margin: 0 auto;
   display: grid;
   align-items: center;
+
+  
 } */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;0,800;1,600&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+}
+.main-about {
+  margin: 0 auto;
+  width: 90%;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+.main-about h1 {
+  text-align: center;
+  font-size: 2.9rem;
+  text-transform: uppercase;
+  color: #37517e;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.main-about .contact-right {
+  float: right;
+  font-size: 1.5rem;
+  color: #37517e;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.main-about .contact-right .contact-icon {
+  display: inline-block;
+  background: #eeeeee;
+  border-radius: 50%;
+  margin-left: 1rem;
+}
+.main-about .contact-right li {
+  margin-bottom: 1rem;
+}
+
+.main-about .contact-right .contact-icon svg {
+  font-size: 6rem;
+  padding: 1rem;
+  color: black;
+}
+
+.main-about .contact-img {
+  display: grid;
+  align-items: center;
+}
+
+.main-about .contact-left {
+  float: left;
+}
+
+.main-about .contact-left .contact-icon {
+  margin-right: 1rem;
+}
+
+.member {
+  position: relative;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 5px;
+  background: #fff;
+  transition: 0.5s;
+  height: 100%;
+}
+
+.member .pic {
+  overflow: hidden;
+  width: 180px;
+  border-radius: 50%;
+}
+
+.member .member-info {
+  padding-left: 30px;
+}
+
+.member h4 {
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 20px;
+  color: #37517e;
+}
+
+.member span {
+  display: block;
+  font-size: 15px;
+  padding-bottom: 10px;
+  position: relative;
+  font-weight: 500;
+}
+
+.member p {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+}
+
+.member .social {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.member .social a {
+  transition: ease-in-out 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  width: 32px;
+  height: 32px;
+  background: #eff2f8;
+  margin: 0.8rem;
+  color: #37517e;
+}

@@ -1,63 +1,19 @@
 import * as React from "react";
-// import "./style.css";
-import { styled, alpha } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import SettingsAccessibilityIcon from "@mui/icons-material/SettingsAccessibility";
+import TimelapseIcon from "@mui/icons-material/Timelapse";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 import Logo from "../../../assets/logo.png";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-}));
 
 export default function NavHome() {
   const user = JSON.parse(localStorage.getItem("token"));
@@ -75,64 +31,18 @@ export default function NavHome() {
       }
     );
   };
-  const [anchorEl, setAnchorEl] = React.useState(null);
+
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      {user === null ? (
-        <>
-          <MenuItem onClick={handleMenuClose}>
-            <Link to="/login">Đăng Nhập</Link>
-          </MenuItem>
-          <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        </>
-      ) : (
-        <>
-          <MenuItem onClick={handleMenuClose}>
-            <Link to="/" onClick={handlelogout}>
-              Đăng Xuất
-            </Link>
-          </MenuItem>
-        </>
-      )}
-    </Menu>
-  );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -152,46 +62,36 @@ export default function NavHome() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
+        <SettingsAccessibilityIcon /> {user?.fullname}
       </MenuItem>
       <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
+        <Button
+          variant="contained"
+          onClick={handlelogout}
+          style={{ background: "green" }}
         >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <SettingsSuggestIcon />
-        </IconButton>
-        <p>
-          <Link to="/login">Login</Link>
-        </p>
+          Đăng Xuất
+        </Button>
       </MenuItem>
     </Menu>
   );
 
   return (
- <Box className="w-full bg-black shadow-xl">
+    <Box className="w-full bg-black shadow-xl">
       <ToastContainer />
-      <nav className="bg-white text-black w-full" position="static">
+      <div style={{ marginTop: "7rem" }}></div>
+      <nav
+        className="bg-white text-black w-full"
+        position="static"
+        style={{
+          position: "fixed",
+          top: "0",
+          left: "0",
+          right: "0",
+          zIndex: "1",
+          boxShadow: "0 3px 6px #00000029",
+        }}
+      >
         <Toolbar>
           <IconButton
             size="large"
@@ -204,31 +104,74 @@ export default function NavHome() {
               <img src={Logo} className="w-16" alt="home" />
             </Link>
           </IconButton>
-          <Link to="/">
-            <Typography
-              className="bg-blue-400 py-3 text-base text-white hover:text-black p-4"
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: "none", sm: "block" } }}
-            >
-              Quản lý chấm công
-            </Typography>
-          </Link>
-    
+
+          <ul className="flex pl-8">
+            <Link to="/timekp">
+              <Button
+                variant="text"
+                style={{
+                  color: "#37517e",
+                  fontWeight: "bold",
+                  fontSize: "1rem",
+                  marginRight: "0.5rem",
+                  borderRight: "1px solid",
+                  borderRadius: "inherit",
+                }}
+              >
+                <TimelapseIcon /> Thời Gian Đi Làm
+              </Button>
+            </Link>
+            <Link to="/statistic">
+              <Button
+                variant="text"
+                style={{
+                  color: "#37517e",
+                  fontWeight: "bold",
+                  fontSize: "1rem",
+                  marginRight: "0.5rem",
+                  borderRight: "1px solid",
+                  borderRadius: "inherit",
+                }}
+              >
+                <LibraryBooksIcon /> Xem Công
+              </Button>
+            </Link>
+            <Link to="/feedback">
+              <Button
+                variant="text"
+                style={{
+                  color: "#37517e",
+                  fontWeight: "bold",
+                  fontSize: "1rem",
+                  marginRight: "0.5rem",
+                }}
+              >
+                <ConnectWithoutContactIcon /> Phản Hồi
+              </Button>
+            </Link>
+          </ul>
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <SettingsSuggestIcon />
-            </IconButton>
+            <ul className="flex">
+              <li className="pr-4">
+                <Button
+                  variant="text"
+                  style={{ color: "#37517e", fontWeight: "bold" }}
+                >
+                  <SettingsAccessibilityIcon /> {user?.fullname}
+                </Button>
+              </li>
+              <li>
+                <Button
+                  variant="contained"
+                  onClick={handlelogout}
+                  style={{ background: "green" }}
+                >
+                  Đăng Xuất
+                </Button>
+              </li>
+            </ul>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -245,7 +188,6 @@ export default function NavHome() {
         </Toolbar>
       </nav>
       {renderMobileMenu}
-      {renderMenu}
-      </Box>
+    </Box>
   );
 }

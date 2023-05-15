@@ -27,6 +27,8 @@ export default function BasicTable({
   const listKeeping = useSelector((state) => state.defaultReducer.listStaff);
   const salaryDep = useSelector((state) => state.defaultReducer.listSalary);
   const staffWorkHour = listWorkStaff(listKeeping, "staffWorkHour");
+
+  console.log(staffWorkHour, "dddstaffWorkHourstaffWorkHourstaffWorkHour");
   useEffect(() => {
     dispatch(getAllStaff());
   }, []);
@@ -46,7 +48,7 @@ export default function BasicTable({
   );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 5;
+  const usersPerPage = 10;
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentStaff = salaryDataWithSalaryDep.slice(
@@ -55,7 +57,7 @@ export default function BasicTable({
   );
   const totalPages = Math.ceil(salaryDataWithSalaryDep.length / usersPerPage);
 
-  console.log(currentStaff, "currentStaff");
+  console.log(currentStaff, "currentStaffffffffffffffff");
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
   };
@@ -87,123 +89,117 @@ export default function BasicTable({
         </>
       ) : (
         <>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow className="text-white bg-black ">
-                  <TableCell className="text-white">#</TableCell>
-                  <TableCell className="text-white">ID</TableCell>
-                  <TableCell className="text-white" align="right">
-                    Tên nhân viên
-                  </TableCell>
-                  <TableCell className="text-white" align="right">
-                    Phòng Ban
-                  </TableCell>
-                  <TableCell className="text-white" align="right">
-                    Năm
-                  </TableCell>
-                  <TableCell className="text-white" align="right">
-                    Số Giờ Công
-                  </TableCell>
-                  <TableCell className="text-white" align="right">
-                    Số Công
-                  </TableCell>
-                  <TableCell className="text-white" align="right">
-                    Lương cơ bản
-                  </TableCell>
-                  <TableCell align="right" className="text-white">
-                    Lương thực tế
-                  </TableCell>
-                  <TableCell align="right" className="text-white">
-                    Phụ cấp
-                  </TableCell>
-                  <TableCell align="right" className="text-white">
-                    BHXH
-                  </TableCell>
-                  <TableCell align="right" className="text-white">
-                    BHYT
-                  </TableCell>
-                  <TableCell align="right" className="text-white">
-                    Thực nhận
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {currentStaff?.map((datas, index) => (
-                  <TableRow
-                    key={index}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {index + 1}
-                    </TableCell>
-                    <TableCell align="right">{datas.id}</TableCell>
-                    <TableCell align="right">{datas.name}</TableCell>
-
-                    <TableCell align="right">{datas.department}</TableCell>
-                    <TableCell align="right">{`${datas.month}/${datas.year}`}</TableCell>
-                    <TableCell align="right">
-                      {datas.worktime.toFixed(2).toString()}
-                    </TableCell>
-                    <TableCell align="right">{` ${datas.total_days
-                      .toFixed(2)
-                      .toString()} `}</TableCell>
-                    <TableCell align="right">
-                      {datas.basicSalary.toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                      })}
-                    </TableCell>
-
-                    <TableCell align="right">
-                      {datas.salaryStaff.toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                      })}
-                    </TableCell>
-
-                    <TableCell align="right">
-                      {datas.allowance.toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                      })}
-                    </TableCell>
-
-                    <TableCell align="right">
-                      {datas.social_insurance.toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                      })}
-                    </TableCell>
-                    <TableCell align="right">
-                      {datas.health_insurance.toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                      })}
-                    </TableCell>
-                    <TableCell align="right">
-                      {datas.total.toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0,
-                      })}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <div class="w-[100%] m-auto">
+            <div class="col-span-12">
+              <div class="overflow-auto lg:overflow-visible ">
+                <table
+                  class="table text-white border-separate space-y-6 text-sm "
+                  id="main-table"
+                >
+                  <thead class="bg-gray-800 text-white">
+                    <tr>
+                      <th class="p-3">#</th>
+                      <th class="p-3 text-center">ID</th>
+                      <th class="p-3 text-center">Tên Nhân Viên</th>
+                      <th class="p-3 text-center">Phòng Ban</th>
+                      <th class="p-3 text-center">Năm</th>
+                      <th class="p-3 text-center">Số Giờ Công</th>
+                      <th class="p-3 text-center">Số Công</th>
+                      <th class="p-3 text-center">Lương cơ bản</th>
+                      <th class="p-3 text-center"> Lương thực tế</th>
+                      <th class="p-3 text-center">Phụ cấp</th>
+                      <th class="p-3 text-center"> BHXH</th>
+                      <th class="p-3 text-center"> BHYT</th>
+                      <th class="p-3 text-center">Thực nhận</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentStaff.map((item, index) => (
+                      <tr class="bg-gray-800">
+                        <td class="p-3">{index + 1}</td>
+                        <td class="p-3">{item.id}</td>
+                        <td class="p-3 font-bold">{item.name}</td>
+                        <td class="p-3 font-bold">{item.department}</td>
+                        <td class="p-3 font-bold">{`${item.month}/${item.year}`}</td>
+                        <td class="p-3 font-bold">
+                          {item.worktime.toFixed(2).toString()}
+                        </td>
+                        <td class="p-3 font-bold">{` ${item.total_days
+                          .toFixed(2)
+                          .toString()} `}</td>
+                        <td class="p-3 font-bold">
+                          {item.basicSalary.toLocaleString("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                          })}
+                        </td>
+                        <td class="p-3 font-bold">
+                          {item.salaryStaff.toLocaleString("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                          })}
+                        </td>
+                        {/* <td class="p-3 font-bold">
+                          {item.total_days < 26
+                            ? "Không có"
+                            : `${item.allowance.toLocaleString("vi-VN", {
+                                style: "currency",
+                                currency: "VND",
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0,
+                              })}`}
+                        </td> */}
+                        <td class="p-3">
+                          {item.total_days < 26 ? (
+                            <span class="bg-red-400 text-gray-50 rounded-md px-2">
+                              Không có
+                            </span>
+                          ) : (
+                            <span class="bg-green-400 text-gray-50 rounded-md px-2">
+                              {item.allowance.toLocaleString("vi-VN", {
+                                style: "currency",
+                                currency: "VND",
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0,
+                              })}
+                            </span>
+                          )}
+                        </td>
+                        <td class="p-3 font-bold">
+                          {item.social_insurance.toLocaleString("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                          })}
+                        </td>
+                        <td class="p-3 font-bold">
+                          {item.health_insurance.toLocaleString("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                          })}
+                        </td>
+                        <td class="p-3 font-bold">
+                          {item.total.toLocaleString("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                          })}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </>
       )}
       <div className="pagination">

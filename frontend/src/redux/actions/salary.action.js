@@ -189,7 +189,7 @@ export const salaryStaffWithDep = (
     });
 
     const results = [];
-    for (const [id, { ful_name, worktime }] of Object.entries(totalWorktime)) {
+    for (const [id, { name, worktime }] of Object.entries(totalWorktime)) {
       const days = totalDays[id];
       const department = departmentMap[id];
       const averageDailyWorktime = Math.round((worktime / days) * 10) / 10;
@@ -205,7 +205,7 @@ export const salaryStaffWithDep = (
         const data = {
           id,
           department: department,
-          ful_name,
+          name,
           worktime,
           total_days: worktime / 8,
           basicSalary: basicSalary,

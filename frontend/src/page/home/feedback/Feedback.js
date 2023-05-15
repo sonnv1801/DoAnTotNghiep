@@ -33,7 +33,7 @@ export const FeedBack = () => {
     e.target.reset();
   };
   return (
-    <div className="main-contact">
+    <div className="main-contact" style={{ marginTop: "-50px" }}>
       <ToastContainer />
       <div className="contact-section">
         <div className="contact-info">

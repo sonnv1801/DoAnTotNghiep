@@ -50,7 +50,7 @@ export const TimeKeeping = () => {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 5;
+  const usersPerPage = 10;
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentStaff = filteredStudents.slice(
@@ -73,7 +73,7 @@ export const TimeKeeping = () => {
 
   console.log(currentStaff, "currentStaff");
   return (
-    <div className="container mb-4 ml-4 mt-8 ">
+    <div className="container mb-4 mt-8 ">
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         {user?.role === true ? (
           <>
@@ -86,7 +86,7 @@ export const TimeKeeping = () => {
         )}
       </div>
       <div className="w-full">
-        <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3">
+        <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 w-[90%] m-auto">
           <div className="w-7/12 mt-2  ">
             <div class="max-w-2xl mt-2">
               <form class="flex items-center">

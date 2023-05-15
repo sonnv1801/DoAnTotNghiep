@@ -10,6 +10,7 @@ import { CSVLink } from "react-csv";
 import _ from "lodash";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import TableTemplate from "../tableTemplate/TableTemplate";
 
 export default function TableTimeKp({ staffkeeping, filteredStudents }) {
   // console.log(staffkeeping.staffkeeping, "staffkeeping11111");
@@ -180,7 +181,7 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
                       <TableHead>
                         <TableRow>
                           <TableCell>#</TableCell>
-                          <TableCell align="right">ID</TableCell>
+                          <TableCell align="right">ID123</TableCell>
                           <TableCell align="right">Tên Nhân Viên</TableCell>
                           <TableCell align="right">Phòng Ban</TableCell>
                           <TableCell align="right">Ngày</TableCell>
@@ -285,39 +286,38 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
                 </>
               ) : (
                 <>
-                  <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 750 }} aria-label="simple table">
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>#</TableCell>
-                          <TableCell align="right">ID</TableCell>
-                          <TableCell align="right">Tên Nhân Viên</TableCell>
-                          <TableCell align="right">Phòng Ban</TableCell>
-                          <TableCell align="right">Ngày</TableCell>
-                          <TableCell align="right">Thời gian vào</TableCell>
-                          <TableCell align="right">Thời gian ra</TableCell>
-                        </TableRow>
-                      </TableHead>
-                      {filteredStudents.map((item, index) => (
-                        <TableBody>
-                          <TableRow
-                            key={item.Id}
-                            sx={{
-                              "&:last-child td, &:last-child th": { border: 0 },
-                            }}
-                          >
-                            <TableCell align="right">{index + 1}</TableCell>
-                            <TableCell align="right">{item.Id}</TableCell>
-                            <TableCell align="right">{item.name}</TableCell>
-                            <TableCell align="right">{item.Dep}</TableCell>
-                            <TableCell align="right">{item.day}</TableCell>
-                            <TableCell align="right">{item.time_in}</TableCell>
-                            <TableCell align="right">{item.time_out}</TableCell>
-                          </TableRow>
-                        </TableBody>
-                      ))}
-                    </Table>
-                  </TableContainer>
+                  <div class="w-[90%] m-auto">
+                    <div class="col-span-12">
+                      <div class="overflow-auto lg:overflow-visible ">
+                        <table class="table text-white border-separate space-y-6 text-sm">
+                          <thead class="bg-gray-800 text-white">
+                            <tr>
+                              <th class="p-3">#</th>
+                              <th class="p-3 text-left">ID</th>
+                              <th class="p-3 text-left">Tên Nhân Viên</th>
+                              <th class="p-3 text-left">Phòng Ban</th>
+                              <th class="p-3 text-left">Ngày</th>
+                              <th class="p-3 text-left">Thời gian vào</th>
+                              <th class="p-3 text-left">Thời gian ra</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {filteredStudents.map((item, index) => (
+                              <tr class="bg-gray-800">
+                                <td class="p-3">{index + 1}</td>
+                                <td class="p-3">{item.Id}</td>
+                                <td class="p-3 font-bold">{item.name}</td>
+                                <td class="p-3 font-bold">{item.Dep}</td>
+                                <td class="p-3 font-bold">{item.day}</td>
+                                <td class="p-3 font-bold">{item.time_in}</td>
+                                <td class="p-3 font-bold">{item.time_out}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
                 </>
               )}
             </>
@@ -346,7 +346,7 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
                       <TableHead>
                         <TableRow>
                           <TableCell>#</TableCell>
-                          <TableCell align="right">ID</TableCell>
+                          <TableCell align="right">ID123</TableCell>
                           <TableCell align="right">Tên Nhân Viên</TableCell>
                           <TableCell align="right">Phòng Ban</TableCell>
                           <TableCell align="right">Ngày</TableCell>
