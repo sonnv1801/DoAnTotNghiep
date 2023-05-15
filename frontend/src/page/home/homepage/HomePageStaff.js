@@ -67,14 +67,23 @@ const listAboutUs = [
 
 export const HomePageStaff = () => {
   return (
-    <>
-      <div style={{ marginTop: "-50px" }}>
-        <div className="w-full h-[500px] bg-gray-900/90 absolute">
-          <img
-            className="w-full h-full object-cover xl:mb-auto mb-8  mix-blend-overlay"
-            src={BackImage}
-            alt="/"
-          />
+    <div className="h-screen w-full   " style={{ marginTop: "-50px" }}>
+      <div className="w-full h-[500px] bg-gray-900/90 absolute">
+        <img
+          className="w-full h-full object-cover xl:mb-auto mb-8  mix-blend-overlay"
+          src={BackImage}
+          alt="/"
+        />
+      </div>
+
+      <div className="w-full  text-white relative">
+        <div className="mb-28">
+          <h2 className="text-3xl pt-8 text-slate-300 uppercase text-center">
+            Xem Chấm Công
+          </h2>
+          <h3 className="text-5xl font-bold py-6 text-center text-uppercase">
+            I-Work Company
+          </h3>
         </div>
 
         <div className="w-full  text-white relative">
@@ -111,8 +120,12 @@ export const HomePageStaff = () => {
               />
             </div>
           ))}
+
+
+
+
         </div>
       </div>
-    </>
+    </div>
   );
 };

@@ -1,11 +1,24 @@
-import React, { useState } from "react";
-import "./style.css";
+import React, { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import feedback from "../../../assets/feedback.png";
 
+
+
 export const FeedBack = () => {
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 1280);
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -31,31 +44,22 @@ export const FeedBack = () => {
         }
       );
     e.target.reset();
+
+    
   };
   return (
-    <div className="main-contact" style={{ marginTop: "-50px" }}>
+    <div className="main-contact w-full p-12 bg-gradient-to-r from-cyan-500 to-blue-200" style={{ marginTop: "-50px" }}>
       <ToastContainer />
-      <div className="contact-section">
-        <div className="contact-info">
-          {/* <div>
-          <i class="fas fa-map-marker-alt"></i>33 Xô Viết Nghệ Tĩnh, Hải Châu,
-          Đà Nẵng
+      <div className=" flex gap-4 justify-center items-center w-[80%] m-auto bg-white shadow-md shadow-gray rounded-lg">
+        <div className="contact-img max-w-[400px] pl-[50px] ">
+        {isMobile ? null : (
+          <img src={feedback} alt="ffff"/>
+        )}
         </div>
-        <div>
-          <i class="fas fa-envelope"></i>i-workcompany@gmail.com
-        </div>
-        <div>
-          <i class="fas fa-phone"></i>+84 4742 844 40
-        </div>
-        <div>
-          <i class="fas fa-clock"></i>08:00 AM - 18:00 PM
-        </div> */}
-          <img src={feedback} alt="ffff" />
-        </div>
-        <div className="contact-form">
-          <h2>Phản hồi với chúng tôi</h2>
+        <div className="contact-form max-w-[800px] mr-[50px] p-12 flex-1">
+          <h2 className="text-center text-2xl uppercase mb-[30px] mt-12 font-medium">Phản hồi với chúng tôi</h2>
           <form
-            className="contact"
+            className="w-full"
             action=""
             onSubmit={sendEmail}
             method="post"
@@ -63,24 +67,25 @@ export const FeedBack = () => {
             <input
               type="text"
               name="fullName"
-              class="text-box"
+              className="mb-3 border-none w-full h-[50px] p-3 text-[18px] rounded-md shadow-md shadow-gray  outline-none hover:shadow-xl bg-gray-200"
               placeholder="Your Name"
               required
             />
             <input
               type="email"
               name="email"
-              class="text-box"
+              class="mb-3 border-none w-full h-[50px] p-3 text-[18px] rounded-md shadow-md shadow-gray  outline-none bg-gray-200 hover:shadow-xl"
               placeholder="Your Email"
               required
             />
             <textarea
-              name="message"
+            name="message"
+              className="mb-3 bg-gray-200 border-none w-full  p-3 text-[18px] rounded-md shadow-md shadow-gray  outline-none hover:shadow-xl"
               rows="5"
               placeholder="Your Message"
               required
             ></textarea>
-            <input type="submit" name="submit" class="send-btn" value="Send" />
+            <input type="submit" name="submit" className="mb-12 float-right bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-none w-[120px] h-[40px] text-md font-semibold uppercase cursor-pointer rounded-md hover:bg-blue-500 " value="Send" />
           </form>
         </div>
       </div>
