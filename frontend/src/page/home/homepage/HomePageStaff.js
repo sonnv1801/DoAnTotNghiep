@@ -6,6 +6,7 @@ import logo2 from "../../../assets/logo2.png";
 import BackImage from "../../../assets/support.jpg";
 import { ChatBox } from "../chatbox/ChatBox";
 
+
 const listmenu = [
   {
     id: 1,
@@ -29,8 +30,9 @@ const listmenu = [
 
 export const HomePageStaff = () => {
   return (
+
     <div className="h-screen w-full   ">
-      <div className="w-full h-[500px] bg-gray-900/90 absolute">
+    <div className="w-full h-[500px] bg-gray-900/90 absolute">
         <img
           className="w-full h-full object-cover xl:mb-auto mb-8  mix-blend-overlay"
           src={BackImage}
@@ -54,7 +56,10 @@ export const HomePageStaff = () => {
             </div>
           ))}
         </div>
+ 
       </div>
+     
     </div>
+      
   );
 };
