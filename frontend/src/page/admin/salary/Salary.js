@@ -20,7 +20,7 @@ export const CreateSalary = () => {
     dispatch(getAllStaff());
   }, []);
 
-  console.log(filteredData, "filteredData111111111111111111111111");
+
   const [Dep, setDep] = useState("");
   const [basicSalary, setBasicSalary] = useState("");
   const [allowance, setAllowance] = useState("");
@@ -33,7 +33,7 @@ export const CreateSalary = () => {
     dispatch(getAllSalary());
   }, []);
 
-  console.log(listSalary);
+
 
   const handleDepChange = (event) => {
     setDep(event.target.value);
@@ -76,7 +76,7 @@ export const CreateSalary = () => {
         social_insurance: social_insurance,
         health_insurance: health_insurance,
       };
-      console.log(newSalary);
+
       dispatch(addSalary(newSalary, currentUser?.accessToken));
       setShow(false);
     } else {

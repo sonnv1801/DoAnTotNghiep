@@ -3,7 +3,6 @@ import { createAction } from ".";
 import Swal from "sweetalert2";
 import {
   DELETE_USER,
-  DELETE_USERs,
   FETCH_USERS,
   LOGIN_FAILED,
   LOGIN_START,
@@ -51,21 +50,6 @@ export const stopLoading = () => {
   };
 };
 
-// export const logoutStart = () => {
-//   return {
-//     type: LOGOUT_START,
-//   };
-// };
-// export const logoutSuccess = () => {
-//   return {
-//     type: LOGOUT_SUCCESS,
-//   };
-// };
-// export const logoutFailed = () => {
-//   return {
-//     type: LOGOUT_FAILED,
-//   };
-// };
 
 export const loginUser = async (user, dispatch, navigate) => {
   dispatch(loginStart());
@@ -89,24 +73,7 @@ export const loginUser = async (user, dispatch, navigate) => {
     });
 };
 
-// export const logoutUser = async (
-//   id,
-//   dispatch,
-//   navigate,
-//   token,
-//   accessToken,
-//   axiosJWT
-// ) => {
-//   dispatch(logoutStart());
-//   try {
-//     await axiosJWT.post("https://maizoshop.onrender.com/v1/auth/logout", id, {
-//       headers: { token: `Bearer ${accessToken}` },
-//     });
-//     dispatch(logoutSuccess());
-//   } catch (err) {
-//     dispatch(logoutFailed());
-//   }
-// };
+
 
 export const getAllUser = (accessToken) => {
   return (dispatch) => {
@@ -173,17 +140,4 @@ export const deleteUser = (id, accessToken) => {
   };
 };
 
-// export const getAllUser = (accessToken) => {
-//   return (dispatch) => {
-//     dispatch(startLoading());
-//     userService
-//       .getAllUser(accessToken)
-//       .then((res) => {
-//         dispatch(createAction(FETCH_USERS, res.data));
-//         dispatch(stopLoading());
-//       })
-//       .catch((err) => {
-//         dispatch(stopLoading());
-//       });
-//   };
-// };
+

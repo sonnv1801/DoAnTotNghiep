@@ -13,12 +13,11 @@ import moment from "moment";
 import TableTemplate from "../tableTemplate/TableTemplate";
 
 export default function TableTimeKp({ staffkeeping, filteredStudents }) {
-  // console.log(staffkeeping.staffkeeping, "staffkeeping11111");
+
   const filteredData = _.uniqBy(staffkeeping.staffkeeping, "Id");
   const isLoading = useSelector((state) => state.defaultReducer.isLoading);
   const user = JSON.parse(localStorage.getItem("token"));
   const off = "1";
-  console.log(filteredStudents, "filteredStudents");
   const start = moment("06:00	", "HH:mm");
   const end = moment("16:00", "HH:mm");
   const duration = moment.duration(end.diff(start));
@@ -126,12 +125,12 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
                                   Đủ 8 Tiếng
                                 </p>
                               ) : moment
-                                  .utc(
-                                    moment(item.workTime, "HH:mm").diff(
-                                      moment("1:00", "HH:mm")
-                                    )
+                                .utc(
+                                  moment(item.workTime, "HH:mm").diff(
+                                    moment("1:00", "HH:mm")
                                   )
-                                  .format("HH:mm") > "08:00" ? (
+                                )
+                                .format("HH:mm") > "08:00" ? (
                                 <p style={{ color: "green", margin: "0" }}>
                                   {`Chấm công sau ${moment
                                     .utc(
@@ -232,12 +231,12 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
                                   Đủ 8 Tiếng
                                 </p>
                               ) : moment
-                                  .utc(
-                                    moment(item.workTime, "HH:mm").diff(
-                                      moment("1:00", "HH:mm")
-                                    )
+                                .utc(
+                                  moment(item.workTime, "HH:mm").diff(
+                                    moment("1:00", "HH:mm")
                                   )
-                                  .format("HH:mm") > "08:00" ? (
+                                )
+                                .format("HH:mm") > "08:00" ? (
                                 <p style={{ color: "green", margin: "0" }}>
                                   {`Chấm công sau ${moment
                                     .utc(

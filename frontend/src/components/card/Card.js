@@ -4,7 +4,6 @@ import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import { Link } from "react-router-dom";
 
 export const Card = ({ link, title, img }) => {
-  console.log(img);
   return (
     <Link to={link}>
       <div className="bg-white rounded-2xl shadow-xl shadow-gray-500/50">

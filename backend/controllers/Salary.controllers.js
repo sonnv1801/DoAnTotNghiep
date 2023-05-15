@@ -60,11 +60,6 @@ const salaryConfig = {
       });
 
       res.status(200).json(updatedSalary);
-      // } else {
-      //   return res.status(400).json({
-      //     error: "Phòng ban đã tồn tại! vui lòng chọn phòng ban khác",
-      //   });
-      // }
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });

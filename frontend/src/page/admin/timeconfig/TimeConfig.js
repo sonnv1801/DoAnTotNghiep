@@ -19,7 +19,6 @@ export const TimeConfig = () => {
     dispatch(getAllTimeCf());
   }, []);
 
-  console.log(listTime);
 
   const handleTimeMorningChange = (event) => {
     setTimeMorning(event.target.value);
@@ -32,7 +31,7 @@ export const TimeConfig = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (time_morning !== "" &&  time_afternoon !== "") {
+    if (time_morning !== "" && time_afternoon !== "") {
       const newTime = {
         time_morning: time_morning,
         time_afternoon: time_afternoon,
@@ -47,20 +46,20 @@ export const TimeConfig = () => {
 
   return (
     <div className="w-full mb-4 ml-4 mt-8">
-       <ToastContainer />
+      <ToastContainer />
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
         <p className="ml-2">Cấu hình thời gian</p>
       </div>
 
       <div className="grid mr-4">
         <div className="w-full ">
-        <form onSubmit={handleSubmit} >
-          <div className="float-right block">
-            <button className="bg-blue-400 text-white text-sm uppercase font-semibold p-2 px-4 rounded-md my-2 hover:bg-blue-700" type="submit" variant="outlined" startIcon={<SaveIcon />}>
-              Lưu cấu hình
-            </button>
-          </div>
-        </form>
+          <form onSubmit={handleSubmit} >
+            <div className="float-right block">
+              <button className="bg-blue-400 text-white text-sm uppercase font-semibold p-2 px-4 rounded-md my-2 hover:bg-blue-700" type="submit" variant="outlined" startIcon={<SaveIcon />}>
+                Lưu cấu hình
+              </button>
+            </div>
+          </form>
         </div>
         <div className="w-full  shadow-md ">
           <div className="bg-blue-400 text-xl uppercase text-white font-bold p-4">
@@ -93,7 +92,7 @@ export const TimeConfig = () => {
                   />
                 </div>
               </div>
-             
+
             </div>
           </div>
         </div>

@@ -18,7 +18,7 @@ export const TableSalary = (listSalary) => {
   const dispatch = useDispatch();
   const currentUser = JSON.parse(localStorage.getItem("token"));
   const loading = useSelector((state) => state.defaultReducer.isLoading);
-  console.log(listSalary, "listSalary");
+
 
   return (
     <>
