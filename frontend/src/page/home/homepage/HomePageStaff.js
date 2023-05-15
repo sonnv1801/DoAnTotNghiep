@@ -120,10 +120,6 @@ export const HomePageStaff = () => {
               />
             </div>
           ))}
-
-
-
-
         </div>
       </div>
     </div>
