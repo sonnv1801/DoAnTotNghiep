@@ -28,7 +28,6 @@ export const ListAccount = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
 
-  console.log(role, "role");
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.defaultReducer.isLoading);
   const listUser = useSelector((state) => state.defaultReducer.listUser);

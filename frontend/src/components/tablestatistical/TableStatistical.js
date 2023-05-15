@@ -22,13 +22,13 @@ export default function BasicTable({
   departmStaff,
   nameFilter,
 }) {
-  console.log(nameFilter, "nameFilter2222");
+
   const dispatch = useDispatch();
   const listKeeping = useSelector((state) => state.defaultReducer.listStaff);
   const salaryDep = useSelector((state) => state.defaultReducer.listSalary);
   const staffWorkHour = listWorkStaff(listKeeping, "staffWorkHour");
 
-  console.log(staffWorkHour, "dddstaffWorkHourstaffWorkHourstaffWorkHour");
+
   useEffect(() => {
     dispatch(getAllStaff());
   }, []);
@@ -57,7 +57,7 @@ export default function BasicTable({
   );
   const totalPages = Math.ceil(salaryDataWithSalaryDep.length / usersPerPage);
 
-  console.log(currentStaff, "currentStaffffffffffffffff");
+
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
   };
@@ -89,45 +89,45 @@ export default function BasicTable({
         </>
       ) : (
         <>
-          <div class="w-[100%] m-auto">
-            <div class="col-span-12">
-              <div class="overflow-auto lg:overflow-visible ">
+          <div className="w-[100%] m-auto">
+            <div className="col-span-12">
+              <div className="overflow-auto lg:overflow-visible ">
                 <table
-                  class="table text-white border-separate space-y-6 text-sm "
+                  className="table text-white border-separate space-y-6 text-sm "
                   id="main-table"
                 >
-                  <thead class="bg-gray-800 text-white">
+                  <thead className="bg-gray-800 text-white">
                     <tr>
-                      <th class="p-3">#</th>
-                      <th class="p-3 text-center">ID</th>
-                      <th class="p-3 text-center">Tên Nhân Viên</th>
-                      <th class="p-3 text-center">Phòng Ban</th>
-                      <th class="p-3 text-center">Năm</th>
-                      <th class="p-3 text-center">Số Giờ Công</th>
-                      <th class="p-3 text-center">Số Công</th>
-                      <th class="p-3 text-center">Lương cơ bản</th>
-                      <th class="p-3 text-center"> Lương thực tế</th>
-                      <th class="p-3 text-center">Phụ cấp</th>
-                      <th class="p-3 text-center"> BHXH</th>
-                      <th class="p-3 text-center"> BHYT</th>
-                      <th class="p-3 text-center">Thực nhận</th>
+                      <th className="p-3">#</th>
+                      <th className="p-3 text-center">ID</th>
+                      <th className="p-3 text-center">Tên Nhân Viên</th>
+                      <th className="p-3 text-center">Phòng Ban</th>
+                      <th className="p-3 text-center">Năm</th>
+                      <th className="p-3 text-center">Số Giờ Công</th>
+                      <th className="p-3 text-center">Số Công</th>
+                      <th className="p-3 text-center">Lương cơ bản</th>
+                      <th className="p-3 text-center"> Lương thực tế</th>
+                      <th className="p-3 text-center">Phụ cấp</th>
+                      <th className="p-3 text-center"> BHXH</th>
+                      <th className="p-3 text-center"> BHYT</th>
+                      <th className="p-3 text-center">Thực nhận</th>
                     </tr>
                   </thead>
                   <tbody>
                     {currentStaff.map((item, index) => (
-                      <tr class="bg-gray-800">
-                        <td class="p-3">{index + 1}</td>
-                        <td class="p-3">{item.id}</td>
-                        <td class="p-3 font-bold">{item.name}</td>
-                        <td class="p-3 font-bold">{item.department}</td>
-                        <td class="p-3 font-bold">{`${item.month}/${item.year}`}</td>
-                        <td class="p-3 font-bold">
+                      <tr className="bg-gray-800">
+                        <td className="p-3">{index + 1}</td>
+                        <td className="p-3">{item.id}</td>
+                        <td className="p-3 font-bold">{item.name}</td>
+                        <td className="p-3 font-bold">{item.department}</td>
+                        <td className="p-3 font-bold">{`${item.month}/${item.year}`}</td>
+                        <td className="p-3 font-bold">
                           {item.worktime.toFixed(2).toString()}
                         </td>
-                        <td class="p-3 font-bold">{` ${item.total_days
+                        <td className="p-3 font-bold">{` ${item.total_days
                           .toFixed(2)
                           .toString()} `}</td>
-                        <td class="p-3 font-bold">
+                        <td className="p-3 font-bold">
                           {item.basicSalary.toLocaleString("vi-VN", {
                             style: "currency",
                             currency: "VND",
@@ -135,7 +135,7 @@ export default function BasicTable({
                             maximumFractionDigits: 0,
                           })}
                         </td>
-                        <td class="p-3 font-bold">
+                        <td className="p-3 font-bold">
                           {item.salaryStaff.toLocaleString("vi-VN", {
                             style: "currency",
                             currency: "VND",
@@ -143,23 +143,14 @@ export default function BasicTable({
                             maximumFractionDigits: 0,
                           })}
                         </td>
-                        {/* <td class="p-3 font-bold">
-                          {item.total_days < 26
-                            ? "Không có"
-                            : `${item.allowance.toLocaleString("vi-VN", {
-                                style: "currency",
-                                currency: "VND",
-                                minimumFractionDigits: 0,
-                                maximumFractionDigits: 0,
-                              })}`}
-                        </td> */}
-                        <td class="p-3">
+
+                        <td className="p-3">
                           {item.total_days < 26 ? (
-                            <span class="bg-red-400 text-gray-50 rounded-md px-2">
-                              Không có
+                            <span className="bg-red-400 text-gray-50 rounded-md px-3">
+                              Không
                             </span>
                           ) : (
-                            <span class="bg-green-400 text-gray-50 rounded-md px-2">
+                            <span className="bg-green-400 text-gray-50 rounded-md px-2">
                               {item.allowance.toLocaleString("vi-VN", {
                                 style: "currency",
                                 currency: "VND",
@@ -169,7 +160,7 @@ export default function BasicTable({
                             </span>
                           )}
                         </td>
-                        <td class="p-3 font-bold">
+                        <td className="p-3 font-bold">
                           {item.social_insurance.toLocaleString("vi-VN", {
                             style: "currency",
                             currency: "VND",
@@ -177,7 +168,7 @@ export default function BasicTable({
                             maximumFractionDigits: 0,
                           })}
                         </td>
-                        <td class="p-3 font-bold">
+                        <td className="p-3 font-bold">
                           {item.health_insurance.toLocaleString("vi-VN", {
                             style: "currency",
                             currency: "VND",
@@ -185,7 +176,7 @@ export default function BasicTable({
                             maximumFractionDigits: 0,
                           })}
                         </td>
-                        <td class="p-3 font-bold">
+                        <td className="p-3 font-bold">
                           {item.total.toLocaleString("vi-VN", {
                             style: "currency",
                             currency: "VND",

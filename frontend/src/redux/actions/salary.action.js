@@ -154,13 +154,13 @@ export const salaryStaffWithDep = (
   departmStaff = null,
   nameFilter = null
 ) => {
-  console.log(fillerDay, "fillerDayfillerDayfillerDayfillerDay");
+
   function calculateSalaryWithSalaryDep(data, month, year, salaryDep) {
     const totalWorktime = {};
     const totalDays = {};
     const departmentMap = {};
 
-    console.log(fillerDay, "console.log");
+
     data.forEach(({ Id, name, day, workTime, Dep }) => {
       const [dayStr, monthStr, yearStr] = day.split("-");
       const monthValue = parseInt(monthStr);
@@ -221,10 +221,10 @@ export const salaryStaffWithDep = (
           total:
             worktime / 8 >= 26
               ? ((worktime / 8) * basicSalary) / 26 -
-                (social_insurance + health_insurance) +
-                allowance
+              (social_insurance + health_insurance) +
+              allowance
               : ((worktime / 8) * basicSalary) / 26 -
-                (social_insurance + health_insurance),
+              (social_insurance + health_insurance),
           month,
           year,
         };
@@ -237,10 +237,10 @@ export const salaryStaffWithDep = (
     // Sort results array based on total_days property
     if (fillerDay === "asc") {
       results.sort((a, b) => (a.total_days < b.total_days ? -1 : 1));
-      console.log("Nguyen Van A");
+
     } else if (fillerDay === "desc") {
       results.sort((a, b) => (a.total_days > b.total_days ? -1 : 1));
-      console.log("Nguyen Van B");
+
     }
 
     return results;

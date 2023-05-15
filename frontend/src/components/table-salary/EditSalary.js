@@ -14,7 +14,6 @@ import _ from "lodash";
 const EditSalary = () => {
   const currentUser = JSON.parse(localStorage.getItem("token"));
   const salaryFecth = useSelector((state) => state.defaultReducer?.salaryFecth);
-  console.log(salaryFecth, "salaryFecth");
   const [Dep, setDep] = useState(salaryFecth?.Dep);
   const [basicSalary, setBasicSalary] = useState(salaryFecth?.basicSalary);
   const [allowance, setAllowance] = useState(salaryFecth?.allowance);
@@ -25,7 +24,7 @@ const EditSalary = () => {
     salaryFecth?.health_insurance
   );
 
-  console.log(basicSalary, "basicSalary");
+
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,7 +38,6 @@ const EditSalary = () => {
   useEffect(() => {
     dispatch(getAllSalary());
   }, []);
-  console.log(id, "id");
   useEffect(() => {
     dispatch(getIdSalary(id));
   }, []);
@@ -78,7 +76,7 @@ const EditSalary = () => {
         social_insurance: social_insurance,
         health_insurance: health_insurance,
       };
-      console.log(newSalary);
+
       dispatch(
         updateSalarys(id, currentUser?.accessToken, newSalary, navigate)
       );
@@ -88,7 +86,7 @@ const EditSalary = () => {
       });
     }
   };
-  console.log(salaryFecth, "salaryFecth");
+
   return (
     <div className="w-full h-full flex justify-content-center">
       <div className="w-2/5 m-6 border-2 border-black  ">

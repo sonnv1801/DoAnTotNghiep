@@ -17,7 +17,7 @@ export const TableTime = (listTime) => {
 
   const loading = useSelector((state) => state.defaultReducer.isLoading);
 
-  console.log(listTime, "listTime");
+
 
   return (
     <>
@@ -40,7 +40,7 @@ export const TableTime = (listTime) => {
       ) : (
         <>
           <TableContainer component={Paper} className="">
-            <Table sx={{ minWidth: 700 }}  aria-label="simple table">
+            <Table sx={{ minWidth: 700 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell>STT</TableCell>
