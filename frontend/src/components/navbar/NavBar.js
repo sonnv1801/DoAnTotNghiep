@@ -87,7 +87,7 @@ export const NavBar = () => {
     );
   };
   return (
-    <nav className=" border-r border-gray-400  min-h-screen w-[80px] xl:w-[250px]  px-1 flex flex-col items-start ">
+    <nav className=" shadow-xl shadow-slate-300 min-h-screen w-[100px] xl:w-[250px]  px-1 flex flex-col items-start ">
       <div className=" my-4 xl:ml-[72px]">
         <Link to="/">
           <img src={Logo} className="w-16" alt="home" />
@@ -102,10 +102,10 @@ export const NavBar = () => {
 
         <div
           onClick={handlelogout}
-          className="w-full flex items-center justify-start space-x-8 px-5 cursor-pointer
+          className="w-full flex items-center justify-start space-x-4 px-3 cursor-pointer
      group hover:border-gray-900 border-l-4 border-transparent"
         >
-          <span className=" -ml-8">
+          <span className=" -ml-2">
             <LogoutTwoToneIcon />
           </span>
 
@@ -125,12 +125,12 @@ function NavItem({ link }) {
     <div
       onClick={() => setActiveNav(link.id)}
       key={link.id}
-      className={`w-full flex items-center justify-start space-x-8 px-5 cursor-pointer
+      className={`w-full flex items-center justify-start space-x-4 px-3 cursor-pointer
      group hover:border-gray-900 border-l-4 border-transparent ${
        activeNav === link.id && "border-gray-900 "
      } `}
     >
-      <span className=" -ml-8"> {link.icon}</span>
+      <span className=" -ml-2"> {link.icon}</span>
       <Link to={link.link}>
         <h1
           className={`text-gray-600 group-hover:text-black xl:flex text-sm hidden ${

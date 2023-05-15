@@ -12,7 +12,6 @@ export const List = () => {
   const dispatch = useDispatch();
   const listStaff = useSelector((state) => state.defaultReducer.listStaff);
   const datalist = _.uniqBy(listStaff, "Id");
-  console.log(datalist, "listStaff");
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 7;
   const indexOfLastUser = currentPage * usersPerPage;

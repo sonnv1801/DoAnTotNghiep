@@ -66,12 +66,12 @@ export const Statistical = (rows) => {
   return (
     <div className="mb-4 ml-4 mt-8 ">
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
-        <p className="ml-2">Tính lương Nhân viên</p>
+        <p className="ml-2">Tính lương</p>
       </div>
       <div className="">
         <div className="header-statistical">
           <div className="w-full">
-            <div className="grid  gap-4 text-sm xl:grid-cols-6 lg:grid-cols-3 sm:grid-cols-1">
+            <div className="grid  gap-8 text-sm xl:grid-cols-6 lg:grid-cols-3 sm:grid-cols-1">
               <div className="w-full">
                 <div class="max-w-2xl ">
                   <form class="flex items-center">
@@ -171,10 +171,10 @@ export const Statistical = (rows) => {
                   <option value="asc">Từ thấp đến cao</option>
                 </select>
               </div>
-              <div className="">
+              <div >
                 {user.role === true ? (
                   <button
-                    className="rounded-md py-1 border-2  px-3 bg-blue-400   font-bold text-white text-base"
+                    className="rounded-md py-1 border-2  px-3 bg-blue-400   font-bold text-white text-base float-right"
                     variant="outlined"
                   >
                     <CSVLink
@@ -190,7 +190,7 @@ export const Statistical = (rows) => {
             </div>
           </div>
         </div>
-        <div className="mt-4 w-[95%]">
+        <div className="mt-4 w-full">
           <TableStatistical
             monthStaff={month}
             yearStaff={year}

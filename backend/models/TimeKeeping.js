@@ -8,10 +8,10 @@ const timeKpSchema = new mongoose.Schema(
     roll: {
       type: String,
     },
-    full_name: {
+    name: {
       type: String,
     },
-    Depement: {
+    Dep: {
       type: String,
     },
     day: {

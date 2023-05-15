@@ -11,24 +11,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteSalarys } from "../../redux/actions/salary.action";
 import { updateSalarys } from "../../redux/actions/salary.action";
 import { Link } from "react-router-dom";
-import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
 
-export const TableSalary = (
-  listSalary
-) => {
+export const TableSalary = (listSalary) => {
   const dispatch = useDispatch();
   const currentUser = JSON.parse(localStorage.getItem("token"));
   const loading = useSelector((state) => state.defaultReducer.isLoading);
   console.log(listSalary, "listSalary");
- 
 
   return (
     <>
       {loading ? (
         <>
-          <div  role="status">
-            <span >Loading...</span>
+          <div role="status">
+            <span>Loading...</span>
           </div>
           <span
             style={{
@@ -44,15 +41,25 @@ export const TableSalary = (
       ) : (
         <>
           <TableContainer component={Paper}>
-            <Table caria-label="simple table">
+            <Table sx={{ minWidth: 700 }} caria-label="simple table">
               <TableHead>
                 <TableRow className="bg-black ">
                   <TableCell className="text-white">STT</TableCell>
-                  <TableCell className="text-white" align="right">Phòng/Ban</TableCell>
-                  <TableCell className="text-white" align="right">Lương Cơ Bản</TableCell>
-                  <TableCell className="text-white" align="right">Phụ cấp</TableCell>
-                  <TableCell className="text-white" align="right">BHXH</TableCell>
-                  <TableCell className="text-white" align="right">BHYT</TableCell>
+                  <TableCell className="text-white" align="right">
+                    Phòng/Ban
+                  </TableCell>
+                  <TableCell className="text-white" align="right">
+                    Lương Cơ Bản
+                  </TableCell>
+                  <TableCell className="text-white" align="right">
+                    Phụ cấp
+                  </TableCell>
+                  <TableCell className="text-white" align="right">
+                    BHXH
+                  </TableCell>
+                  <TableCell className="text-white" align="right">
+                    BHYT
+                  </TableCell>
                   <TableCell className="text-white" align="right"></TableCell>
                 </TableRow>
               </TableHead>
@@ -66,21 +73,52 @@ export const TableSalary = (
                       {index + 1}
                     </TableCell>
                     <TableCell align="right">{item.Dep}</TableCell>
-                    <TableCell align="right">{item.basicSalary}</TableCell>
-                    <TableCell align="right">{item.allowance}</TableCell>
-                    <TableCell align="right">{item.social_insurance}</TableCell>
-                    <TableCell align="right">{item.health_insurance}</TableCell>
                     <TableCell align="right">
-                      <DeleteForeverOutlinedIcon style={{
-              color: "red",
-              cursor: "pointer"}} onClick={() => {
+                      {item.basicSalary.toLocaleString("vi-VN", {
+                        style: "currency",
+                        currency: "VND",
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0,
+                      })}
+                    </TableCell>
+                    <TableCell align="right">
+                      {item.allowance.toLocaleString("vi-VN", {
+                        style: "currency",
+                        currency: "VND",
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0,
+                      })}
+                    </TableCell>
+                    <TableCell align="right">
+                      {item.social_insurance.toLocaleString("vi-VN", {
+                        style: "currency",
+                        currency: "VND",
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0,
+                      })}
+                    </TableCell>
+                    <TableCell align="right">
+                      {item.health_insurance.toLocaleString("vi-VN", {
+                        style: "currency",
+                        currency: "VND",
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0,
+                      })}
+                    </TableCell>
+                    <TableCell align="right">
+                      <DeleteForeverOutlinedIcon
+                        style={{
+                          color: "red",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => {
                           dispatch(
                             deleteSalarys(item._id, currentUser?.accessToken)
                           );
-                        }} />
+                        }}
+                      />
                       <Link to={`/edit-salary/${item._id}`}>
-                      
-                  < NoteAltOutlinedIcon    style={{cursor: "pointer" }}/>
+                        <NoteAltOutlinedIcon style={{ cursor: "pointer" }} />
                       </Link>
                     </TableCell>
                   </TableRow>

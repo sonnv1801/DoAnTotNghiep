@@ -73,9 +73,9 @@ const defaultReducer = (state = initialState, action) => {
       } else {
         const update = state.listStaff.filter(
           (staff) =>
-            staff.ful_name.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-            staff.Depement.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-            staff.Id.toLowerCase().indexOf(key.toLowerCase()) !== -1
+            staff.name.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+            staff.Dep.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
+            staff.Id.toString().includes(key)
         );
         state.search = update;
       }

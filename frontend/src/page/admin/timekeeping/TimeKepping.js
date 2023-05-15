@@ -9,10 +9,14 @@ import {
 } from "../../../redux/actions/staff.action";
 import Paginate from "../../../components/pagination/Pagination";
 
+import _ from "lodash";
+
 export const TimeKeeping = () => {
   const dispatch = useDispatch();
   const listKeeping = useSelector((state) => state.defaultReducer.listStaff);
   const staffWorkHour = listWorkStaff(listKeeping);
+  const DepOption = _.uniqBy(staffWorkHour, "Dep");
+
   useEffect(() => {
     dispatch(getAllStaff());
   }, []);
@@ -35,14 +39,12 @@ export const TimeKeeping = () => {
   };
 
   const filteredStudents = staffWorkHour.filter((staff) => {
-    const nameMatch = staff.ful_name
+    const nameMatch = staff.name
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-    const depMatch = staff.Depement.toLowerCase().includes(
-      searchDep.toLowerCase()
-    );
+    const depMatch = staff.Dep.toLowerCase().includes(searchDep.toLowerCase());
     const monthMatch = searchMonth
-      ? staff.day.includes(`/${searchMonth}/`)
+      ? staff.day.includes(`-${searchMonth}-`)
       : true;
     return nameMatch && monthMatch && depMatch;
   });
@@ -79,7 +81,7 @@ export const TimeKeeping = () => {
           </>
         ) : (
           <>
-            <p>Thời gian đi làm</p>
+            <p className="ml-2">Thời gian đi làm</p>
           </>
         )}
       </div>
@@ -145,9 +147,11 @@ export const TimeKeeping = () => {
                 onChange={handleDepChange}
               >
                 <option value="">Tất cả phòng ban</option>
-                <option value="IT">IT</option>
-                <option value="Computer">Computer</option>
-                <option value="Human">Human</option>
+                {DepOption.map((item, index) => (
+                  <option value={item.Dep} key={index}>
+                    {item.Dep}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

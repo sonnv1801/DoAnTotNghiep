@@ -52,8 +52,8 @@ export const TimeConfig = () => {
         <p className="ml-2">Cấu hình thời gian</p>
       </div>
 
-      <div className="w-full grid">
-        <div className="w-full ml-4">
+      <div className="grid mr-4">
+        <div className="w-full ">
         <form onSubmit={handleSubmit} >
           <div className="float-right block">
             <button className="bg-blue-400 text-white text-sm uppercase font-semibold p-2 px-4 rounded-md my-2 hover:bg-blue-700" type="submit" variant="outlined" startIcon={<SaveIcon />}>
@@ -62,7 +62,7 @@ export const TimeConfig = () => {
           </div>
         </form>
         </div>
-        <div className="w-full ml-4  shadow-md ">
+        <div className="w-full  shadow-md ">
           <div className="bg-blue-400 text-xl uppercase text-white font-bold p-4">
             <p>Thiết lập thời gian</p>
           </div>
@@ -97,8 +97,7 @@ export const TimeConfig = () => {
             </div>
           </div>
         </div>
-
-        <div className="w-full mt-4 ml-4">
+        <div className="mt-4">
           <TableTime listTime={listTime} />
         </div>
       </div>

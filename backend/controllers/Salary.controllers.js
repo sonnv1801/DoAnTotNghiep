@@ -51,20 +51,20 @@ const salaryConfig = {
 
   updateSalary: async (req, res) => {
     try {
-      const existingSalary = await Salary.findOne({ Dep: req.body.Dep });
-      if (!existingSalary) {
-        const { id } = req.params;
-        const updates = req.body;
-        const updatedSalary = await Salary.findByIdAndUpdate(id, updates, {
-          new: true,
-        });
+      // const existingSalary = await Salary.findOne({ Dep: req.body.Dep });
+      // if (!existingSalary) {
+      const { id } = req.params;
+      const updates = req.body;
+      const updatedSalary = await Salary.findByIdAndUpdate(id, updates, {
+        new: true,
+      });
 
-        res.status(200).json(updatedSalary);
-      } else {
-        return res.status(400).json({
-          error: "Phòng ban đã tồn tại! vui lòng chọn phòng ban khác",
-        });
-      }
+      res.status(200).json(updatedSalary);
+      // } else {
+      //   return res.status(400).json({
+      //     error: "Phòng ban đã tồn tại! vui lòng chọn phòng ban khác",
+      //   });
+      // }
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });

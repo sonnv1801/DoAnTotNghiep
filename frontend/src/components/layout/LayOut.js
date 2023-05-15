@@ -6,11 +6,11 @@ import Footer from "../../page/home/footer/Footer";
 export const LayOut = () => {
   const user = JSON.parse(localStorage.getItem("token"));
   return (
-    <div className="w-[100vw] overflow-x-clip">
+    <div>
      <div className="">
      
         {user?.role === true ? (  <div className="flex"><NavBar/> 
-        <div className="w-full mr-[5%]">
+        <div className="w-full mr-4">
       <Outlet />
       </div> </div>    ) : (<div className=""><NavHome/>  <div className="cols-9">
       <Outlet />

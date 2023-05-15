@@ -15,9 +15,9 @@ import { HomePageStaff } from "./page/home/homepage/HomePageStaff";
 import RegisterAccount from "./page/admin/registerAccount/RegisterAccount";
 import Test from "./components/Test";
 import KommunicateChat from "./page/home/chatbox/ChatBox";
-
 import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
 import NavBarTest from "./page/admin/testHome/TestHome";
+import { FeedBack } from "./page/home/feedback/Feedback";
 
 Kommunicate.init("3df8fbf7aa958bd54c3732cacff94409f");
 
@@ -60,6 +60,7 @@ function App() {
                 <Route path="/" element={<HomePageStaff />} />
                 <Route path="/statistic" element={<Statistical />} />
                 <Route path="/timekp" element={<TimeKeeping />} />
+                <Route path="/feedback" element={<FeedBack />} />
               </Route>
             </>
           )}

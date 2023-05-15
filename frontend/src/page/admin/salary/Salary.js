@@ -61,14 +61,13 @@ export const CreateSalary = () => {
     // }else {
     //   alert(`Phong ban ${Dep} da ton tai`) ;
     //   }
-    
+
     if (
       Dep !== "" &&
       basicSalary !== "" &&
       allowance !== "" &&
       social_insurance !== "" &&
       health_insurance !== ""
-      
     ) {
       const newSalary = {
         Dep: Dep,
@@ -80,26 +79,24 @@ export const CreateSalary = () => {
       console.log(newSalary);
       dispatch(addSalary(newSalary, currentUser?.accessToken));
       setShow(false);
-      
     } else {
-      toast.warning("Vui lòng không để trống trường này",    {
+      toast.warning("Vui lòng không để trống trường này", {
         position: toast.POSITION.TOP_RIGHT,
       });
-   
     }
   };
-const Deps = new Set(listSalary.map((item) => item.Dep));
+  const Deps = new Set(listSalary.map((item) => item.Dep));
 
   return (
     <div className="w-full mb-4 ml-4  mt-8">
       <ToastContainer />
       <div className="text-base font-bold uppercase mb-4 border-l-4 border-indigo-500 ">
-        <p className="ml-2">Bảng lương nhân viên</p>
+        <p className="ml-2">Thêm lương</p>
       </div>
       <div className="w-full bg-white">
-        <div className="mb-3 float-right ">
+        <div className="mb-3 float-right mr-4">
           <div className="rounded-md text-blue-400 uppercase p-2 font-bold hover:bg-blue-400 hover:text-white border-2 border-blue-400">
-            <button className="  "  onClick={handleShow}>
+            <button className="  " onClick={handleShow}>
               Thêm lương NV
             </button>
           </div>
@@ -113,7 +110,7 @@ const Deps = new Set(listSalary.map((item) => item.Dep));
             <Form>
               {/* Phòng ban */}
               <Form.Group
-                className="mb-3"
+                className="mb-3 "
                 controlId="exampleForm.ControlInput1"
               >
                 <Form.Label>Phòng/Ban</Form.Label>
@@ -121,7 +118,7 @@ const Deps = new Set(listSalary.map((item) => item.Dep));
                   aria-label="Default select example"
                   onChange={handleDepChange}
                 >
-                  <option >Chọn Phòng Ban</option>
+                  <option>Chọn Phòng Ban</option>
                   {filteredData.map((item, index) => (
                     <option key={index} value={item.Dep}>
                       {item.Dep}
@@ -191,21 +188,26 @@ const Deps = new Set(listSalary.map((item) => item.Dep));
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <button className="py-2 px-3 rounded-md  bg-red-500 text-white border-2 " onClick={handleClose}>
+            <button
+              className="py-2 px-3 rounded-md  bg-red-500 text-white border-2 "
+              onClick={handleClose}
+            >
               Đóng
             </button>
-            <button className="py-2 px-3 rounded-md  bg-blue-400 text-white border-2  " type="submit" onClick={handleSubmit}>
+            <button
+              className="py-2 px-3 rounded-md  bg-blue-400 text-white border-2  "
+              type="submit"
+              onClick={handleSubmit}
+            >
               Lưu thông tin
             </button>
           </Modal.Footer>
         </Modal>
 
-        <div className="table-time-config">
+        <div className="mt-4 mr-4">
           <TableSalary listSalary={listSalary} />
         </div>
       </div>
     </div>
   );
 };
-
-

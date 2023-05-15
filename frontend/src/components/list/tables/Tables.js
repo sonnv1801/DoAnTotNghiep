@@ -34,7 +34,6 @@ export default function Tables(listStaff) {
   const isLoading = useSelector((state) => state.defaultReducer.isLoading);
   const search = useSelector((state) => state.defaultReducer.search);
   const filteredData = _.uniqBy(listStaff.listStaff, "Id");
-  console.log(filteredData, "filteredDatafilteredDatafilteredData");
   const filteredsearch = _.uniqBy(search, "Id");
 
   return (
@@ -79,12 +78,10 @@ export default function Tables(listStaff) {
                       </StyledTableCell>
                       <StyledTableCell align="right">{row.Id}</StyledTableCell>
                       <StyledTableCell align="right">
-                        {row.ful_name}
+                        {row.name}
                       </StyledTableCell>
                       {/* <StyledTableCell align="right">18/10/2001</StyledTableCell> */}
-                      <StyledTableCell align="right">
-                        {row.Depement}
-                      </StyledTableCell>
+                      <StyledTableCell align="right">{row.Dep}</StyledTableCell>
                       <StyledTableCell align="right">
                         {row.roll === 1 ? "Nhân Viên" : "Admin"}
                       </StyledTableCell>
@@ -135,11 +132,9 @@ export default function Tables(listStaff) {
                       </StyledTableCell>
                       <StyledTableCell align="right">{row.Id}</StyledTableCell>
                       <StyledTableCell align="right">
-                        {row.ful_name}
+                        {row.name}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
-                        {row.Depement}
-                      </StyledTableCell>
+                      <StyledTableCell align="right">{row.Dep}</StyledTableCell>
                       <StyledTableCell align="right">
                         {row.roll === 1 ? "Nhân Viên" : "Admin"}
                       </StyledTableCell>

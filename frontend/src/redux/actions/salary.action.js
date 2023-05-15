@@ -161,16 +161,15 @@ export const salaryStaffWithDep = (
     const departmentMap = {};
 
     console.log(fillerDay, "console.log");
-    data.forEach(({ Id, ful_name, day, workTime, Dep }) => {
-      const [dayStr, monthStr, yearStr] = day.split("/");
+    data.forEach(({ Id, name, day, workTime, Dep }) => {
+      const [dayStr, monthStr, yearStr] = day.split("-");
       const monthValue = parseInt(monthStr);
       const yearValue = parseInt(yearStr);
       if (
         monthValue === month &&
         yearValue === year &&
         (!departmStaff || Dep === departmStaff) &&
-        (!nameFilter ||
-          ful_name.toLowerCase().includes(nameFilter.toLowerCase()))
+        (!nameFilter || name.toLowerCase().includes(nameFilter.toLowerCase()))
       ) {
         const [hours, minutes] = workTime.split(":").map(Number);
         const totalMinutes = hours * 60 + minutes;
@@ -181,7 +180,8 @@ export const salaryStaffWithDep = (
           totalWorktime[Id].worktime += adjustedHours;
           totalDays[Id] += 1;
         } else {
-          totalWorktime[Id] = { ful_name: ful_name, worktime: adjustedHours };
+          totalWorktime[Id] = { name: name, worktime: adjustedHours };
+
           totalDays[Id] = 1;
           departmentMap[Id] = Dep;
         }

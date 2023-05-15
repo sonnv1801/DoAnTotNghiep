@@ -78,7 +78,7 @@ export const ListAccount = () => {
   };
   return (
     <div className="w-full mb-4 ml-4 mt-8">
-      <div className="">
+      <div className="mr-4">
         <ToastContainer />
         <div className="float-right mb-2 bg-blue-400 rounded-md hover:bg-blue-600">
           <button
