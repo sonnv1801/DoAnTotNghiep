@@ -11,8 +11,8 @@ const About = () => {
   return (
     <div className="container main-about">
       <h1>I-Work - Phần mềm quản lý nhân sự toàn diện, chuyên nghiệp</h1>
-      <div className="row">
-        <div className="col-4">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
+        <div className=" m-auto">
           <ul className="contact-right">
             <li>
               <div className="row">
@@ -48,13 +48,13 @@ const About = () => {
             </li>
           </ul>
         </div>
-        <div className="col-4">
-          <img src={LogoAbout} alt="LogoAbout" className="contact-img" />
+        <div className=" m-auto">
+          <img src={LogoAbout} alt="LogoAbout" className="w-full" />
         </div>
-        <div className="col-4">
+        <div className=" m-auto">
           <ul className="contact-right contact-left">
             <li>
-              <div className="row">
+              <div className="row m-ml-4">
                 <div className="col-4">
                   <div className="contact-icon">
                     <ListAltOutlinedIcon />

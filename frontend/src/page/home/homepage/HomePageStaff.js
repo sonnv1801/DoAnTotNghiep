@@ -86,28 +86,18 @@ export const HomePageStaff = () => {
               I-Work Company
             </h3>
           </div>
-
-          <div className="w-full  text-white relative">
-            <div className="mb-28">
-              <h2 className="text-3xl pt-8 text-slate-300 uppercase text-center">
-                Xem Chấm Công
-              </h2>
-              <h3 className="text-5xl font-bold py-6 text-center text-uppercase">
-                I-Work Company
-              </h3>
-            </div>
-            <div
-              className=" w-[80%] flex lg:m-auto mx-auto"
-              style={{ justifyContent: "center", alignItems: "center" }}
-            >
-              {listmenu?.map((item, index) => (
-                <div className="lg:mx-4 mx-2" key={index}>
-                  <Card link={item?.link} title={item?.title} img={item?.img} />
-                </div>
-              ))}
-            </div>
+          <div
+            className=" w-[80%] flex lg:m-auto mx-auto"
+            style={{ justifyContent: "center", alignItems: "center" }}
+          >
+            {listmenu?.map((item, index) => (
+              <div className="lg:mx-4 mx-2" key={index}>
+                <Card link={item?.link} title={item?.title} img={item?.img} />
+              </div>
+            ))}
           </div>
         </div>
+
         <About />
         <div style={{ margin: "0 auto", width: "85%" }}>
           <div className="row">
