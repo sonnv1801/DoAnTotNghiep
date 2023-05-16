@@ -105,8 +105,6 @@ export const HomePageStaff = () => {
               <div className="col-6 mb-4" key={item.id}>
                 <AboutUs
                   name={item.name}
-
-
                   profession={item.profession}
                   address={item.address}
                   image={item.image}
