@@ -22,12 +22,10 @@ export default function BasicTable({
   departmStaff,
   nameFilter,
 }) {
-
   const dispatch = useDispatch();
   const listKeeping = useSelector((state) => state.defaultReducer.listStaff);
   const salaryDep = useSelector((state) => state.defaultReducer.listSalary);
   const staffWorkHour = listWorkStaff(listKeeping, "staffWorkHour");
-
 
   useEffect(() => {
     dispatch(getAllStaff());
@@ -48,7 +46,7 @@ export default function BasicTable({
   );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 10;
+  const usersPerPage = 100;
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentStaff = salaryDataWithSalaryDep.slice(
@@ -56,7 +54,6 @@ export default function BasicTable({
     indexOfLastUser
   );
   const totalPages = Math.ceil(salaryDataWithSalaryDep.length / usersPerPage);
-
 
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
@@ -69,6 +66,8 @@ export default function BasicTable({
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  console.log(currentStaff, "currentStaffcurrentStaff");
   return (
     <>
       {currentStaff.length === 0 ? (

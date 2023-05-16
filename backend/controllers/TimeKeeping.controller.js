@@ -26,6 +26,16 @@ const TimeKeepingController = {
       res.status(500).json(err);
     }
   },
+
+  deleteTimeKp: async (req, res) => {
+    const myId = 4;
+    try {
+      const timekp = await TimeKeeping.deleteMany({ Id: myId });
+      res.status(200).json({ msg: "Xóa Tất Cả Thành Công!", timekp });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 };
 
 module.exports = TimeKeepingController;

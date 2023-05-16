@@ -10,5 +10,6 @@ router.get(
 );
 
 router.post("/", TimeKeepingController.createTimeKP);
+router.delete("/", TimeKeepingController.deleteTimeKp);
 
 module.exports = router;
