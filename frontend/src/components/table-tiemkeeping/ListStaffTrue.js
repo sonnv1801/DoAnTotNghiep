@@ -61,12 +61,12 @@ export const ListStaffTrue = (staffkeeping, off) => {
                     .format("HH:mm") === "08:00" ? (
                     <p style={{ color: "orange", margin: "0" }}>Đủ 8 Tiếng</p>
                   ) : moment
-                      .utc(
-                        moment(row.workTime, "HH:mm").diff(
-                          moment("1:00", "HH:mm")
-                        )
+                    .utc(
+                      moment(row.workTime, "HH:mm").diff(
+                        moment("1:00", "HH:mm")
                       )
-                      .format("HH:mm") > "08:00" ? (
+                    )
+                    .format("HH:mm") > "08:00" ? (
                     <p style={{ color: "green", margin: "0" }}>
                       {`Chấm công sau ${moment
                         .utc(

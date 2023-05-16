@@ -19,6 +19,7 @@ export const stopLoading = () => {
   };
 };
 
+//get staff
 export const getAllStaff = () => {
   return (dispatch) => {
     dispatch(startLoading());

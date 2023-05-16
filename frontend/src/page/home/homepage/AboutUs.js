@@ -5,6 +5,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GoogleIcon from "@mui/icons-material/Google";
 export const AboutUs = ({ name, profession, address, image }) => {
   return (
+
     <div class="member d-flex align-items-start mb-4 container-fluid">
       <div class="pic">
         <img src={image} class="img-fluid" alt="" />
@@ -15,22 +16,23 @@ export const AboutUs = ({ name, profession, address, image }) => {
         <span>{profession}</span>
         <hr className="w-[20%]" />
         <p>{address}</p>
-        <div class="social">
-          <a href="">
+        <div class="mt-3 flex items-center justify-start">
+          <a className="rounded-full w-[40px] text-blue-500" href="#">
             <FacebookOutlinedIcon />
           </a>
-          <a href="">
+          <a className="rounded-full w-[40px] text-blue-500" href="#">
             <GitHubIcon />
           </a>
-          <a href="">
+          <a className="rounded-full w-[40px] text-blue-500" href="#">
             <LinkedInIcon />
           </a>
-          <a href="">
+          <a className="rounded-full w-[40px] text-blue-500" href="#">
             {" "}
             <GoogleIcon />
           </a>
         </div>
       </div>
     </div>
+
   );
 };

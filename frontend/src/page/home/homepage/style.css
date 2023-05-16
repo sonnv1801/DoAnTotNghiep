@@ -14,14 +14,14 @@
 }
 .main-about {
   margin: 0 auto;
-  width: 90%;
+  width: 100%;
   margin-bottom: 3rem;
   margin-top: 3rem;
 }
 
 .main-about h1 {
   text-align: center;
-  font-size: 2.9rem;
+  font-size: 2.5rem;
   text-transform: uppercase;
   color: #37517e;
   font-weight: bold;
@@ -29,7 +29,6 @@
 }
 
 .main-about .contact-right {
-  float: right;
   font-size: 1.5rem;
   color: #37517e;
   font-weight: bold;
@@ -62,7 +61,6 @@
 }
 
 .main-about .contact-left .contact-icon {
-  margin-right: 1rem;
 }
 
 .member {
