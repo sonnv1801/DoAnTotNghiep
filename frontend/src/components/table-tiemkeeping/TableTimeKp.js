@@ -13,7 +13,6 @@ import moment from "moment";
 import TableTemplate from "../tableTemplate/TableTemplate";
 
 export default function TableTimeKp({ staffkeeping, filteredStudents }) {
-
   const filteredData = _.uniqBy(staffkeeping.staffkeeping, "Id");
   const isLoading = useSelector((state) => state.defaultReducer.isLoading);
   const user = JSON.parse(localStorage.getItem("token"));
@@ -102,7 +101,7 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
                             <TableCell align="right">{item.day}</TableCell>
                             <TableCell align="right">{item.time_in}</TableCell>
                             <TableCell align="right">{item.time_out}</TableCell>
-                            <TableCell align="right">{off}</TableCell>
+                            <TableCell align="right">{off} giờcd</TableCell>
                             <TableCell align="right">
                               {moment
                                 .utc(
@@ -125,12 +124,12 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
                                   Đủ 8 Tiếng
                                 </p>
                               ) : moment
-                                .utc(
-                                  moment(item.workTime, "HH:mm").diff(
-                                    moment("1:00", "HH:mm")
+                                  .utc(
+                                    moment(item.workTime, "HH:mm").diff(
+                                      moment("1:00", "HH:mm")
+                                    )
                                   )
-                                )
-                                .format("HH:mm") > "08:00" ? (
+                                  .format("HH:mm") > "08:00" ? (
                                 <p style={{ color: "green", margin: "0" }}>
                                   {`Chấm công sau ${moment
                                     .utc(
@@ -231,12 +230,12 @@ export default function TableTimeKp({ staffkeeping, filteredStudents }) {
                                   Đủ 8 Tiếng
                                 </p>
                               ) : moment
-                                .utc(
-                                  moment(item.workTime, "HH:mm").diff(
-                                    moment("1:00", "HH:mm")
+                                  .utc(
+                                    moment(item.workTime, "HH:mm").diff(
+                                      moment("1:00", "HH:mm")
+                                    )
                                   )
-                                )
-                                .format("HH:mm") > "08:00" ? (
+                                  .format("HH:mm") > "08:00" ? (
                                 <p style={{ color: "green", margin: "0" }}>
                                   {`Chấm công sau ${moment
                                     .utc(

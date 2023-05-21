@@ -35,7 +35,7 @@ export default function Tables(listStaff) {
   const search = useSelector((state) => state.defaultReducer.search);
   const filteredData = _.uniqBy(listStaff.listStaff, "Id");
   const filteredsearch = _.uniqBy(search, "Id");
-
+  console.log(filteredData, "filteredData");
   return (
     <>
       {search.length > 0 ? (
@@ -83,7 +83,7 @@ export default function Tables(listStaff) {
                       {/* <StyledTableCell align="right">18/10/2001</StyledTableCell> */}
                       <StyledTableCell align="right">{row.Dep}</StyledTableCell>
                       <StyledTableCell align="right">
-                        {row.roll === 1 ? "Nhân Viên" : "Admin"}
+                        {row.roll === "1" ? "Nhân Viên" : "Admin"}
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
@@ -136,7 +136,7 @@ export default function Tables(listStaff) {
                       </StyledTableCell>
                       <StyledTableCell align="right">{row.Dep}</StyledTableCell>
                       <StyledTableCell align="right">
-                        {row.roll === 1 ? "Nhân Viên" : "Admin"}
+                        {row.roll === "1" ? "Nhân Viên" : "Admin"}
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
